@@ -1,12 +1,12 @@
 #include "GraphicManager.hpp"
-#include "../constants/Constants.hpp"
+#include "../Jogo.hpp"
 #include <iostream>
 #include <mutex>
 
 using namespace Gerenciadores;
 
 GraphicManager::GraphicManager() {
-  this->window = new sf::RenderWindow(sf::VideoMode(200, 200), Constants::name);
+  this->window = new sf::RenderWindow(sf::VideoMode(200, 200), Jogo::getNome());
 };
 
 GraphicManager::~GraphicManager(){};

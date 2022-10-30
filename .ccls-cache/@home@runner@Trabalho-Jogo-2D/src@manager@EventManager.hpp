@@ -11,11 +11,12 @@ namespace Gerenciadores
     private:
       inline static EventManager* _manager;
       inline static std::mutex _mutex;
-
-    public:
       EventManager();
       ~EventManager();
 
+    public:
       static EventManager *getInstance();
+
+      sf::Vector2f getJogadorUmControl();
   };
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "../Entidade/Entidade.hpp"
 
 namespace Entidades {
@@ -14,6 +15,8 @@ namespace Entidades {
         void setHealth(const int health);
 
         void operator --();
+
+        virtual void executar();
     };
   }
 }

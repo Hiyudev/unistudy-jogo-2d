@@ -12,11 +12,10 @@ namespace Gerenciadores
       sf::RenderWindow* window;
       inline static GraphicManager* _manager;
       inline static std::mutex _mutex;
-
-    public:
       GraphicManager();
       ~GraphicManager();
 
+    public:
       static GraphicManager *getInstance();
 
       sf::RenderWindow* getWindow();

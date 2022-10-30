@@ -1,15 +1,20 @@
 #include "Jogo.hpp"
-#include "constants/Constants.hpp"
 #include "manager/GraphicManager.hpp"
+
 #include <SFML/Graphics.hpp>
 
+using namespace Entidades::Personagens;
 using namespace Gerenciadores;
 
-Jogo::Jogo(): JogadorUm() {};
+const string Jogo::nome = "Jogo 2d";
+
+Jogo::Jogo() : JogadorUm(sf::Vector2f(0.0f, 0.0f), false) {
+  this->graphicManager = GraphicManager::getInstance();
+};
 Jogo::~Jogo(){};
 
 void Jogo::executar() {
-  sf::RenderWindow *window = GraphicManager::getInstance()->getWindow();
+  sf::RenderWindow *window = this->graphicManager->getWindow();
 
   while (window->isOpen()) {
     sf::Event event;
@@ -22,5 +27,12 @@ void Jogo::executar() {
         }
       }
     }
+
+    window->clear();
+    this->JogadorUm.executar();
+    window->draw(*JogadorUm.getSprite());
+    window->display();
   }
 };
+
+const string Jogo::getNome() { return Jogo::nome; }

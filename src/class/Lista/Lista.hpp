@@ -1,61 +1,135 @@
-//template class T
-//template class E
+#include <iostream>
 
 namespace Listas
 {
-  template <class TL>
-  class Lista 
-  {  
-    public:
-      template <class E>
+  template <class T>
+  class Lista
+  {
+    private:
+      template <class U>
       class Elemento
       {
         private:
-          Elemento<E>* next;
-          E* info;
+          Elemento<U>* next;
+          Elemento<U>* previous;
+          U* info;
 
         public:
-          Elemento() 
-          {
-            next = NULL;
-            info = NULL;
-          }
-          ~Elemento() {}
+          Elemento()
+					{
+					  this->next = NULL;
+					  this->previous = NULL;
+					  this->info = NULL;
+					}
+          Elemento(U* info)
+					{
+  					this->next = NULL;
+					  this->previous = NULL;
+					  this->info = info;
+					}
+          Elemento(Elemento<U> *next, Elemento<U>* previous, U *info) {
+						this->next = next;
+						this->previous = previous;
+						this->info = info;
+					}
+          Elemento(Elemento<U> *next, U *info) {
+  					this->next = next;
+					  this->info = info;
+					}
+          ~Elemento() {
+						delete this->info;
+  					this->next = NULL;
+					  this->info = NULL;
+					}
 
-          Elemento<E>* getNext() { return this->next; }
-          void setNext(Elemento<E>* p) { this->next = p}
-          E* getInfo() { }
+					Elemento<U>* getNext() {
+						return this->next;
+					}
+          void setNext(Elemento<U>* next)
+					{
+					  this->next = next;
+					}
+
+					Elemento<U>* getPrevious() {
+						return this->previous;
+					}
+					void setPrevious(Elemento<U>* previous)
+					{
+						this->previous = previous;
+					}
+
+          void setInfo(U* info)
+					{
+					  this->info = info;
+					}
+					U* getInfo() {
+						return this->info;
+					}
+					
       };
 
     private:
-      Elemento<TL>* first;
-      Elemento<TL>* last;
+      Elemento<T>* first;
+      Elemento<T>* last;
+			int length;
 
     public:
-      Lista() 
-      {
-        this->first = NULL;
-        this->last = NULL;
-      }
-      ~Lista() {}
+      Lista(){
+  			this->first = NULL;
+			  this->last = NULL;
+			}
+      ~Lista(){
+  			this->first = NULL;
+			  this->last = NULL;
+			}
 
-      Elemento<TL>* getFirst()
-      {
-        return this->first;
-      }
-      Elemento<TL>* getLast()
-      {
-        return this->last;
-      }
+      void push(T* info)  {
+  			Elemento<T> *el = new Elemento<T>(info);
+				
+			  if (this->first == NULL) {
+			    this->first = el;
+			  }
 
-      void setFirst(Elemento<TL>* p)
-      {
-        this->first = p;
-      }
-      void setLast(Elemento<TL>* p)
-      {
-        this->last = p;
-      }
+				if(this->last != NULL)
+				{
+			  	this->last->setNext(el);
+				}
+
+				el->setPrevious(this->last);
+				
+			  this->last = el;
+			}
+
+			void pop()
+			{
+				if(this->last != NULL)
+				{
+					Elemento<T> prev = this->last->getPrevious();
+					if(prev != NULL)
+					{
+						prev->next = NULL;
+					}
+
+					delete this->last;
+					this->last = prev;
+				}
+			}
+
+			T* operator[](int index) {
+				Elemento<T>* curr = this->first;
+
+				int i = 0;
+				while(first != NULL && i != index)
+					{
+						curr = curr->getNext();
+					}
+
+				return curr->getInfo();
+			}
+
+			int getLength()
+				{
+				return this->length;	
+				}
   };
-  
 }

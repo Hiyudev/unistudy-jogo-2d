@@ -1,3 +1,5 @@
+#pragma once
+
 class Ente {
   protected:
     int id;

@@ -1,3 +1,4 @@
+#pragma once
 #include "../Ente/Ente.hpp"
 
 namespace Entidades {
