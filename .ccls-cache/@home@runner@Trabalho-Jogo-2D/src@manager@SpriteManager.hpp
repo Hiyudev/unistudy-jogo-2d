@@ -19,5 +19,7 @@ namespace Gerenciadores
       static SpriteManager *getInstance();
 
 			sf::Sprite* getSprite(std::string filePath);
+
+			static void flipByXSprite(bool value, sf::Sprite *sprite);
   };
 }

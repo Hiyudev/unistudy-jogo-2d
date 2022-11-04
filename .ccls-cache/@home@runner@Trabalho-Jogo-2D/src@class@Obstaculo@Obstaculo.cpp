@@ -1,7 +1,13 @@
 #include "Obstaculo.hpp"
-
+#include <SFML/Graphics.hpp>
 using namespace Entidades::Obstaculos;
 
-Obstaculo::Obstaculo() : Entidade(){};
+Obstaculo::Obstaculo(sf::Vector2f position, bool dealsDamage = false) : Entidade(position) {
+  this->dealsDamage = dealsDamage;
+};
 
 Obstaculo::~Obstaculo(){};
+
+void Obstaculo::executar(){};
+
+ 

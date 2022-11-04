@@ -1,0 +1,3 @@
+- Adaptar a classe "Jogo", inserindo o jogador e os inimigos na classe "ListaEntidades"
+- Adicionar obstáculos parados
+- Adicionar colisão

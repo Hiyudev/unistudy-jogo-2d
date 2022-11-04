@@ -1,39 +1,50 @@
 #include "Jogador.hpp"
 #include "../../manager/KeyboardManager.hpp"
+#include "../../utils/Math.hpp"
 #include "../Personagem/Personagem.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
+using namespace Utils;
 using namespace Gerenciadores;
 using namespace Entidades::Personagens;
 
-Jogador::Jogador(){};
+sf::Vector2f Jogador::position = sf::Vector2f(0, 0);
 
-Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer) : Personagem() {
+Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
+    : Personagem(position, 3, sf::Vector2f(0.1f, 0.1f)) {
+  Jogador::position = position;
   this->keyboardManager = KeyboardManager::getInstance();
-  this->spriteManager = SpriteManager::getInstance();
-
-  this->sprite = spriteManager->getSprite("assets/personagens/Jogador.png");
-  std::cout << this->sprite->getPosition().x << '\n';
-  this->sprite->setPosition(position);
+  this->setSprite(spriteManager->getSprite("assets/personagens/Jogador.png"));
   this->isSecondPlayer = isSecondPlayer;
-
-  this->velocity = sf::Vector2f(0.1f, 0.1f);
 };
 
 Jogador::~Jogador(){};
 
-sf::Sprite *Jogador::getSprite() { return this->sprite; };
-
 bool Jogador::getIsSecondPlayer() { return this->isSecondPlayer; };
+
+void Jogador::move(sf::Vector2f direction) {
+  this->sprite->move(direction);
+  this->pos = this->sprite->getPosition();
+  Jogador::position = this->pos;
+}
 
 void Jogador::executar() {
   sf::Vector2f control;
+
+  // Pega quais teclas estao sendo precionados em um formato de <Vector2f>
   if (isSecondPlayer == false) {
     control = this->keyboardManager->getJogadorUmControl();
   }
 
-  sf::Vector2f moviment(control.x * velocity.x, control.y * velocity.y);
+  sf::Vector2f movement = Math::v_multi(control, velocity);
 
-  this->sprite->move(moviment);
+  // Caso esteja indo para direita, coloca o sprite do jogador para a direita
+  if (control.x > 0) {
+    SpriteManager::flipByXSprite(false, this->sprite);
+  } else if (control.x < 0) {
+    SpriteManager::flipByXSprite(true, this->sprite);
+  }
+
+  this->move(movement);
 };

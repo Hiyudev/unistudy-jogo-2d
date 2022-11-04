@@ -6,7 +6,7 @@
 using namespace Gerenciadores;
 
 GraphicManager::GraphicManager() {
-  this->window = new sf::RenderWindow(sf::VideoMode(200, 200), Jogo::getNome());
+  this->window = new sf::RenderWindow(sf::VideoMode(480, 320), Jogo::getNome());
 };
 
 GraphicManager::~GraphicManager(){};
@@ -21,3 +21,8 @@ GraphicManager *GraphicManager::getInstance() {
 };
 
 sf::RenderWindow *GraphicManager::getWindow() { return this->window; };
+
+void GraphicManager::draw(sf::Sprite* sprite)
+{
+	this->window->draw(*sprite);
+}

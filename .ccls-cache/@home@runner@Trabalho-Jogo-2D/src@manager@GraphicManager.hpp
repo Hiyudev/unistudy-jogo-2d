@@ -19,5 +19,6 @@ namespace Gerenciadores
       static GraphicManager *getInstance();
 
       sf::RenderWindow* getWindow();
+			void draw(sf::Sprite* sprite);
   };
 }

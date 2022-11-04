@@ -1,17 +1,36 @@
 #include "Jogo.hpp"
 #include "manager/GraphicManager.hpp"
-
+#include "utils/Math.hpp"
 #include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <iostream>
+#include <string>
 
+using namespace Utils;
+using namespace Entidades::Obstaculos;
 using namespace Entidades::Personagens;
 using namespace Gerenciadores;
 
-const string Jogo::nome = "Jogo 2d";
+const std::string Jogo::nome = "Jogo 2d";
 
-Jogo::Jogo() : JogadorUm(sf::Vector2f(0.0f, 0.0f), false) {
+Jogo::Jogo()
+    : JogadorUm(sf::Vector2f(24, 24), false), morcego(sf::Vector2f(24, 24)),
+      blocoUm(sf::Vector2f(8, 8)), blocoDois(sf::Vector2f(8, 24)),
+      caixaUm(sf::Vector2f(24, 8)), entidades() {
+  srand(time(NULL));
+
   this->graphicManager = GraphicManager::getInstance();
+
+  this->entidades.push(static_cast<Entidade *>(&JogadorUm));
+  this->entidades.push(static_cast<Entidade *>(&morcego));
+  this->entidades.push(static_cast<Entidade *>(&blocoUm));
+  this->entidades.push(static_cast<Entidade *>(&blocoDois));
+  this->entidades.push(static_cast<Entidade *>(&caixaUm));
 };
-Jogo::~Jogo(){};
+Jogo::~Jogo(){
+	// Destruir o singleton "GraphicManager"
+	// ...
+};
 
 void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
@@ -29,10 +48,10 @@ void Jogo::executar() {
     }
 
     window->clear();
-    this->JogadorUm.executar();
-    window->draw(*JogadorUm.getSprite());
+    this->entidades.executar();
+    this->entidades.draw();
     window->display();
   }
 };
 
-const string Jogo::getNome() { return Jogo::nome; }
+const std::string Jogo::getNome() { return Jogo::nome; }

@@ -75,10 +75,12 @@ namespace Listas
 
     public:
       Lista(){
+				this->length = 0;
   			this->first = NULL;
 			  this->last = NULL;
 			}
       ~Lista(){
+				this->length = 0;
   			this->first = NULL;
 			  this->last = NULL;
 			}
@@ -98,6 +100,7 @@ namespace Listas
 				el->setPrevious(this->last);
 				
 			  this->last = el;
+				this->length++;
 			}
 
 			void pop()
@@ -113,6 +116,7 @@ namespace Listas
 					delete this->last;
 					this->last = prev;
 				}
+				this->length--;
 			}
 
 			T* operator[](int index) {
@@ -122,14 +126,15 @@ namespace Listas
 				while(first != NULL && i != index)
 					{
 						curr = curr->getNext();
+						i++;
 					}
 
 				return curr->getInfo();
 			}
 
 			int getLength()
-				{
+			{
 				return this->length;	
-				}
+			}
   };
 }

@@ -30,6 +30,15 @@ sf::Sprite *SpriteManager::getSprite(std::string filePath) {
 
   sf::Sprite *sprite = new sf::Sprite();
   sprite->setTexture(*texture);
+	sprite->setOrigin(8, 8);
 
   return sprite;
+};
+
+void SpriteManager::flipByXSprite(bool value, sf::Sprite *sprite) {
+  if (value) {
+    sprite->setTextureRect(sf::IntRect(16, 0, -16, 16));
+  } else {
+    sprite->setTextureRect(sf::IntRect(0, 0, 16, 16));
+  }
 };

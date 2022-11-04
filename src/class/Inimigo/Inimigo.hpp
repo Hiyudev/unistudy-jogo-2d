@@ -1,11 +1,28 @@
+#pragma once
+
+#include <SFML/Graphics.hpp>
 #include "../Personagem/Personagem.hpp"
 
 using namespace Entidades::Personagens;
 
-class Inimigo : public Personagem {
-	public:
-		Inimigo();
-		~Inimigo();
+namespace Entidades {
+	namespace Personagens {
+		class Inimigo : public Personagem {
+			protected:
+				sf::Vector2f patrolDirection;
+				sf::Clock clock;
+				int patrolDirectionTimerInSeconds;
 
-		virtual void executar();
-};
+				float playerDetectionRadius;
+
+			public:
+				Inimigo(sf::Vector2f position, int patrolDirectionTimerInSeconds, float playerDetectionRadius);
+				~Inimigo();
+
+				bool isPlayerNearby();
+
+				virtual void patrol();
+				virtual void executar();
+		};
+	}
+}
