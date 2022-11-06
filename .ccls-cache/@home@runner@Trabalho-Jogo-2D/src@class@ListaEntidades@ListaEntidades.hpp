@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../Lista/Lista.hpp"
 #include "../Entidade/Entidade.hpp"
 #include "../../manager/GraphicManager.hpp"

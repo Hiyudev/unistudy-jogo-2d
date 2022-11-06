@@ -1,4 +1,5 @@
 #pragma once
+#include "../../manager/CollisionManager.hpp"
 #include "../Entidade/Entidade.hpp"
 #include <SFML/Graphics.hpp>
 
@@ -11,6 +12,8 @@ namespace Entidades {
         int health;
         sf::Vector2f velocity;
 
+				CollisionManager* collisionManager;
+
       public:
         Personagem(sf::Vector2f position = sf::Vector2f(0,0), int health = 3, sf::Vector2f vel = sf::Vector2f(0.1f, 0.1f));
         ~Personagem();
@@ -20,6 +23,7 @@ namespace Entidades {
 
         void operator --();
 
+				bool canMove(sf::Vector2f direction);
 				virtual void move(sf::Vector2f direction);
         virtual void executar();
     };

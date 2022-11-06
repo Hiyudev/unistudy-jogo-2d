@@ -14,8 +14,9 @@ namespace Entidades
     class Jogador : public Personagem
     {
       private:
-        KeyboardManager* keyboardManager;
         bool isSecondPlayer;
+
+        KeyboardManager* keyboardManager;
       
       public:
         Jogador(sf::Vector2f position, bool isSecondPlayer);
@@ -25,7 +26,6 @@ namespace Entidades
 				
         bool getIsSecondPlayer();
 
-				void move(sf::Vector2f direction);
         void executar();
     };
   }

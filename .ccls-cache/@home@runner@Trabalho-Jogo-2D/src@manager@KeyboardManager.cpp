@@ -7,11 +7,15 @@ using namespace Gerenciadores;
 
 KeyboardManager::KeyboardManager(){};
 
-KeyboardManager::~KeyboardManager(){};
+KeyboardManager::~KeyboardManager(){
+	if(this->_manager != nullptr)
+		
+	delete this->_manager;
+};
 
 KeyboardManager *KeyboardManager::getInstance() {
   std::lock_guard<std::mutex> lock(_mutex);
-  if (_manager == NULL) {
+  if (_manager == nullptr) {
     _manager = new KeyboardManager();
   }
 

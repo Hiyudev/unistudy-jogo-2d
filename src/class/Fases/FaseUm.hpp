@@ -1,8 +1,22 @@
-#include "../Fase/Fase.hpp"
+#pragma once
 
-class FaseUm : public Fase
+#include "../Fase/Fase.hpp"
+#include <SFML/Graphics.hpp>
+#include <map>
+
+namespace Fases
 {
-	public:
-		FaseUm();
-		~FaseUm();
-};
+	class FaseUm : public Fase
+	{
+		private:
+			std::multimap<int, sf::Vector2f> map;
+
+		public:
+			FaseUm();
+			~FaseUm();
+	
+			void executar();
+			void generate();
+			void gerenciar_colisoes();
+	};
+}

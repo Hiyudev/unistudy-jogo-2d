@@ -1,9 +1,29 @@
-#include "../Ente/Ente.hpp"
+#pragma once
 
-class Fase : public Ente {
-  public:
-    Fase();
-    ~Fase();
-    virtual void executar() = 0;
-    void gerenciar_colisoes();
-};
+#include "../Ente/Ente.hpp"
+#include "../Jogador/Jogador.hpp"
+#include "../ListaEntidades/ListaEntidades.hpp"
+#include "../../manager/CollisionManager.hpp"
+
+using namespace Entidades::Personagens;
+using namespace Gerenciadores;
+using namespace Listas;
+
+namespace Fases
+{
+	class Fase : public Ente {
+		protected:
+			CollisionManager* collisionManager;
+			ListaEntidades lista;
+
+	  public:
+	    Fase();
+	    ~Fase();
+
+			void insertPlayer(Jogador* jogador);
+
+	    virtual void executar() = 0;
+			virtual void generate() = 0;
+	    virtual void gerenciar_colisoes() = 0;
+	};
+}

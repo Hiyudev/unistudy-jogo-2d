@@ -5,27 +5,20 @@
 using namespace Gerenciadores;
 using namespace Entidades;
 
-Entidade::Entidade() : Ente() {
-  this->pos = sf::Vector2f(0, 0);
-  this->spriteManager = SpriteManager::getInstance();
-  this->sprite = NULL;
-};
-
-Entidade::Entidade(sf::Vector2f pos) : Ente() {
+Entidade::Entidade(sf::Vector2f pos = sf::Vector2f(0, 0)) : Ente() {
   this->pos = pos;
   this->spriteManager = SpriteManager::getInstance();
   this->sprite = NULL;
 }
 
-Entidade::Entidade(int x, int y) : Ente() {
-  this->pos = sf::Vector2f(x, y);
-  this->spriteManager = SpriteManager::getInstance();
-  this->sprite = NULL;
-}
-
-Entidade::~Entidade(){};
+Entidade::~Entidade() { delete this->spriteManager; };
 
 void Entidade::setSprite(sf::Sprite *sprite) {
+  if (sprite == nullptr) {
+    std::cout << "Erro ao tentar setar um sprite nulo." << '\n';
+    return;
+  }
+
   this->sprite = sprite;
   this->sprite->setPosition(this->pos);
 }

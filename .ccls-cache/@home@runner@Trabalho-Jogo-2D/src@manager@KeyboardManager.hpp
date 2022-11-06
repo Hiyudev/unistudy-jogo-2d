@@ -12,11 +12,13 @@ namespace Gerenciadores
       inline static KeyboardManager* _manager;
       inline static std::mutex _mutex;
       KeyboardManager();
-      ~KeyboardManager();
 
     public:
+      ~KeyboardManager();
+
       static KeyboardManager *getInstance();
 
       sf::Vector2f getJogadorUmControl();
+      sf::Vector2f getJogadorDoisControl();
   };
 }

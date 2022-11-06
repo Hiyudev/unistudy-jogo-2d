@@ -13,9 +13,10 @@ namespace Gerenciadores
       inline static SpriteManager* _manager;
       inline static std::mutex _mutex;
       SpriteManager();
-      ~SpriteManager();
 
     public:
+      ~SpriteManager();
+
       static SpriteManager *getInstance();
 
 			sf::Sprite* getSprite(std::string filePath);

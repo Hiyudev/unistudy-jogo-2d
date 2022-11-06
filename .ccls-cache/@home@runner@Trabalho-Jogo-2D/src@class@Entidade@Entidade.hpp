@@ -13,9 +13,7 @@ namespace Entidades {
 			SpriteManager* spriteManager;
   
     public:
-      Entidade();
       Entidade(sf::Vector2f pos);
-      Entidade(int x, int y);
       ~Entidade();
 
 			sf::Sprite* getSprite();

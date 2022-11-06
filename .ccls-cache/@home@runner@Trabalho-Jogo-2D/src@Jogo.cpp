@@ -7,30 +7,20 @@
 #include <string>
 
 using namespace Utils;
-using namespace Entidades::Obstaculos;
-using namespace Entidades::Personagens;
+using namespace Fases;
 using namespace Gerenciadores;
+using namespace Entidades::Personagens;
 
 const std::string Jogo::nome = "Jogo 2d";
 
-Jogo::Jogo()
-    : JogadorUm(sf::Vector2f(24, 24), false), morcego(sf::Vector2f(24, 24)),
-      blocoUm(sf::Vector2f(8, 8)), blocoDois(sf::Vector2f(8, 24)),
-      caixaUm(sf::Vector2f(24, 8)), entidades() {
+Jogo::Jogo() : JogadorUm(sf::Vector2f(32, 32), false), faseUm() {
   srand(time(NULL));
 
-  this->graphicManager = GraphicManager::getInstance();
+  faseUm.insertPlayer(&JogadorUm);
 
-  this->entidades.push(static_cast<Entidade *>(&JogadorUm));
-  this->entidades.push(static_cast<Entidade *>(&morcego));
-  this->entidades.push(static_cast<Entidade *>(&blocoUm));
-  this->entidades.push(static_cast<Entidade *>(&blocoDois));
-  this->entidades.push(static_cast<Entidade *>(&caixaUm));
+  this->graphicManager = GraphicManager::getInstance();
 };
-Jogo::~Jogo(){
-	// Destruir o singleton "GraphicManager"
-	// ...
-};
+Jogo::~Jogo() { delete GraphicManager::getInstance(); };
 
 void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
@@ -48,8 +38,7 @@ void Jogo::executar() {
     }
 
     window->clear();
-    this->entidades.executar();
-    this->entidades.draw();
+    this->faseUm.executar();
     window->display();
   }
 };
