@@ -13,6 +13,7 @@ using namespace Entidades::Personagens;
 class Jogo {
   private:
     const static std::string nome;
+		static bool hasJogadorDois;
 
 		Jogador JogadorUm;
 		Jogador JogadorDois;

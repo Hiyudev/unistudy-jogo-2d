@@ -1,6 +1,7 @@
 #include "Ente.hpp"
 
-Ente::Ente(){};
+using namespace Gerenciado
+Ente::Ente() { this->spriteManager = SpriteManager::getInstance(); };
 
 Ente::~Ente(){};
 

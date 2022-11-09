@@ -32,15 +32,14 @@ sf::Vector2f KeyboardManager::getJogadorUmControl() {
     control.x += 1;
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-    control.y -= 1;
+    control.y += 1;
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-    control.y += 1;
+    control.y -= 1;
   }
 
   return control;
 };
-
 
 sf::Vector2f KeyboardManager::getJogadorDoisControl() {
   sf::Vector2f control(0.0f, 0.0f);
@@ -52,10 +51,10 @@ sf::Vector2f KeyboardManager::getJogadorDoisControl() {
     control.x += 1;
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-    control.y -= 1;
+    control.y += 1;
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-    control.y += 1;
+    control.y -= 1;
   }
 
   return control;

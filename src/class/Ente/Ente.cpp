@@ -1,8 +1,10 @@
 #include "Ente.hpp"
+#include "../../manager/SpriteManager.hpp"
 
-Ente::Ente(){};
+using namespace Gerenciadores;
+Ente::Ente() { this->spriteManager = SpriteManager::getInstance(); };
 
-Ente::~Ente(){};
+Ente::~Ente() { delete this->spriteManager; };
 
 void Ente::executar(){};
 

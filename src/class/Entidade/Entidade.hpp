@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Ente/Ente.hpp"
-#include "../../manager/SpriteManager.hpp"
 
 using namespace Gerenciadores;
 
@@ -10,7 +9,6 @@ namespace Entidades {
     protected:
       sf::Vector2f pos;
 			sf::Sprite* sprite;
-			SpriteManager* spriteManager;
   
     public:
       Entidade(sf::Vector2f pos);

@@ -1,8 +1,12 @@
 #pragma once
+#include "../../manager/SpriteManager.hpp"
+
+using namespace Gerenciadores;
 
 class Ente {
   protected:
     int id;
+		SpriteManager* spriteManager;
 
   public:
     Ente();

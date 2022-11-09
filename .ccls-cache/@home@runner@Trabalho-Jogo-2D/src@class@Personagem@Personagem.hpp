@@ -11,6 +11,8 @@ namespace Entidades {
       protected:
         int health;
         sf::Vector2f velocity;
+				bool isJumping;
+				bool isTouchingGround;
 
 				CollisionManager* collisionManager;
 

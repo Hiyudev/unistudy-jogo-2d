@@ -28,6 +28,8 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
   }
 
   this->isSecondPlayer = isSecondPlayer;
+  this->isJumping = false;
+  this->isTouchingGround = false;
 };
 
 Jogador::~Jogador() { delete this->keyboardManager; };
@@ -44,7 +46,23 @@ void Jogador::executar() {
     control = this->keyboardManager->getJogadorDoisControl();
   }
 
-  sf::Vector2f movement = Math::v_multi(control, velocity);
+  std::cout << "Is touching ground? " << this->isTouchingGround << '\n';
+
+  // Jump
+  float jumpForce = 2;
+  if (control.y == 1 && this->isJumping == false &&
+      this->isTouchingGround == true) {
+    this->isJumping = true;
+  }
+
+  sf::Vector2f gravity(0, 0.5f);
+  sf::Vector2f movement =
+      Math::v_sum(Math::v_multi(control, velocity), gravity);
+
+  if (isJumping) {
+    movement = Math::v_sum(movement, sf::Vector2f(0, -jumpForce));
+    isJumping = false;
+  }
 
   // Caso esteja indo para direita, coloca o sprite do jogador para a direita
   if (control.x > 0) {

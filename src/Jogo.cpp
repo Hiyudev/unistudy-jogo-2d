@@ -12,6 +12,7 @@ using namespace Gerenciadores;
 using namespace Entidades::Personagens;
 
 const std::string Jogo::nome = "Jogo 2d";
+bool Jogo::hasJogadorDois = false;
 
 Jogo::Jogo()
     : JogadorUm(sf::Vector2f(32, 32), false),
@@ -19,7 +20,10 @@ Jogo::Jogo()
   srand(time(NULL));
 
   faseUm.insertPlayer(&JogadorUm);
-  faseUm.insertPlayer(&JogadorDois);
+
+  if (hasJogadorDois == true) {
+    faseUm.insertPlayer(&JogadorDois);
+  }
 
   this->graphicManager = GraphicManager::getInstance();
 };
