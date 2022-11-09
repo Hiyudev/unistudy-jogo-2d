@@ -126,7 +126,12 @@ void FaseUm::generate() {
       this->collisionManager->pushObstaculo(castedCaixa);
     } break;
     case 3: {
-      Morcego *morcego = new Morcego(pos);
+			int patrolTiming = rand() % 10;
+			if(patrolTiming < 3)
+			{
+				patrolTiming = 3;
+			}
+      Morcego *morcego = new Morcego(pos, patrolTiming);
       Entidade *castedMorcego = static_cast<Entidade *>(morcego);
       this->lista.push(castedMorcego);
       this->collisionManager->pushInimigo(castedMorcego);

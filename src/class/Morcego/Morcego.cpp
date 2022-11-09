@@ -9,7 +9,7 @@
 using namespace Utils;
 using namespace Entidades::Personagens;
 
-Morcego::Morcego(sf::Vector2f position) : Inimigo(position, 3, 50.0f) {
+Morcego::Morcego(sf::Vector2f position, int patrolTiming) : Inimigo(position, patrolTiming, 50.0f) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Morcego.png"));
 };

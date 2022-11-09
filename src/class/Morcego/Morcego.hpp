@@ -7,7 +7,7 @@ namespace Entidades {
 	namespace Personagens {
 		class Morcego : public Inimigo {
 			public:
-				Morcego(sf::Vector2f position);
+				Morcego(sf::Vector2f position, int patrolTiming);
 				~Morcego();
 
 				void patrol();
