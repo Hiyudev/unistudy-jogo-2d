@@ -34,3 +34,17 @@ sf::Vector2f Math::v_multi(sf::Vector2f vecOne, sf::Vector2f vecTwo) {
 
   return res;
 }
+
+sf::Vector2f Math::v_min(sf::Vector2f vecOne, sf::Vector2f vecTwo) {
+  bool firstIsSmall = false;
+
+  if (vecOne.x < vecTwo.x && vecOne.y < vecTwo.y) {
+    firstIsSmall = true;
+  }
+
+  if (firstIsSmall) {
+    return vecOne;
+  } else {
+    return vecTwo;
+  }
+}

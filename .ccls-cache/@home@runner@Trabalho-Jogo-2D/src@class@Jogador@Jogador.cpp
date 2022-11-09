@@ -9,17 +9,21 @@ using namespace Utils;
 using namespace Gerenciadores;
 using namespace Entidades::Personagens;
 
-sf::Vector2f Jogador::position = sf::Vector2f(0, 0);
+bool Jogador::hasSecondPlayer = false;
+sf::Vector2f Jogador::playerOnePosition = sf::Vector2f(0, 0);
+sf::Vector2f Jogador::playerTwoPosition = sf::Vector2f(0, 0);
 
 Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
-    : Personagem(position, 3, sf::Vector2f(0.1f, 0.1f)) {
-  Jogador::position = position;
+    : Personagem(position, 3, sf::Vector2f(0.3f, 0.3f)) {
   this->keyboardManager = KeyboardManager::getInstance();
   this->setSprite(spriteManager->getSprite("assets/personagens/Jogador.png"));
 
   if (isSecondPlayer) {
+    this->hasSecondPlayer = true;
+    Jogador::playerTwoPosition = position;
     this->getSprite()->setColor(sf::Color::Green);
   } else {
+    Jogador::playerOnePosition = position;
     this->getSprite()->setColor(sf::Color::Red);
   }
 
@@ -49,6 +53,11 @@ void Jogador::executar() {
     SpriteManager::flipByXSprite(true, this->sprite);
   }
 
-  Jogador::position = movement;
   this->move(movement);
+
+  if (isSecondPlayer) {
+    Jogador::playerTwoPosition = this->pos;
+  } else {
+    Jogador::playerOnePosition = this->pos;
+  }
 };

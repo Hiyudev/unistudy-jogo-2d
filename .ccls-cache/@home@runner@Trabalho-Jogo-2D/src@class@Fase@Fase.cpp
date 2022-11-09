@@ -1,8 +1,9 @@
 #include "Fase.hpp"
-#include "../../manager/CollisionManager.cpp"
+#include "../../manager/CollisionManager.hpp"
 #include "../Ente/Ente.hpp"
 #include "../Jogador/Jogador.hpp"
 
+using namespace Gerenciadores;
 using namespace Entidades::Personagens;
 using namespace Fases;
 

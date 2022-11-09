@@ -15,6 +15,7 @@ class Jogo {
     const static std::string nome;
 
 		Jogador JogadorUm;
+		Jogador JogadorDois;
 
 		FaseUm faseUm;
 

@@ -13,10 +13,13 @@ using namespace Entidades::Personagens;
 
 const std::string Jogo::nome = "Jogo 2d";
 
-Jogo::Jogo() : JogadorUm(sf::Vector2f(32, 32), false), faseUm() {
+Jogo::Jogo()
+    : JogadorUm(sf::Vector2f(32, 32), false),
+      JogadorDois(sf::Vector2f(32, 32), true), faseUm() {
   srand(time(NULL));
 
   faseUm.insertPlayer(&JogadorUm);
+  faseUm.insertPlayer(&JogadorDois);
 
   this->graphicManager = GraphicManager::getInstance();
 };

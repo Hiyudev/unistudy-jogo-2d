@@ -12,5 +12,7 @@ namespace Utils
 			static sf::Vector2f v_distance(sf::Vector2f pointOne, sf::Vector2f pointTwo);
 
 			static sf::Vector2f v_multi(sf::Vector2f vecOne, sf::Vector2f vecTwo);
+
+			static sf::Vector2f v_min(sf::Vector2f vecOne, sf::Vector2f vecTwo);
 	};
 }

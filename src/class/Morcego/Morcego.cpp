@@ -44,7 +44,28 @@ void Morcego::patrol() {
 
 void Morcego::executar() {
   if (this->isPlayerNearby()) {
-    sf::Vector2f distance = Math::v_distance(Jogador::position, this->pos);
+    sf::Vector2f distance;
+    sf::Vector2f playerOneDistance =
+        Math::v_distance(Jogador::playerOnePosition, this->pos);
+
+    if (Jogador::hasSecondPlayer) {
+      sf::Vector2f playerTwoDistance =
+          Math::v_distance(Jogador::playerTwoPosition, this->pos);
+
+      float playerOneDistanceLength =
+          Math::distance(this->pos, Jogador::playerOnePosition);
+      float playerTwoDistanceLength =
+          Math::distance(this->pos, Jogador::playerTwoPosition);
+
+      if (playerOneDistanceLength < playerTwoDistanceLength) {
+        distance = playerOneDistance;
+      } else {
+        distance = playerTwoDistance;
+      }
+    } else {
+      distance = playerOneDistance;
+    }
+
     // Limita a distancia
     if (distance.x > 1) {
       distance.x = 1;

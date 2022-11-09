@@ -22,7 +22,9 @@ namespace Entidades
         Jogador(sf::Vector2f position, bool isSecondPlayer);
         ~Jogador();
 
-				static sf::Vector2f position;
+				static sf::Vector2f playerOnePosition;
+				static sf::Vector2f playerTwoPosition;
+				static bool hasSecondPlayer;
 				
         bool getIsSecondPlayer();
 
