@@ -2,6 +2,7 @@
 #include "../Bloco/Bloco.hpp"
 #include "../Caixa/Caixa.hpp"
 #include "../Morcego/Morcego.hpp"
+#include "../Ghoul/Ghoul.hpp"
 #include "map"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
@@ -86,7 +87,7 @@ void FaseUm::generate() {
     }
   }
 
-  // Gera inimigos (exceto o chefão)
+  // Gera inimigos (exceto o chefão) na mesma quantidade dos obstaculos
   for (int j = 0; j < quantity; j++) {
     int local = rand() % 2;
 
@@ -126,15 +127,24 @@ void FaseUm::generate() {
       this->collisionManager->pushObstaculo(castedCaixa);
     } break;
     case 3: {
-			int patrolTiming = rand() % 10;
-			if(patrolTiming < 3)
-			{
-				patrolTiming = 3;
-			}
-      Morcego *morcego = new Morcego(pos, patrolTiming);
-      Entidade *castedMorcego = static_cast<Entidade *>(morcego);
-      this->lista.push(castedMorcego);
-      this->collisionManager->pushInimigo(castedMorcego);
+      int patrolTiming = rand() % 10;
+      if (patrolTiming < 3) {
+        patrolTiming = 3;
+      }
+
+      int rng = rand() % 2;
+
+      if (rng == 0) {
+				Ghoul* ghoul = new Ghoul(pos, patrolTiming);
+				Entidade* castedGhoul = static_cast<Entidade*>(ghoul);
+				this->lista.push(castedGhoul);
+        this->collisionManager->pushInimigo(castedGhoul);
+      } else {
+        Morcego *morcego = new Morcego(pos, patrolTiming);
+        Entidade *castedMorcego = static_cast<Entidade *>(morcego);
+        this->lista.push(castedMorcego);
+        this->collisionManager->pushInimigo(castedMorcego);
+      }
     } break;
     }
   }

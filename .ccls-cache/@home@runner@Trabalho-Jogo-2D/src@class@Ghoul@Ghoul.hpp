@@ -5,18 +5,16 @@ using namespace Entidades::Personagens;
 
 namespace Entidades{
   namespace Personagens{
-    
     class Ghoul : public Inimigo
-    {
-    private:
-      
-    public:
-      Ghoul(sf::Vector2f position);
-      ~Ghoul();
-  
-      void move();
-      void executar();
-    }
+    	{
+	    private:
+	      
+	    public:
+	      Ghoul(sf::Vector2f position, int patrolTiming);
+				~Ghoul();
 
+				void patrol();
+				void executar();
+	    };
   }
 }
