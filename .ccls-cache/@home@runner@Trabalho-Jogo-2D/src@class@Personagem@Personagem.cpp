@@ -8,6 +8,9 @@ Personagem::Personagem(sf::Vector2f pos, int health, sf::Vector2f vel)
   this->health = health;
   this->velocity = vel;
 
+	this->isJumping = false;
+	this->isTouchingGround = false;
+
   this->collisionManager = CollisionManager::getInstance();
 };
 
@@ -29,7 +32,9 @@ void Personagem::move(sf::Vector2f direction) {
   sf::Vector2f axisGroundChecker(0, 1);
 
   // Verifica se o jogador está pisando no chão
-  this->isTouchingGround = this->canMove(axisGroundChecker);
+  this->isTouchingGround = !(this->canMove(axisGroundChecker));
+	
+	
   // Verifica a colisão
   // No Y
   bool canMoveOnY = this->canMove(axisY);

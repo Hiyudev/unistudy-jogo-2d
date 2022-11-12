@@ -16,13 +16,14 @@ bool Jogo::hasJogadorDois = false;
 
 Jogo::Jogo()
     : JogadorUm(sf::Vector2f(32, 32), false),
-      JogadorDois(sf::Vector2f(32, 32), true), faseUm() {
+      JogadorDois(sf::Vector2f(32, 32), true), faseCaverna(),
+      menu(GraphicManager::getInstance()->getWindow(), &faseCaverna) {
   srand(time(NULL));
 
-  faseUm.insertPlayer(&JogadorUm);
+  faseCaverna.insertPlayer(&JogadorUm);
 
   if (hasJogadorDois == true) {
-    faseUm.insertPlayer(&JogadorDois);
+    faseCaverna.insertPlayer(&JogadorDois);
   }
 
   this->graphicManager = GraphicManager::getInstance();
@@ -33,19 +34,11 @@ void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
 
   while (window->isOpen()) {
-    sf::Event event;
-    while (window->pollEvent(event)) {
-      if (event.type == sf::Event::Closed) {
-        window->close();
-      } else if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape) {
-          window->close();
-        }
-      }
-    }
+    
 
     window->clear();
-    this->faseUm.executar();
+    // this->faseUm.executar();
+    menu.executar();
     window->display();
   }
 };

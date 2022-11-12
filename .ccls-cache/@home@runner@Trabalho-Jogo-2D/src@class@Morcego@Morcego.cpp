@@ -20,8 +20,8 @@ void Morcego::patrol() {
       this->patrolDirectionTimerInSeconds) {
 
     sf::Vector2f dir;
-    int rngDirX = rand() % 3;
-    int rngDirY = rand() % 3;
+    int rngDirX = rand() % 2;
+    int rngDirY = rand() % 2;
 
     switch (rngDirX) {
     case 0:
@@ -29,9 +29,6 @@ void Morcego::patrol() {
       break;
     case 1:
       dir.x = -1;
-      break;
-    case 2:
-      dir.x = 0;
       break;
     }
 

@@ -6,14 +6,14 @@
 
 namespace Fases
 {
-	class FaseUm : public Fase
+	class Caverna : public Fase
 	{
 		private:
 			std::multimap<int, sf::Vector2f> map;
 
 		public:
-			FaseUm();
-			~FaseUm();
+			Caverna();
+			~Caverna();
 	
 			void executar();
 			void generate();

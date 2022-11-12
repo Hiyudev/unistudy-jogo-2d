@@ -22,8 +22,7 @@ void Ghoul::patrol() {
       this->patrolDirectionTimerInSeconds) {
 
     sf::Vector2f dir;
-    int rngDirX = rand() % 3;
-    int rngDirY = rand() % 3;
+    int rngDirX = rand() % 2;
 
     switch (rngDirX) {
     case 0:
@@ -31,21 +30,6 @@ void Ghoul::patrol() {
       break;
     case 1:
       dir.x = -1;
-      break;
-    case 2:
-      dir.x = 0;
-      break;
-    }
-
-    switch (rngDirY) {
-    case 0:
-      dir.y = 1;
-      break;
-    case 1:
-      dir.y = -1;
-      break;
-    case 2:
-      dir.y = 0;
       break;
     }
 
@@ -90,13 +74,15 @@ void Ghoul::executar() {
     } else if (distance.y < -1) {
       distance.y = -1;
     }
-
-    sf::Vector2f movement = Math::v_multi(distance, this->velocity);
+    sf::Vector2f gravity(0, 0.5f);
+    sf::Vector2f movement =
+        Math::v_sum(Math::v_multi(distance, this->velocity), gravity);
 
     this->move(movement);
   } else {
-    sf::Vector2f movement =
-        Math::v_multi(this->patrolDirection, this->velocity);
+    sf::Vector2f gravity(0, 0.5f);
+    sf::Vector2f movement = Math::v_sum(
+        Math::v_multi(this->patrolDirection, this->velocity), gravity);
     this->move(movement);
     this->patrol();
   }

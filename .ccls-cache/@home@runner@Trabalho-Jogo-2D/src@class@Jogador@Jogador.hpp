@@ -16,7 +16,6 @@ namespace Entidades
       private:
         bool isSecondPlayer;
 				bool isJumping;
-				bool isTouchingGround;
 				sf::Clock deltaTime;
 
         KeyboardManager* keyboardManager;

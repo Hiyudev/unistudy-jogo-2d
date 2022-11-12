@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include "class/Fases/FaseUm.hpp"
+#include "class/Fases/Caverna.hpp"
 #include "class/Jogador/Jogador.hpp"
+#include "class/Menu/Menu.hpp"
 #include "class/ListaEntidades/ListaEntidades.hpp"
 #include "manager/GraphicManager.hpp"
 #include <iostream>
@@ -18,7 +19,9 @@ class Jogo {
 		Jogador JogadorUm;
 		Jogador JogadorDois;
 
-		FaseUm faseUm;
+    Menu menu;
+
+		Caverna faseCaverna;
 
 		GraphicManager* graphicManager;
 

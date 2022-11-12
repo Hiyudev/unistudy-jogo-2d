@@ -7,11 +7,10 @@ using namespace Entidades;
 
 Entidade::Entidade(sf::Vector2f pos = sf::Vector2f(0, 0)) : Ente() {
   this->pos = pos;
-  this->spriteManager = SpriteManager::getInstance();
   this->sprite = NULL;
 }
 
-Entidade::~Entidade() { delete this->spriteManager; };
+Entidade::~Entidade(){};
 
 void Entidade::setSprite(sf::Sprite *sprite) {
   if (sprite == nullptr) {

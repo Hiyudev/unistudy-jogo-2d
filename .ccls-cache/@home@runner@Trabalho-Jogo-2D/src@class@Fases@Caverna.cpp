@@ -1,4 +1,4 @@
-#include "FaseUm.hpp"
+#include "Caverna.hpp"
 #include "../Bloco/Bloco.hpp"
 #include "../Caixa/Caixa.hpp"
 #include "../Morcego/Morcego.hpp"
@@ -10,19 +10,20 @@
 using namespace Entidades::Obstaculos;
 using namespace Fases;
 
-FaseUm::FaseUm() : Fase() {
+Caverna::Caverna() : Fase() {
   srand(time(NULL));
   this->generate();
 };
 
-FaseUm::~FaseUm(){};
+Caverna::~Caverna(){};
 
-void FaseUm::executar() {
+void Caverna::executar() {
+  
   this->lista.executar();
   this->lista.draw();
 };
 
-void FaseUm::generate() {
+void Caverna::generate() {
   // Gera todas as paredes da janela
   // Todos de cima
   for (int i = 0; i < 480; i += 16) {
@@ -150,4 +151,4 @@ void FaseUm::generate() {
   }
 };
 
-void FaseUm::gerenciar_colisoes(){};
+void Caverna::gerenciar_colisoes(){};

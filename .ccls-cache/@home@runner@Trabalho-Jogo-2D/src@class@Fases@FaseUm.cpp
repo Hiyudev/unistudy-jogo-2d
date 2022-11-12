@@ -139,7 +139,6 @@ void FaseUm::generate() {
 				Entidade* castedGhoul = static_cast<Entidade*>(ghoul);
 				this->lista.push(castedGhoul);
         this->collisionManager->pushInimigo(castedGhoul);
-				
       } else {
         Morcego *morcego = new Morcego(pos, patrolTiming);
         Entidade *castedMorcego = static_cast<Entidade *>(morcego);
