@@ -1,18 +1,22 @@
 #pragma once
+#include <iostream>
+#include <vector>
 #include "../Ente/Ente.hpp"
 #include "../Fases/Caverna.hpp"
-#define MAX_ITENS 4
 
 using namespace Fases;
 
 class Menu : public Ente {
   private:
     sf::RenderWindow *window;
+    std::vector<sf::Text*> textList;
+    sf::Font font;
 
+		int playersCount;
+		int worldID;
     int selectedItem;
 
-    sf::Font font;
-    sf::Text menu[4];
+		bool started;
 
   public:
     Menu();
@@ -21,7 +25,12 @@ class Menu : public Ente {
     void selectUp();
     void selectDown();
     void manageEvents();
-    const int getSelectedItem() const;
     void executar();
     void draw();
+
+		const bool getStarted() const;
+
+    const int getSelectedItem() const;
+		const int getWorldID() const;
+		const int getPlayersCount() const;
 };

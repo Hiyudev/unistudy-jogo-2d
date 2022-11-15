@@ -1,0 +1,4 @@
+- Adicionado atributos "playersCount" e "worldID" em class Menu
+- Mudado o atributo "menu" para "textList" com novo tipo
+- Adicionado atributos "started" em class Menu
+- Adicionado metodo "getStarted" em class Menu

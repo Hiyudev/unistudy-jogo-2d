@@ -1,3 +1,5 @@
+#include <iostream>
+#include <vector>
 #include "Menu.hpp"
 #include "../Fases/Caverna.hpp"
 #include <iostream>
@@ -6,64 +8,80 @@ using namespace Fases;
 
 Menu::Menu() {
   this->window = this->graphicManager->getWindow();
-  float width = window->getSize().x;
-  float height = window->getSize().y;
-
-  selectedItem = 0;
+  this->playersCount = 1;
+  this->worldID = 1;
+  this->selectedItem = 0;
+	this->started = false;
 
   if (!font.loadFromFile("assets/fontes/monogram.ttf")) {
     std::cout << "Erro ao tentar carregar fonte arial" << '\n';
   }
 
-  menu[0].setFont(font);
-  menu[0].setFillColor(sf::Color::Red);
-  menu[0].setString("Start");
-  menu[0].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 1));
+  sf::Text *startTextOption = new sf::Text();
+  startTextOption->setFont(font);
+  startTextOption->setFillColor(sf::Color::Red);
+  startTextOption->setString("Start");
+  textList.push_back(startTextOption);
 
-  menu[1].setFont(font);
-  menu[1].setFillColor(sf::Color::White);
-  menu[1].setString("Fase: Caverna");
-  menu[1].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 2));
+  sf::Text *faseTextOption = new sf::Text();
+  faseTextOption->setFont(font);
+  faseTextOption->setFillColor(sf::Color::White);
+  faseTextOption->setString("Fase: Caverna");
+  textList.push_back(faseTextOption);
 
-  menu[2].setFont(font);
-  menu[2].setFillColor(sf::Color::White);
-  menu[2].setString("Jogadores");
-  menu[2].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 3));
+  sf::Text *jogadorTextOption = new sf::Text();
+  jogadorTextOption->setFont(font);
+  jogadorTextOption->setFillColor(sf::Color::White);
+  jogadorTextOption->setString("Jogadores: 1");
+  textList.push_back(jogadorTextOption);
 
-  menu[3].setFont(font);
-  menu[3].setFillColor(sf::Color::White);
-  menu[3].setString("Quit");
-  menu[3].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 4));
+  sf::Text *quitTextOption = new sf::Text();
+  quitTextOption->setFont(font);
+  quitTextOption->setFillColor(sf::Color::White);
+  quitTextOption->setString("Quit");
+  textList.push_back(quitTextOption);
 };
 
 Menu::~Menu(){};
 
 const int Menu::getSelectedItem() const { return this->selectedItem; }
 
+const bool Menu::getStarted() const { return this->started;}
+const int Menu::getWorldID() const { return this->worldID;}
+const int Menu::getPlayerCount() const { return this->playersCount;}
 void Menu::executar() {
   manageEvents();
   draw();
 }
 
 void Menu::draw() {
-  for (int i = 0; i < MAX_ITENS; i++) {
-    window->draw(menu[i]);
-  }
+	std::vector<sf::Text*>::iterator it;
+	int i = 1;
+	
+	for(it = textList.begin(); it != textList.end(); it++) {
+		sf::Text* text = *it;
+  float width = window->getSize().x;
+  float height = window->getSize().y;
+		
+		text->setPosition(sf::Vector2f(width / 4, height / (textList.size() + 1) * i));
+    window->draw(*text);
+		i++;
+	}
 }
 
 void Menu::selectUp() {
   if (selectedItem - 1 >= 0) {
-    menu[selectedItem].setFillColor(sf::Color::White);
+    textList[selectedItem]->setFillColor(sf::Color::White);
     selectedItem--;
-    menu[selectedItem].setFillColor(sf::Color::Red);
+    textList[selectedItem]->setFillColor(sf::Color::Red);
   }
 }
 
 void Menu::selectDown() {
-  if (selectedItem + 1 < MAX_ITENS) {
-    menu[selectedItem].setFillColor(sf::Color::White);
+  if (selectedItem + 1 < this->textList.size()) {
+    textList[selectedItem]->setFillColor(sf::Color::White);
     selectedItem++;
-    menu[selectedItem].setFillColor(sf::Color::Red);
+    textList[selectedItem]->setFillColor(sf::Color::Red);
   }
 }
 
@@ -76,15 +94,43 @@ void Menu::manageEvents() {
         this->selectUp();
       if (event.key.code == sf::Keyboard::Down)
         this->selectDown();
-      if (event.key.code == sf::Keyboard::Return) {
+      if (event.key.code == sf::Keyboard::Enter) {
         if (this->getSelectedItem() == 0) {
-          // Start
+          this->started = true;
         }
         if (this->getSelectedItem() == 1) {
-          std::cout << "..." << std::endl;
+          if (worldID == 1) {
+            worldID = 2;
+          } else {
+            worldID = 1;
+          }
+
+          sf::Text* text = textList[1];
+          switch (this->worldID) {
+          case 1:
+            text->setString("Fase: Caverna");
+            break;
+          case 2:
+            text->setString("Fase: Ruinas");
+            break;
+          }
         }
         if (this->getSelectedItem() == 2) {
-          // Jogadores
+          if (playersCount == 1) {
+            playersCount = 2;
+          } else {
+            playersCount = 1;
+          }
+
+          sf::Text* text = textList[2];
+          switch (this->playersCount) {
+          case 1:
+            text->setString("Jogadores: 1");
+            break;
+          case 2:
+            text->setString("Jogadores: 2");
+            break;
+          }
         }
         if (this->getSelectedItem() == 3) {
           window->close();

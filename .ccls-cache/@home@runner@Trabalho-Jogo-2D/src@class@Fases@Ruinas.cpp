@@ -90,14 +90,14 @@ void Ruinas::generate() {
 
     switch (local) {
     case 0: {
-      int posX = 200 + rand() % 112;
-      int posY = 104;
+      int posX = 120 + rand() % 112;
+      int posY = 232;
       this->map.insert(
           std::pair<int, sf::Vector2f>(3, sf::Vector2f(posX, posY)));
     } break;
     case 1: {
       int posX = 248 + rand() % 114;
-      int posY = 184;
+      int posY = 104;
       this->map.insert(
           std::pair<int, sf::Vector2f>(3, sf::Vector2f(posX, posY)));
     } break;
