@@ -6,6 +6,7 @@ using namespace Gerenciadores;
 using namespace Entidades;
 
 Entidade::Entidade(sf::Vector2f pos = sf::Vector2f(0, 0)) : Ente() {
+	this->spriteManager = SpriteManager::getInstance();
   this->pos = pos;
   this->sprite = NULL;
 }
@@ -22,5 +23,3 @@ void Entidade::setSprite(sf::Sprite *sprite) {
   this->sprite->setPosition(this->pos);
 }
 sf::Sprite *Entidade::getSprite() { return this->sprite; };
-
-void Entidade::executar(){};

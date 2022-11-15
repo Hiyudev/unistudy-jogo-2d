@@ -13,6 +13,7 @@ namespace Entidades {
         sf::Vector2f velocity;
 				bool isJumping;
 				bool isTouchingGround;
+				bool isPlayer;
 
 				CollisionManager* collisionManager;
 
@@ -26,7 +27,9 @@ namespace Entidades {
         void operator --();
 
 				bool canMove(sf::Vector2f direction);
+				bool canMove(sf::Vector2f direction, bool* takeDamage);
 				virtual void move(sf::Vector2f direction);
+				virtual void move(sf::Vector2f direction, bool* takeDamage);
         virtual void executar();
     };
   }

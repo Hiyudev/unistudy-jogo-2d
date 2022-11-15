@@ -9,7 +9,7 @@ ListaEntidades::ListaEntidades() { gManager = GraphicManager::getInstance(); }
 
 ListaEntidades::~ListaEntidades() {}
 
-void ListaEntidades::push(Entidade *entidade) { list.push(entidade); }
+void ListaEntidades::push(Entidade *entidade) { list += entidade; }
 
 void ListaEntidades::executar() {
   for (int i = 0; i < list.getLength(); i++) {

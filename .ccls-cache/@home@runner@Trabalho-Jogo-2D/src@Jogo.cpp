@@ -1,4 +1,6 @@
 #include "Jogo.hpp"
+#include "class/Menu/StartMenu/StartMenu.hpp"
+#include "class/Menu/StateMenu/StateMenu.hpp"
 #include "manager/GraphicManager.hpp"
 #include "utils/Math.hpp"
 #include <SFML/Graphics.hpp>
@@ -16,14 +18,19 @@ bool Jogo::hasJogadorDois = false;
 
 Jogo::Jogo()
     : JogadorUm(sf::Vector2f(32, 32), false),
-      JogadorDois(sf::Vector2f(32, 32), true), faseCaverna(),
-      menu(GraphicManager::getInstance()->getWindow(), &faseCaverna) {
+      JogadorDois(sf::Vector2f(32, 32), true), faseCaverna(), faseRuinas() /*,
+       menu(static_cast<StateMenu *>(new StartMenu()))*/
+{
   srand(time(NULL));
 
+  std::cout << "faseCaverna - insertion" << '\n';
   faseCaverna.insertPlayer(&JogadorUm);
+  std::cout << "faseRuinas - insertion" << '\n';
+  faseRuinas.insertPlayer(&JogadorUm);
 
   if (hasJogadorDois == true) {
     faseCaverna.insertPlayer(&JogadorDois);
+    faseRuinas.insertPlayer(&JogadorDois);
   }
 
   this->graphicManager = GraphicManager::getInstance();
@@ -34,11 +41,11 @@ void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
 
   while (window->isOpen()) {
-    
-
+    /// std::cout << "Loop..." << '\n';
     window->clear();
-    // this->faseUm.executar();
-    menu.executar();
+    // this->faseCaverna.executar();
+    // menu.executar();
+    this->faseRuinas.executar();
     window->display();
   }
 };

@@ -31,5 +31,10 @@ namespace Gerenciadores
 			void pushInimigo(Entidade* inimigo);
 
 			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction);
+			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, bool* takeDamage);
+      bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction);
+      bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction, bool* takeDamage);
+      bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction);
+      bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction, bool* takeDamage);
   };
 }

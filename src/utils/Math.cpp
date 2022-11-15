@@ -35,6 +35,14 @@ sf::Vector2f Math::v_multi(sf::Vector2f vecOne, sf::Vector2f vecTwo) {
   return res;
 }
 
+sf::Vector2f Math::v_multi(sf::Vector2f vecOne, float constant) {
+  sf::Vector2f res;
+  res.x = vecOne.x * constant;
+  res.y = vecOne.y * constant;
+
+  return res;
+}
+
 sf::Vector2f Math::v_min(sf::Vector2f vecOne, sf::Vector2f vecTwo) {
   bool firstIsSmall = false;
 
@@ -47,4 +55,10 @@ sf::Vector2f Math::v_min(sf::Vector2f vecOne, sf::Vector2f vecTwo) {
   } else {
     return vecTwo;
   }
+}
+
+sf::Vector2f Math::v_invert(sf::Vector2f vector) {
+  sf::Vector2f v(-vector.x, -vector.y);
+
+  return v;
 }

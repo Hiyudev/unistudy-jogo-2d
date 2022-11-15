@@ -12,7 +12,7 @@ using namespace Fases;
 
 Caverna::Caverna() : Fase() {
   srand(time(NULL));
-  this->generate();
+  //this->generate();
 };
 
 Caverna::~Caverna(){};
@@ -51,7 +51,7 @@ void Caverna::generate() {
   }
 
   for (int i = 448; i > 80; i -= 16) {
-    this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 200)));
+    this->map.insert(std::pair<int, sf::Vector2f>(1, sf::Vector2f(8 + i, 200)));
   }
 
   // Gera obstaculos

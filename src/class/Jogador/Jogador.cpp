@@ -15,6 +15,8 @@ sf::Vector2f Jogador::playerTwoPosition = sf::Vector2f(0, 0);
 
 Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
     : Personagem(position, 3, sf::Vector2f(0.3f, 0.3f)) {
+  this->isPlayer = true;
+  this->isSecondPlayer = isSecondPlayer;
   this->keyboardManager = KeyboardManager::getInstance();
   this->setSprite(spriteManager->getSprite("assets/personagens/Jogador.png"));
 
@@ -26,8 +28,6 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
     Jogador::playerOnePosition = position;
     this->getSprite()->setColor(sf::Color::Red);
   }
-
-  this->isSecondPlayer = isSecondPlayer;
 };
 
 Jogador::~Jogador() { delete this->keyboardManager; };
@@ -44,27 +44,31 @@ void Jogador::executar() {
     control = this->keyboardManager->getJogadorDoisControl();
   }
 
-  // Jump
-	// jumpTime está em milisegundos
-	float jumpTime = 150;
+  // Pulo
+  // jumpTime está em milisegundos
+  float jumpTime = 150;
   float jumpForce = 2;
-	
+
   if (control.y == 1 && this->isJumping == false &&
       this->isTouchingGround == true) {
     this->isJumping = true;
-		deltaTime.restart();
+    this->jumpDeltaTime.restart();
   }
 
+  // Gravidade
   sf::Vector2f gravity(0, 0.5f);
+
+  // Movimento
   sf::Vector2f movement =
       Math::v_sum(Math::v_multi(control, velocity), gravity);
 
+  // Pulo
   if (isJumping) {
     movement = Math::v_sum(movement, sf::Vector2f(0, -jumpForce));
 
-		if(deltaTime.getElapsedTime().asMilliseconds() > jumpTime) {
-    	isJumping = false;
-		}
+    if (this->jumpDeltaTime.getElapsedTime().asMilliseconds() > jumpTime) {
+      isJumping = false;
+    }
   }
 
   // Caso esteja indo para direita, coloca o sprite do jogador para a direita
@@ -74,7 +78,28 @@ void Jogador::executar() {
     SpriteManager::flipByXSprite(true, this->sprite);
   }
 
-  this->move(movement);
+  float iFramesTime = 500;
+  bool takeDamage = false;
+  if (tookDamage) {
+    this->move(movement);
+  } else {
+    this->move(movement, &takeDamage);
+  }
+
+  if (takeDamage && (tookDamage == false)) {
+    this->operator--();
+    this->tookDamage = true;
+
+    this->knockback(movement);
+    this->invulnerableDeltaTime.restart();
+  }
+
+  if (tookDamage) {
+    if (this->invulnerableDeltaTime.getElapsedTime().asMilliseconds() >
+        iFramesTime) {
+      tookDamage = false;
+    }
+  }
 
   if (isSecondPlayer) {
     Jogador::playerTwoPosition = this->pos;
@@ -82,3 +107,22 @@ void Jogador::executar() {
     Jogador::playerOnePosition = this->pos;
   }
 };
+
+void Jogador::knockback(sf::Vector2f direction) {
+  sf::Vector2f invertedDirection = Math::v_invert(direction);
+
+  sf::Vector2f knockbackForce;
+  knockbackForce.x = direction.x == 0 ? (rand() % 3) - 1 : 0;
+  knockbackForce.y = 0;
+
+  sf::Vector2f knockbackDirection =
+      Math::v_multi(Math::v_sum(invertedDirection, knockbackForce), 25);
+
+  this->move(knockbackDirection);
+
+  if (knockbackDirection.x > 0) {
+    SpriteManager::flipByXSprite(false, this->sprite);
+  } else if (knockbackDirection.x < 0) {
+    SpriteManager::flipByXSprite(true, this->sprite);
+  }
+}

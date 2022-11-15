@@ -11,7 +11,7 @@ namespace Listas {
 	class ListaEntidades
 	{
 		private:
-			Lista<Entidade> list;
+			Lista<Entidade*> list;
 			GraphicManager* gManager;
 	
 		public:

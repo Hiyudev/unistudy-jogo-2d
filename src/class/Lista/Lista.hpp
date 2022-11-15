@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 namespace Listas
@@ -12,7 +13,7 @@ namespace Listas
         private:
           Elemento<U>* next;
           Elemento<U>* previous;
-          U* info;
+          U info;
 
         public:
           Elemento()
@@ -21,23 +22,22 @@ namespace Listas
 					  this->previous = NULL;
 					  this->info = NULL;
 					}
-          Elemento(U* info)
+          Elemento(U info)
 					{
   					this->next = NULL;
 					  this->previous = NULL;
 					  this->info = info;
 					}
-          Elemento(Elemento<U> *next, Elemento<U>* previous, U *info) {
+          Elemento(Elemento<U> *next, Elemento<U>* previous, U info) {
 						this->next = next;
 						this->previous = previous;
 						this->info = info;
 					}
-          Elemento(Elemento<U> *next, U *info) {
+          Elemento(Elemento<U> *next, U info) {
   					this->next = next;
 					  this->info = info;
 					}
           ~Elemento() {
-						delete this->info;
   					this->next = NULL;
 					  this->info = NULL;
 					}
@@ -58,11 +58,11 @@ namespace Listas
 						this->previous = previous;
 					}
 
-          void setInfo(U* info)
+          void setInfo(U info)
 					{
 					  this->info = info;
 					}
-					U* getInfo() {
+					U getInfo() {
 						return this->info;
 					}
 					
@@ -85,7 +85,7 @@ namespace Listas
 			  this->last = NULL;
 			}
 
-      void push(T* info)  {
+      void push(T info)  {
   			Elemento<T> *el = new Elemento<T>(info);
 				
 			  if (this->first == NULL) {
@@ -107,19 +107,25 @@ namespace Listas
 			{
 				if(this->last != NULL)
 				{
-					Elemento<T> prev = this->last->getPrevious();
+					Elemento<T>* prev = this->last->getPrevious();
 					if(prev != NULL)
 					{
-						prev->next = NULL;
+						prev->setNext(NULL);
 					}
 
 					delete this->last;
 					this->last = prev;
+					this->length--;
 				}
-				this->length--;
 			}
 
-			T* operator[](int index) {
+			T operator[](int index) {
+				return this->getAt(index);
+			}
+			T getAt(int index) {
+				if(this->length <= index) {
+					std::cout << "Erro ao inserir index maior que o numero de items na lista" << '\n';
+				}
 				Elemento<T>* curr = this->first;
 
 				int i = 0;
@@ -130,6 +136,11 @@ namespace Listas
 					}
 
 				return curr->getInfo();
+			}
+			Lista<T>& operator +=(T info)
+			{
+				this->push(info);
+				return *this;
 			}
 
 			int getLength()

@@ -9,7 +9,8 @@
 using namespace Utils;
 using namespace Entidades::Personagens;
 
-Morcego::Morcego(sf::Vector2f position, int patrolTiming) : Inimigo(position, patrolTiming, 50.0f) {
+Morcego::Morcego(sf::Vector2f position, int patrolTiming)
+    : Inimigo(position, patrolTiming, 50.0f) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Morcego.png"));
 };
@@ -32,18 +33,14 @@ void Morcego::patrol() {
       break;
     }
 
-		switch(rngDirY)
-			{
-			case 0:
-				dir.y = 1;
-				break;
-			case 1:
-				dir.y = -1;
-				break;
-			case 2:
-				dir.y = 0;
-				break;
-			}
+    switch (rngDirY) {
+    case 0:
+      dir.y = 1;
+      break;
+    case 1:
+      dir.y = -1;
+      break;
+    }
 
     this->patrolDirection = dir;
     this->clock.restart();

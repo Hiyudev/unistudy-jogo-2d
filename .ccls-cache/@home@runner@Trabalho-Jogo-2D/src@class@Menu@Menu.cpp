@@ -1,16 +1,19 @@
+
 #include "Menu.hpp"
 #include "../Fases/Caverna.hpp"
+#include "StateMenu/StateMenu.hpp"
+#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <list>
 
 using namespace Fases;
 
-Menu::Menu(sf::RenderWindow *window, Caverna *caverna) {
-
-  this->window = window;
+Menu::Menu(StateMenu *state) {
+  this->state = NULL;
+  this->textList = new Lista<sf::Text*>();
+  this->window = this->graphicManager->getWindow();
   float width = window->getSize().x;
   float height = window->getSize().y;
-
-  this->pCaverna = caverna;
 
   selectedItem = 0;
 
@@ -18,79 +21,96 @@ Menu::Menu(sf::RenderWindow *window, Caverna *caverna) {
     std::cout << "Erro ao tentar carregar fonte arial" << '\n';
   }
 
-  menu[0].setFont(font);
-  menu[0].setFillColor(sf::Color::Red);
-  menu[0].setString("Start");
-  menu[0].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 1));
+  std::cout << "Menu constructor - before transitionTo" << '\n';
 
-  menu[1].setFont(font);
-  menu[1].setFillColor(sf::Color::White);
-  menu[1].setString("Fase: Caverna");
-  menu[1].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 2));
+  this->transitionTo(state);
 
-  menu[2].setFont(font);
-  menu[2].setFillColor(sf::Color::White);
-  menu[2].setString("Jogadores");
-  menu[2].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 3));
-
-  menu[3].setFont(font);
-  menu[3].setFillColor(sf::Color::White);
-  menu[3].setString("Quit");
-  menu[3].setPosition(sf::Vector2f(width / 4, height / (MAX_ITENS + 1) * 4));
+  std::cout << "Menu constructor - after transitionTo" << '\n';
 };
 
-Menu::~Menu(){};
+Menu::~Menu() {
+  if (this->state != NULL) {
+    delete this->state;
+  }
+};
+
+void Menu::transitionTo(StateMenu *state) {
+  std::cout << "Is state null? " << (state == NULL) << '\n';
+
+  if (this->state != NULL) {
+    std::cout << "What" << '\n';
+    delete this->state;
+  }
+
+  std::cout << "Menu transitionTo - set menu" << '\n';
+  state->setMenu(this);
+  std::cout << "Menu transitionTo - before generate" << '\n';
+  state->generate();
+  std::cout << "Menu transitionTo - after generate" << '\n';
+  this->state = state;
+}
 
 const int Menu::getSelectedItem() const { return this->selectedItem; }
+const sf::Font Menu::getFont() const { return this->font; }
+Lista<sf::Text*> *Menu::getTextList() { return this->textList; }
 
 void Menu::executar() {
-  manageEvents();
+  std::cout << "Menu executar - executar" << '\n';
+  std::cout << "Menu executar - draw" << '\n';
   draw();
+  std::cout << "Menu executar - manageEvents" << '\n';
+  manageEvents();
 }
 
 void Menu::draw() {
-  for (int i = 0; i < MAX_ITENS; i++) {
-    window->draw(menu[i]);
+  std::cout << "Menu draw" << '\n';
+  std::cout << "length " << textList->getLength() << '\n';
+  for (int i = 0; i < textList->getLength(); i++) {
+    sf::Text *text = textList->getAt(i);
+    std::string w = text->getString();
+    std::cout << "text: " << w << '\n';
+    std::cout << "window exists? " << (window != NULL) << '\n';
+    this->window->draw(*text);
   }
 }
 
 void Menu::selectUp() {
   if (selectedItem - 1 >= 0) {
-    menu[selectedItem].setFillColor(sf::Color::White);
+    (*textList)[selectedItem]->setFillColor(sf::Color::White);
     selectedItem--;
-    menu[selectedItem].setFillColor(sf::Color::Red);
+    (*textList)[selectedItem]->setFillColor(sf::Color::Red);
   }
 }
 
 void Menu::selectDown() {
-  if (selectedItem + 1 < MAX_ITENS) {
-    menu[selectedItem].setFillColor(sf::Color::White);
+  if (selectedItem + 1 < textList->getLength()) {
+    (*textList)[selectedItem]->setFillColor(sf::Color::White);
     selectedItem++;
-    menu[selectedItem].setFillColor(sf::Color::Red);
+    (*textList)[selectedItem]->setFillColor(sf::Color::Red);
   }
 }
 
 void Menu::manageEvents() {
+  std::cout << "Menu manage events" << '\n';
   sf::Event event;
   while (window->pollEvent(event)) {
-
     if (event.type == sf::Event::KeyPressed) {
       if (event.key.code == sf::Keyboard::Up)
         this->selectUp();
       if (event.key.code == sf::Keyboard::Down)
         this->selectDown();
       if (event.key.code == sf::Keyboard::Return) {
-        if(this->getSelectedItem() == 0){
+        if (this->getSelectedItem() == 0) {
           // Start
         }
         if (this->getSelectedItem() == 1) {
           pCaverna->executar();
           std::cout << "..." << std::endl;
         }
-        if(this->getSelectedItem() == 2){
+        if (this->getSelectedItem() == 2) {
           // Jogadores
         }
-        if(this->getSelectedItem() == 3){
+        if (this->getSelectedItem() == 3) {
           window->close();
         }
       }

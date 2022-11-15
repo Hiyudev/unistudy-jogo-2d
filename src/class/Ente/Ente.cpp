@@ -1,11 +1,7 @@
 #include "Ente.hpp"
-#include "../../manager/SpriteManager.hpp"
+#include "../../manager/GraphicManager.hpp"
 
 using namespace Gerenciadores;
-Ente::Ente() { this->spriteManager = SpriteManager::getInstance(); };
+Ente::Ente() { this->graphicManager = GraphicManager::getInstance(); };
 
-Ente::~Ente() { delete this->spriteManager; };
-
-void Ente::executar(){};
-
-void Ente::imprimirse(){};
+Ente::~Ente() { delete this->graphicManager; };

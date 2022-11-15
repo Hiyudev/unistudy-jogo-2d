@@ -16,7 +16,9 @@ namespace Entidades
       private:
         bool isSecondPlayer;
 				bool isJumping;
-				sf::Clock deltaTime;
+				bool tookDamage;
+				sf::Clock jumpDeltaTime;
+				sf::Clock invulnerableDeltaTime;
 
         KeyboardManager* keyboardManager;
       
@@ -31,6 +33,7 @@ namespace Entidades
         bool getIsSecondPlayer();
 
         void executar();
+				void knockback(sf::Vector2f direction);
     };
   }
 }

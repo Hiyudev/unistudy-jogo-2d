@@ -6,11 +6,13 @@
 #include <vector>
 
 #include "../class/Entidade/Entidade.hpp"
+#include "../class/Obstaculo/Obstaculo.hpp"
 #include "../utils/Math.hpp"
 #include "CollisionManager.hpp"
 
 using namespace Utils;
 using namespace Entidades;
+using namespace Entidades::Obstaculos;
 using namespace Gerenciadores;
 
 CollisionManager::CollisionManager(){};
@@ -33,31 +35,134 @@ CollisionManager *CollisionManager::getInstance() {
 bool CollisionManager::canMoveTo(sf::Vector2f position,
                                  sf::Vector2f direction) {
   sf::Vector2f posAfterDirection = Math::v_sum(position, direction);
-  sf::RectangleShape hitbox(sf::Vector2f(16, 16));
-  hitbox.setOrigin(8, 8);
-  hitbox.setPosition(posAfterDirection);
+  sf::RectangleShape hitboxRectangle(sf::Vector2f(16, 16));
+  hitboxRectangle.setOrigin(8, 8);
+  hitboxRectangle.setPosition(posAfterDirection);
 
-  sf::FloatRect hitboxRectangle = hitbox.getGlobalBounds();
+  sf::FloatRect hitbox = hitboxRectangle.getGlobalBounds();
 
+  bool collideObstaculo = this->checkCollideObstaculo(hitbox, direction);
+
+  return (!collideObstaculo);
+}
+
+bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
+                                 bool *takeDamage) {
+  sf::Vector2f posAfterDirection = Math::v_sum(position, direction);
+  sf::RectangleShape hitboxRectangle(sf::Vector2f(16, 16));
+  hitboxRectangle.setOrigin(8, 8);
+  hitboxRectangle.setPosition(posAfterDirection);
+
+  sf::FloatRect hitbox = hitboxRectangle.getGlobalBounds();
+
+  bool collideObstaculo =
+      this->checkCollideObstaculo(hitbox, direction, takeDamage);
+  bool collideInimigo =
+      this->checkCollideInimigo(hitbox, direction, takeDamage);
+
+  return ((!collideObstaculo) && (!collideInimigo));
+}
+
+bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
+                                             sf::Vector2f direction) {
   std::vector<Entidade *>::iterator obstaculosIt;
 
-  bool canMove = true;
+  bool collideObstaculo = false;
 
   for (obstaculosIt = obstaculosList.begin();
        obstaculosIt != obstaculosList.end(); obstaculosIt++) {
     Entidade *obstaculo = *obstaculosIt;
     sf::Sprite *sprite = obstaculo->getSprite();
 
-    sf::FloatRect spriteRectangle = sprite->getGlobalBounds();
+    sf::FloatRect obstaculoHitbox = sprite->getGlobalBounds();
 
-    bool collide = hitboxRectangle.intersects(spriteRectangle);
+    bool collide = hitbox.intersects(obstaculoHitbox);
 
     if (collide) {
-      canMove = false;
+      collideObstaculo = true;
     }
   }
 
-  return canMove;
+  return collideObstaculo;
+}
+
+bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
+                                             sf::Vector2f direction,
+                                             bool *takeDamage) {
+  std::vector<Entidade *>::iterator obstaculosIt;
+
+  bool collideObstaculo = false;
+
+  for (obstaculosIt = obstaculosList.begin();
+       obstaculosIt != obstaculosList.end(); obstaculosIt++) {
+    Entidade *obstaculo = *obstaculosIt;
+    Obstaculo *castedObstaculo = static_cast<Obstaculo *>(obstaculo);
+
+    sf::Sprite *sprite = obstaculo->getSprite();
+
+    sf::FloatRect obstaculoHitbox = sprite->getGlobalBounds();
+
+    bool collide = hitbox.intersects(obstaculoHitbox);
+
+    if (collide) {
+      collideObstaculo = true;
+
+      if (castedObstaculo->getDealsDamage() && (takeDamage != NULL)) {
+        (*takeDamage) = true;
+      }
+    }
+  }
+
+  return collideObstaculo;
+}
+
+bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
+                                           sf::Vector2f direction) {
+  std::list<Entidade *>::iterator inimigosIt;
+
+  bool collideInimigo = false;
+
+  for (inimigosIt = inimigosList.begin(); inimigosIt != inimigosList.end();
+       inimigosIt++) {
+    Entidade *inimigo = *inimigosIt;
+    sf::Sprite *sprite = inimigo->getSprite();
+
+    sf::FloatRect inimigoHitbox = sprite->getGlobalBounds();
+
+    bool collide = hitbox.intersects(inimigoHitbox);
+
+    if (collide) {
+      collideInimigo = true;
+    }
+  }
+  return collideInimigo;
+}
+
+bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
+                                           sf::Vector2f direction,
+                                           bool *takeDamage) {
+  std::list<Entidade *>::iterator inimigosIt;
+
+  bool collideInimigo = false;
+
+  for (inimigosIt = inimigosList.begin(); inimigosIt != inimigosList.end();
+       inimigosIt++) {
+    Entidade *inimigo = *inimigosIt;
+    sf::Sprite *sprite = inimigo->getSprite();
+
+    sf::FloatRect inimigoHitbox = sprite->getGlobalBounds();
+
+    bool collide = hitbox.intersects(inimigoHitbox);
+
+    if (collide) {
+      collideInimigo = true;
+
+      if (takeDamage != NULL) {
+        (*takeDamage) = true;
+      }
+    }
+  }
+  return collideInimigo;
 }
 
 void CollisionManager::pushInimigo(Entidade *inimigo) {

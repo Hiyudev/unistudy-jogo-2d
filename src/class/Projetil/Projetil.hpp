@@ -9,9 +9,9 @@ namespace Entidades{
     private:
       
     public:
-      Projetil();
+      Projetil(sf::Vector2f position = sf::Vector2f(0,0));
       ~Projetil();
 
       
-    }
+    };
 }
