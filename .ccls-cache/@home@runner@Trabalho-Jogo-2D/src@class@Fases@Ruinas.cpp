@@ -3,7 +3,7 @@
 #include "../Caixa/Caixa.hpp"
 #include "../Espinho/Espinho.hpp"
 #include "../Ghoul/Ghoul.hpp"
-#include "../Morcego/Morcego.hpp"
+#include "../Ceifador/Ceifador.hpp"
 #include <SFML/Graphics.hpp>
 
 using namespace Fases;
@@ -60,28 +60,27 @@ void Ruinas::generate() {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 264)));
   }
 
+	// Quantidades de instancias
   int qtd = (rand() % 10) + 1;
   if (qtd < 3) {
     qtd = 3;
   }
 
   for (int i = 0; i < qtd; i++) {
-    int local = rand() % 3;
+    int local = rand() % 2;
 
     switch (local) {
     case 0: {
-      int posX = 72 + rand() % 16;
-      int posY = 88;
+      int posX = 120 + ((rand() % 5)*16);
+      int posY = 152;
       this->map.insert(
           std::pair<int, sf::Vector2f>(1, sf::Vector2f(posX, posY)));
     } break;
     case 1: {
-    case 0: {
-      int posX = 72 + rand() % 16;
-      int posY = 88;
+      int posX = 64 + ((rand()%5) * 16);
+      int posY = 248;
       this->map.insert(
           std::pair<int, sf::Vector2f>(2, sf::Vector2f(posX, posY)));
-    } break;
     } break;
     }
   }
@@ -147,10 +146,10 @@ void Ruinas::generate() {
         this->lista.push(castedGhoul);
         this->collisionManager->pushInimigo(castedGhoul);
       } else {
-        Morcego *morcego = new Morcego(pos, patrolTiming);
-        Entidade *castedMorcego = static_cast<Entidade *>(morcego);
-        this->lista.push(castedMorcego);
-        this->collisionManager->pushInimigo(castedMorcego);
+        Ceifador *ceifador = new Ceifador(pos, patrolTiming);
+        Entidade *castedCeifador = static_cast<Entidade *>(ceifador);
+        this->lista.push(castedCeifador);
+        this->collisionManager->pushInimigo(castedCeifador);
       }
     }
     }

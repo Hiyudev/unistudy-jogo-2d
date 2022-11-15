@@ -20,7 +20,7 @@ class Jogo {
 		Jogador JogadorUm;
 		Jogador JogadorDois;
 
-    //Menu menu;
+    Menu menu;
 
 		Caverna faseCaverna;
     Ruinas faseRuinas;
@@ -30,7 +30,7 @@ class Jogo {
   public:
     Jogo();
     ~Jogo();
-    void executar();
 
+    void executar();
     const static std::string getNome();
 };

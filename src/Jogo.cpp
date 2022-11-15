@@ -1,6 +1,4 @@
 #include "Jogo.hpp"
-#include "class/Menu/StartMenu/StartMenu.hpp"
-#include "class/Menu/StateMenu/StateMenu.hpp"
 #include "manager/GraphicManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
@@ -16,9 +14,8 @@ bool Jogo::hasJogadorDois = false;
 
 Jogo::Jogo()
     : JogadorUm(sf::Vector2f(32, 32), false),
-      JogadorDois(sf::Vector2f(32, 32), true), faseCaverna(), faseRuinas() /*,
-       menu(static_cast<StateMenu *>(new StartMenu()))*/
-{
+      JogadorDois(sf::Vector2f(32, 32), true), faseCaverna(), faseRuinas(),
+      menu() {
   srand(time(NULL));
 
   std::cout << "faseCaverna - insertion" << '\n';
@@ -33,17 +30,18 @@ Jogo::Jogo()
 
   this->graphicManager = GraphicManager::getInstance();
 };
+
 Jogo::~Jogo() { delete GraphicManager::getInstance(); };
 
 void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
 
   while (window->isOpen()) {
-    /// std::cout << "Loop..." << '\n';
+    // std::cout << "Loop..." << '\n';
     window->clear();
     // this->faseCaverna.executar();
-    // menu.executar();
-    this->faseRuinas.executar();
+    menu.executar();
+    // this->faseRuinas.executar();
     window->display();
   }
 };

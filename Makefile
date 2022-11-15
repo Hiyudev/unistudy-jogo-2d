@@ -1,7 +1,7 @@
 CC = g++
 CFLAG = -std=c++17
 FLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
-FILES = *.cpp src/*.cpp src/**/*.cpp src/class/**/*.cpp src/class/**/**/*.cpp
+FILES = *.cpp src/*.cpp src/**/*.cpp src/class/**/*.cpp
 TARGET = Jogoapp
 
 all:
