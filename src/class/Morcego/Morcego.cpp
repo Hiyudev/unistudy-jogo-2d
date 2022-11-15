@@ -13,6 +13,8 @@ Morcego::Morcego(sf::Vector2f position, int patrolTiming)
     : Inimigo(position, patrolTiming, 50.0f) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Morcego.png"));
+
+  this->isVampiro = rand() % 2 == 0;
 };
 Morcego::~Morcego(){};
 
@@ -48,7 +50,7 @@ void Morcego::patrol() {
 }
 
 void Morcego::executar() {
-  if (this->isPlayerNearby()) {
+  if (this->isPlayerNearby() && this->isVampiro == true) {
     sf::Vector2f distance;
     sf::Vector2f playerOneDistance =
         Math::v_distance(Jogador::playerOnePosition, this->pos);

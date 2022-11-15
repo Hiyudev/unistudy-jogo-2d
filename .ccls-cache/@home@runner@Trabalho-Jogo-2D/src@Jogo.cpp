@@ -2,13 +2,11 @@
 #include "class/Menu/StartMenu/StartMenu.hpp"
 #include "class/Menu/StateMenu/StateMenu.hpp"
 #include "manager/GraphicManager.hpp"
-#include "utils/Math.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <iostream>
 #include <string>
 
-using namespace Utils;
 using namespace Fases;
 using namespace Gerenciadores;
 using namespace Entidades::Personagens;
