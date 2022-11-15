@@ -12,6 +12,7 @@ using namespace Entidades::Personagens;
 
 Ghoul::Ghoul(sf::Vector2f position, int patrolTiming)
     : Inimigo(position, patrolTiming, 50.0f) {
+  this->isHungry = rand() % 2 == 0;
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Ghoul.png"));
 };
@@ -75,11 +76,22 @@ void Ghoul::executar() {
       distance.y = -1;
     }
     sf::Vector2f gravity(0, 0.5f);
+
+    float rageTime = 1000;
+    if (this->isHungry == true &&
+        chasingDeltaTime.getElapsedTime().asMilliseconds() > rageTime) {
+      this->velocity = sf::Vector2f(0.2f, 0.2f);
+    }
+
     sf::Vector2f movement =
         Math::v_sum(Math::v_multi(distance, this->velocity), gravity);
 
     this->move(movement);
   } else {
+    if (isHungry == true) {
+      this->chasingDeltaTime.restart();
+    }
+    this->velocity = sf::Vector2f(0.1f, 0.1f);
     sf::Vector2f gravity(0, 0.5f);
     sf::Vector2f movement = Math::v_sum(
         Math::v_multi(this->patrolDirection, this->velocity), gravity);

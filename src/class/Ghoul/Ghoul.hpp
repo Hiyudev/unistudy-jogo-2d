@@ -8,6 +8,8 @@ namespace Entidades{
     class Ghoul : public Inimigo
     	{
 	    private:
+				bool isHungry;
+				sf::Clock chasingDeltaTime;
 	      
 	    public:
 	      Ghoul(sf::Vector2f position, int patrolTiming);
