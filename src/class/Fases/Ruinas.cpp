@@ -2,8 +2,8 @@
 #include "../Bloco/Bloco.hpp"
 #include "../Caixa/Caixa.hpp"
 #include "../Espinho/Espinho.hpp"
-#include "../Morcego/Morcego.hpp"
 #include "../Ghoul/Ghoul.hpp"
+#include "../Ceifador/Ceifador.hpp"
 #include <SFML/Graphics.hpp>
 
 using namespace Fases;
@@ -38,17 +38,17 @@ void Ruinas::generate() {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i + 8, 56)));
   }
 
-  for(int i = 16; i < 184; i+=16){
+  for (int i = 16; i < 184; i += 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i + 8, 104)));
   }
 
   this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(200, 88)));
 
-  for(int i = 208; i < 408; i+=16){
+  for (int i = 208; i < 408; i += 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i + 8, 72)));
   }
 
-  for(int i = 464; i > 96; i-=16){
+  for (int i = 464; i > 96; i -= 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i - 8, 168)));
   }
 
@@ -60,21 +60,28 @@ void Ruinas::generate() {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 264)));
   }
 
+	// Quantidades de instancias
   int qtd = (rand() % 10) + 1;
   if (qtd < 3) {
     qtd = 3;
   }
-  
+
   for (int i = 0; i < qtd; i++) {
-    int local = rand() % 3;
+    int local = rand() % 2;
 
     switch (local) {
-    case 0:
-      int posX = 72 + rand() % 60;
-      int posY = 104;
+    case 0: {
+      int posX = 72 + rand() % 16;
+      int posY = 88;
       this->map.insert(
           std::pair<int, sf::Vector2f>(1, sf::Vector2f(posX, posY)));
-      break;
+    } break;
+    case 1: {
+      int posX = 88 + rand() % 16;
+      int posY = 88;
+      this->map.insert(
+          std::pair<int, sf::Vector2f>(2, sf::Vector2f(posX, posY)));
+    } break;
     }
   }
 
@@ -118,15 +125,15 @@ void Ruinas::generate() {
       this->collisionManager->pushObstaculo(castedCaixa);
     } break;
 
-    case 2:{
+    case 2: {
       Espinho *espinho = new Espinho(pos);
-      Entidade *castedEspinho = static_cast<Entidade*>(espinho);
+      Entidade *castedEspinho = static_cast<Entidade *>(espinho);
       this->lista.push(castedEspinho);
       this->collisionManager->pushObstaculo(castedEspinho);
     } break;
 
-    case 3:{
-        int patrolTiming = rand() % 10;
+    case 3: {
+      int patrolTiming = rand() % 10;
       if (patrolTiming < 3) {
         patrolTiming = 3;
       }
@@ -134,18 +141,17 @@ void Ruinas::generate() {
       int rng = rand() % 2;
 
       if (rng == 0) {
-				Ghoul* ghoul = new Ghoul(pos, patrolTiming);
-				Entidade* castedGhoul = static_cast<Entidade*>(ghoul);
-				this->lista.push(castedGhoul);
+        Ghoul *ghoul = new Ghoul(pos, patrolTiming);
+        Entidade *castedGhoul = static_cast<Entidade *>(ghoul);
+        this->lista.push(castedGhoul);
         this->collisionManager->pushInimigo(castedGhoul);
       } else {
-        Morcego *morcego = new Morcego(pos, patrolTiming);
-        Entidade *castedMorcego = static_cast<Entidade *>(morcego);
-        this->lista.push(castedMorcego);
-        this->collisionManager->pushInimigo(castedMorcego);
+        Ceifador *ceifador = new Ceifador(pos, patrolTiming);
+        Entidade *castedCeifador = static_cast<Entidade *>(ceifador);
+        this->lista.push(castedCeifador);
+        this->collisionManager->pushInimigo(castedCeifador);
       }
     }
-      
     }
   }
 }
