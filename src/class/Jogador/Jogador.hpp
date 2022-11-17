@@ -33,6 +33,7 @@ namespace Entidades
         bool getIsSecondPlayer();
 
 				void move();
+				Entidade* clone();
 				void knockback(sf::Vector2f direction);
     };
   }

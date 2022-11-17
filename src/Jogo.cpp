@@ -1,4 +1,7 @@
 #include "Jogo.hpp"
+#include "class/Fase/Fase.hpp"
+#include "class/Fases/Caverna.hpp"
+#include "class/Fases/Ruinas.hpp"
 #include "manager/GraphicManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
@@ -14,13 +17,10 @@ bool Jogo::hasJogadorDois = false;
 
 Jogo::Jogo()
     : JogadorUm(sf::Vector2f(32, 32), false),
-      JogadorDois(sf::Vector2f(32, 32), true), faseCaverna(), faseRuinas(),
-      menu() {
+      JogadorDois(sf::Vector2f(32, 32), true), menu() {
   srand(time(NULL));
 
-  faseCaverna.insertPlayer(&JogadorUm);
-  faseRuinas.insertPlayer(&JogadorUm);
-
+	this->fase = NULL;
   this->graphicManager = GraphicManager::getInstance();
 };
 
@@ -37,18 +37,17 @@ void Jogo::executar() {
     // std::cout << "Loop..." << '\n';
     window->clear();
     if (menu.getStarted() == true) {
+      if (fase == NULL) {
+        if (this->menu.getWorldID() == 1) {
+          this->fase = new Caverna();
+        } else {
+          this->fase = new Ruinas();
+        }
 
-      if (this->menu.getPlayersCount() == 2) {
-        faseCaverna.insertPlayer(&JogadorDois);
-        faseRuinas.insertPlayer(&JogadorDois);
+        this->fase->generate();
+				this->fase->insertEntidade(JogadorUm.clone());
       }
-
-      if (this->menu.getWorldID() == 1) {
-        this->faseCaverna.executar();
-      } else {
-        std::cout << "fase ruinas: executar" << '\n';
-        this->faseRuinas.executar();
-      }
+      this->fase->executar();
     } else {
       menu.executar();
     }

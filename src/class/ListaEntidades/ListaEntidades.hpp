@@ -12,7 +12,6 @@ namespace Listas {
 	{
 		private:
 			Lista<Entidade*> list;
-			GraphicManager* graphicManager;
 	
 		public:
 			ListaEntidades();

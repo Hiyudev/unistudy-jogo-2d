@@ -48,5 +48,8 @@ namespace Entidades {
 
 			// Skeleton Operation
       void executar();
+
+			// Clone prototype
+			virtual Entidade* clone();
   };
 }

@@ -9,10 +9,7 @@
 using namespace Fases;
 using namespace Entidades::Obstaculos;
 
-Ruinas::Ruinas() : Fase() {
-  srand(time(NULL));
-  this->generate();
-}
+Ruinas::Ruinas() : Fase() { srand(time(NULL)); }
 
 Ruinas::~Ruinas() {}
 

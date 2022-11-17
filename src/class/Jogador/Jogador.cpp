@@ -122,3 +122,7 @@ void Jogador::knockback(sf::Vector2f direction) {
     SpriteManager::flipByXSprite(true, this->sprite);
   }
 }
+
+Entidade* Jogador::clone() {
+	return static_cast<Entidade*>(new Jogador(*this));
+}

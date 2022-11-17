@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "class/Fase/Fase.hpp"
 #include "class/Fases/Caverna.hpp"
 #include "class/Fases/Ruinas.hpp"
 #include "class/Jogador/Jogador.hpp"
@@ -22,8 +23,7 @@ class Jogo {
 
     Menu menu;
 
-		Caverna faseCaverna;
-    Ruinas faseRuinas;
+		Fase* fase;
 
 		GraphicManager* graphicManager;
 

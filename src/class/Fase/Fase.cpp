@@ -17,6 +17,6 @@ Fase::~Fase() {
   }
 };
 
-void Fase::insertPlayer(Jogador *jogador) {
-  this->lista.push(static_cast<Entidade *>(jogador));
+void Fase::insertEntidade(Entidade *entidade) {
+  this->lista.push(entidade);
 }
