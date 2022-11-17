@@ -10,10 +10,7 @@
 using namespace Entidades::Obstaculos;
 using namespace Fases;
 
-Caverna::Caverna() : Fase() {
-  srand(time(NULL));
-  // this->generate();
-};
+Caverna::Caverna() : Fase() { srand(time(NULL)); };
 
 Caverna::~Caverna(){};
 

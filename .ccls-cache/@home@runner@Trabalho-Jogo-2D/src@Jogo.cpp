@@ -20,6 +20,7 @@ Jogo::Jogo()
       JogadorDois(sf::Vector2f(32, 32), true), menu() {
   srand(time(NULL));
 
+  this->fase = NULL;
   this->graphicManager = GraphicManager::getInstance();
 };
 
@@ -38,19 +39,22 @@ void Jogo::executar() {
     if (menu.getStarted() == true) {
       if (fase == NULL) {
         if (this->menu.getWorldID() == 1) {
-          std::cout << "Caverna..." << '\n';
           this->fase = new Caverna();
         } else {
-          std::cout << "Ruinas..." << '\n';
           this->fase = new Ruinas();
         }
 
-        std::cout << "Generate world" << '\n';
         this->fase->generate();
+        this->fase->insertEntidade(JogadorUm.clone());
+
+        if (this->menu.getPlayersCount() == 2) {
+          this->fase->insertEntidade(JogadorDois.clone());
+        }
       }
+
       this->fase->executar();
     } else {
-      menu.executar();
+      this->menu.executar();
     }
     window->display();
   }

@@ -20,7 +20,7 @@ namespace Fases
 	    Fase();
 	    ~Fase();
 
-			void insertPlayer(Jogador* jogador);
+			void insertEntidade(Entidade* entidade);
 
 	    virtual void executar() = 0;
 			virtual void generate() = 0;

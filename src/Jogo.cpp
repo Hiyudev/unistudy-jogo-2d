@@ -20,7 +20,7 @@ Jogo::Jogo()
       JogadorDois(sf::Vector2f(32, 32), true), menu() {
   srand(time(NULL));
 
-	this->fase = NULL;
+  this->fase = NULL;
   this->graphicManager = GraphicManager::getInstance();
 };
 
@@ -45,11 +45,16 @@ void Jogo::executar() {
         }
 
         this->fase->generate();
-				this->fase->insertEntidade(JogadorUm.clone());
+        this->fase->insertEntidade(JogadorUm.clone());
+
+        if (this->menu.getPlayersCount() == 2) {
+          this->fase->insertEntidade(JogadorDois.clone());
+        }
       }
+
       this->fase->executar();
     } else {
-      menu.executar();
+      this->menu.executar();
     }
     window->display();
   }
