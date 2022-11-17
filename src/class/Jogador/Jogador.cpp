@@ -9,6 +9,7 @@ using namespace Utils;
 using namespace Gerenciadores;
 using namespace Entidades::Personagens;
 
+bool Jogador::dead = false;
 bool Jogador::hasSecondPlayer = false;
 sf::Vector2f Jogador::playerOnePosition = sf::Vector2f(0, 0);
 sf::Vector2f Jogador::playerTwoPosition = sf::Vector2f(0, 0);
@@ -21,7 +22,7 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
   this->setSprite(spriteManager->getSprite("assets/personagens/Jogador.png"));
 
   if (isSecondPlayer) {
-    this->hasSecondPlayer = true;
+    Jogador::hasSecondPlayer = true;
     Jogador::playerTwoPosition = position;
     this->getSprite()->setColor(sf::Color::Green);
   } else {
@@ -86,6 +87,10 @@ void Jogador::move() {
     this->operator--();
     this->tookDamage = true;
 
+    if (this->health <= 0) {
+      Jogador::dead = true;
+    }
+
     this->knockback(movement);
     this->invulnerableDeltaTime.restart();
   }
@@ -123,6 +128,8 @@ void Jogador::knockback(sf::Vector2f direction) {
   }
 }
 
-Entidade* Jogador::clone() {
-	return static_cast<Entidade*>(new Jogador(*this));
+Jogador* Jogador::clone() {
+  std::cout << "Position x: " << (*this).position.x << '\n';
+  std::cout << "Position y: " << (*this).position.y << '\n';
+  return new Jogador(*this);
 }

@@ -14,11 +14,11 @@ namespace Fases
 	class Fase : public Ente {
 		protected:
 			CollisionManager* collisionManager;
-			ListaEntidades lista;
+			ListaEntidades* lista;
 
 	  public:
 	    Fase();
-	    ~Fase();
+	    virtual ~Fase();
 
 			void insertEntidade(Entidade* entidade);
 

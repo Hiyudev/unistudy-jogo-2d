@@ -25,15 +25,15 @@ namespace Entidades
       public:
         Jogador(sf::Vector2f position, bool isSecondPlayer);
         ~Jogador();
-
+				static bool dead;
+				static bool hasSecondPlayer;
 				static sf::Vector2f playerOnePosition;
 				static sf::Vector2f playerTwoPosition;
-				static bool hasSecondPlayer;
 				
         bool getIsSecondPlayer();
 
 				void move();
-				Entidade* clone();
+				Jogador* clone();
 				void knockback(sf::Vector2f direction);
     };
   }

@@ -147,5 +147,24 @@ namespace Listas
 			{
 				return this->length;	
 			}
+
+      void clear()
+      {
+        Elemento<T> *aux, *temp;
+
+        temp = this->first;
+        aux = temp;
+
+        while(temp != NULL){
+          aux = temp->getNext();
+          if(temp != NULL)
+            delete temp;
+
+          temp = aux;        
+        }
+
+        this->first = NULL;
+        this->last = NULL;
+      }
   };
 }

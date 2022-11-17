@@ -11,6 +11,12 @@ ListaEntidades::~ListaEntidades() {}
 
 void ListaEntidades::push(Entidade *entidade) { list += entidade; }
 
+void ListaEntidades::pop() { list.pop(); }
+
+int ListaEntidades::getLength() { return this->list.getLength(); }
+
+Entidade *ListaEntidades::getAt(int index) { return this->list.getAt(index); }
+
 void ListaEntidades::executar() {
   for (int i = 0; i < list.getLength(); i++) {
     list[i]->executar();

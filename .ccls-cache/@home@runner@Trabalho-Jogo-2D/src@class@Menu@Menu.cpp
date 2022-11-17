@@ -46,6 +46,9 @@ Menu::~Menu(){};
 const int Menu::getSelectedItem() const { return this->selectedItem; }
 
 const bool Menu::getStarted() const { return this->started; }
+
+void Menu::setStarted(bool started) { this->started = started; }
+
 const int Menu::getWorldID() const { return this->worldID; }
 const int Menu::getPlayersCount() const { return this->playersCount; }
 void Menu::executar() {

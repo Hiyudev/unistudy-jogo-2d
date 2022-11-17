@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "class/Fase/Fase.hpp"
 #include "class/Fases/Caverna.hpp"
-#include "class/Fases/Ruinas.hpp"
+#include "class/Fases/Ruina.hpp"
 #include "class/Jogador/Jogador.hpp"
 #include "class/Menu/Menu.hpp"
 #include "class/ListaEntidades/ListaEntidades.hpp"

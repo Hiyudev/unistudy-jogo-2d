@@ -1,4 +1,4 @@
-#include "Ruinas.hpp"
+#include "Ruina.hpp"
 #include "../Bloco/Bloco.hpp"
 #include "../Caixa/Caixa.hpp"
 #include "../Ceifador/Ceifador.hpp"
@@ -9,11 +9,11 @@
 using namespace Fases;
 using namespace Entidades::Obstaculos;
 
-Ruinas::Ruinas() : Fase() { srand(time(NULL)); }
+Ruina::Ruina() : Fase() { srand(time(NULL)); }
 
-Ruinas::~Ruinas() {}
+Ruina::~Ruina() {}
 
-void Ruinas::generate() {
+void Ruina::generate() {
   for (int i = 0; i < 480; i += 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 8)));
   }
@@ -111,21 +111,21 @@ void Ruinas::generate() {
     case 0: {
       Bloco *bloco = new Bloco(pos);
       Entidade *castedBloco = static_cast<Entidade *>(bloco);
-      this->lista.push(castedBloco);
+      this->lista->push(castedBloco);
       this->collisionManager->pushObstaculo(castedBloco);
     } break;
 
     case 1: {
       Caixa *caixa = new Caixa(pos);
       Entidade *castedCaixa = static_cast<Entidade *>(caixa);
-      this->lista.push(castedCaixa);
+      this->lista->push(castedCaixa);
       this->collisionManager->pushObstaculo(castedCaixa);
     } break;
 
     case 2: {
       Espinho *espinho = new Espinho(pos);
       Entidade *castedEspinho = static_cast<Entidade *>(espinho);
-      this->lista.push(castedEspinho);
+      this->lista->push(castedEspinho);
       this->collisionManager->pushObstaculo(castedEspinho);
     } break;
 
@@ -140,12 +140,12 @@ void Ruinas::generate() {
       if (rng == 0) {
         Ghoul *ghoul = new Ghoul(pos, patrolTiming);
         Entidade *castedGhoul = static_cast<Entidade *>(ghoul);
-        this->lista.push(castedGhoul);
+        this->lista->push(castedGhoul);
         this->collisionManager->pushInimigo(castedGhoul);
       } else {
         Ceifador *ceifador = new Ceifador(pos, patrolTiming);
         Entidade *castedCeifador = static_cast<Entidade *>(ceifador);
-        this->lista.push(castedCeifador);
+        this->lista->push(castedCeifador);
         this->collisionManager->pushInimigo(castedCeifador);
       }
     }
@@ -153,4 +153,4 @@ void Ruinas::generate() {
   }
 }
 
-void Ruinas::executar() { this->lista.executar(); }
+void Ruina::executar() { this->lista->executar(); }

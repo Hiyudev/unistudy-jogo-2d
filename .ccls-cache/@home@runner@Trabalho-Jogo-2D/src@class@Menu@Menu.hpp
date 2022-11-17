@@ -29,6 +29,7 @@ class Menu : public Ente {
     void draw();
 
 		const bool getStarted() const;
+		void setStarted(bool started);
 
     const int getSelectedItem() const;
 		const int getWorldID() const;

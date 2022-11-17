@@ -1,16 +1,4 @@
-- Adicionado atributos "playersCount" e "worldID" em class Menu
-- Mudado o atributo "menu" para "textList" com novo tipo
-- Adicionado atributos "started" em class Menu
-- Adicionado metodo "getStarted" em class Menu
-- Removido metodo "void imprimirse();" em class Ente
-- Removido atributo "int id;" em class Ente
-- Muda atributo "pos" para "position" em class Entidade
-- Adicionado atributo "flutuante" "collisionManager" em class Entidade
-- Adicionado metodos "draw" "move" "gravity" em class Entidade
-- Alterado muitas coisas em todas as classes herdadas de Entidade
-- Excluido "graphicManager" em class "ListaEntidades"
-- Adicionado metodo "virtual Entidade* clone();" em class "Entidade"
-- Alterado "void insertEntidade(Entidade* entidade);" em class "Fase"
-- Adicionado "Entidade* clone();" em class Jogador
-- Removido atributos de caverna e ruinas em class Jogo
-- Adicionado "Fase* fase;" em class Jogo
+- Adicionado metodo "int getLength();" da class ListaEntidades
+- Adicionado metodo "Entidade* getAt(int index);" da class ListaEntidades
+- Mudado metodo "ListaEntidades* lista;" da class Fase
+- Adicionado metodo "clear()" na class CollisionManager

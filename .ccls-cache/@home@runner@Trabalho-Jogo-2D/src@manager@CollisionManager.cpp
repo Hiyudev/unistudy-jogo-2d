@@ -11,7 +11,7 @@
 #include "CollisionManager.hpp"
 
 namespace Entidades {
-	class Entidade;
+class Entidade;
 }
 
 using namespace Utils;
@@ -175,4 +175,9 @@ void CollisionManager::pushInimigo(Entidade *inimigo) {
 
 void CollisionManager::pushObstaculo(Entidade *obstaculo) {
   this->obstaculosList.push_back(obstaculo);
+}
+
+void CollisionManager::clear() {
+  this->obstaculosList.clear();
+  this->inimigosList.clear();
 }

@@ -40,8 +40,10 @@ namespace Entidades {
 
 			// Getters
 			sf::Sprite* getSprite();
+      sf::Vector2f getPosition() const { return this->position; }
 			// Setters
 			void setSprite(sf::Sprite* sprite);
+      void setPosition(sf::Vector2f pos) { this->position = pos; }
 
 			// Metodos
 			void moveTo(sf::Vector2f direction);

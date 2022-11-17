@@ -14,7 +14,7 @@ Caverna::Caverna() : Fase() { srand(time(NULL)); };
 
 Caverna::~Caverna(){};
 
-void Caverna::executar() { this->lista.executar(); };
+void Caverna::executar() { this->lista->executar(); };
 
 void Caverna::generate() {
   // Gera todas as paredes da janela
@@ -44,7 +44,7 @@ void Caverna::generate() {
   }
 
   for (int i = 448; i > 80; i -= 16) {
-    this->map.insert(std::pair<int, sf::Vector2f>(1, sf::Vector2f(8 + i, 200)));
+    this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 200)));
   }
 
   // Gera obstaculos
@@ -111,13 +111,13 @@ void Caverna::generate() {
     case 0: {
       Bloco *bloco = new Bloco(pos);
       Entidade *castedBloco = static_cast<Entidade *>(bloco);
-      this->lista.push(castedBloco);
+      this->lista->push(castedBloco);
       this->collisionManager->pushObstaculo(castedBloco);
     } break;
     case 1: {
       Caixa *caixa = new Caixa(pos);
       Entidade *castedCaixa = static_cast<Entidade *>(caixa);
-      this->lista.push(castedCaixa);
+      this->lista->push(castedCaixa);
       this->collisionManager->pushObstaculo(castedCaixa);
     } break;
     case 3: {
@@ -131,12 +131,12 @@ void Caverna::generate() {
       if (rng == 0) {
         Ghoul *ghoul = new Ghoul(pos, patrolTiming);
         Entidade *castedGhoul = static_cast<Entidade *>(ghoul);
-        this->lista.push(castedGhoul);
+        this->lista->push(castedGhoul);
         this->collisionManager->pushInimigo(castedGhoul);
       } else {
         Morcego *morcego = new Morcego(pos, patrolTiming);
         Entidade *castedMorcego = static_cast<Entidade *>(morcego);
-        this->lista.push(castedMorcego);
+        this->lista->push(castedMorcego);
         this->collisionManager->pushInimigo(castedMorcego);
       }
     } break;

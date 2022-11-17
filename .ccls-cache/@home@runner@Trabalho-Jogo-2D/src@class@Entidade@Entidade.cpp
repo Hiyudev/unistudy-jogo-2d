@@ -71,6 +71,10 @@ void Entidade::draw() { this->graphicManager->draw(this->sprite); }
 
 void Entidade::move() {}
 
+Entidade* Entidade::clone() {
+	return NULL;
+}
+
 void Entidade::executar() {
   this->move();
   this->gravity();

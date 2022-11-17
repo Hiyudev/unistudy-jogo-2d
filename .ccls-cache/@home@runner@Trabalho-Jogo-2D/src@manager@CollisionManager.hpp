@@ -31,6 +31,7 @@ namespace Gerenciadores
 
 			void pushObstaculo(Entidade* obstaculo);
 			void pushInimigo(Entidade* inimigo);
+			void clear();
 
 			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction);
 			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, bool* takeDamage);

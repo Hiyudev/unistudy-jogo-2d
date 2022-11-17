@@ -1,7 +1,7 @@
 #include "Jogo.hpp"
 #include "class/Fase/Fase.hpp"
 #include "class/Fases/Caverna.hpp"
-#include "class/Fases/Ruinas.hpp"
+#include "class/Fases/Ruina.hpp"
 #include "manager/GraphicManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
@@ -34,25 +34,40 @@ void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
 
   while (window->isOpen()) {
-    // std::cout << "Loop..." << '\n';
     window->clear();
+
     if (menu.getStarted() == true) {
-      if (fase == NULL) {
+      if (this->fase == NULL) {
         if (this->menu.getWorldID() == 1) {
           this->fase = new Caverna();
         } else {
-          this->fase = new Ruinas();
+          this->fase = new Ruina();
         }
 
         this->fase->generate();
-        this->fase->insertEntidade(JogadorUm.clone());
+        std::cout << Jogador::playerOnePosition.x << std::endl;
+        std::cout << Jogador::playerOnePosition.y << std::endl;
+        Jogador *jogadorUmClone = JogadorUm.clone();
+        std::cout << Jogador::playerOnePosition.x << std::endl;
+        std::cout << Jogador::playerOnePosition.y << std::endl;
+        this->fase->insertEntidade(static_cast<Entidade*>(jogadorUmClone));
 
         if (this->menu.getPlayersCount() == 2) {
-          this->fase->insertEntidade(JogadorDois.clone());
+          Jogador *jogadorDoisClone = JogadorDois.clone();
+          this->fase->insertEntidade(static_cast<Entidade*>(jogadorDoisClone));
         }
       }
 
-      this->fase->executar();
+      if (Jogador::dead == true) {
+        this->menu.setStarted(false);
+
+        
+        delete this->fase;
+        this->fase = NULL;
+        Jogador::dead = false;
+      } else {
+        this->fase->executar();
+      }
     } else {
       this->menu.executar();
     }

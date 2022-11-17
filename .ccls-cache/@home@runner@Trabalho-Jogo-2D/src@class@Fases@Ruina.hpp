@@ -5,14 +5,14 @@
 #include <map>
 
 namespace Fases{
-  class Ruinas : public Fase
+  class Ruina : public Fase
   {
   private:
     std::multimap<int, sf::Vector2f> map;
   
   public:
-    Ruinas();
-    ~Ruinas();
+    Ruina();
+    ~Ruina();
   
     void generate();
     void executar();

@@ -7,16 +7,22 @@ using namespace Gerenciadores;
 using namespace Entidades::Personagens;
 using namespace Fases;
 
-Fase::Fase() : Ente(), lista() {
+Fase::Fase() : Ente() {
+  this->lista = new ListaEntidades();
   this->collisionManager = CollisionManager::getInstance();
 }
 
 Fase::~Fase() {
-  if (this->collisionManager != NULL) {
-    delete this->collisionManager;
+  int length = this->lista->getLength();
+  for (int i = length - 1; i >= 0; i--) {
+    Entidade *entidade = this->lista->getAt(i);
+    delete entidade;
+    this->lista->pop();
   }
+
+  this->collisionManager->clear();
+
+  delete this->lista;
 };
 
-void Fase::insertEntidade(Entidade *entidade) {
-  this->lista.push(entidade);
-}
+void Fase::insertEntidade(Entidade *entidade) { this->lista->push(entidade); }

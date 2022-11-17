@@ -18,6 +18,9 @@ namespace Listas {
 			~ListaEntidades();
 
 			void push(Entidade* entidade);
+			void pop();
 			void executar();
+			int getLength();
+			Entidade* getAt(int index);
 	};
 }
