@@ -32,7 +32,7 @@ namespace Entidades
 				
         bool getIsSecondPlayer();
 
-        void executar();
+				void move();
 				void knockback(sf::Vector2f direction);
     };
   }

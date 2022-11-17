@@ -10,27 +10,28 @@ namespace Entidades {
     class Personagem : public Entidade {
       protected:
         int health;
-        sf::Vector2f velocity;
 				bool isJumping;
 				bool isTouchingGround;
 				bool isPlayer;
 
-				CollisionManager* collisionManager;
+				sf::Vector2f velocity;
 
       public:
-        Personagem(sf::Vector2f position = sf::Vector2f(0,0), int health = 3, sf::Vector2f vel = sf::Vector2f(0.1f, 0.1f));
+        Personagem(sf::Vector2f position = sf::Vector2f(0,0), bool flutuante = false,int health = 3, sf::Vector2f vel = sf::Vector2f(0.1f, 0.1f));
         ~Personagem();
 
+				// Getters
         const int getHealth();
-        void setHealth(const int health);
+				// Setters
+				void setHealth(const int health);
 
+				// Overloading operator
         void operator --();
 
 				bool canMove(sf::Vector2f direction);
 				bool canMove(sf::Vector2f direction, bool* takeDamage);
-				virtual void move(sf::Vector2f direction);
-				virtual void move(sf::Vector2f direction, bool* takeDamage);
-        virtual void executar();
+				void tryMove(sf::Vector2f direction);
+				void tryMove(sf::Vector2f direction, bool* takeDamage);
     };
   }
 }

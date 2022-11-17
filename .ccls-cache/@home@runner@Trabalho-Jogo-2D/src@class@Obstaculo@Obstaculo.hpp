@@ -13,8 +13,6 @@ namespace Entidades {
         ~Obstaculo();
 
 				bool getDealsDamage();
-
-				virtual void executar();
     };
   }
 }

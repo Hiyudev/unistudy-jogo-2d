@@ -11,7 +11,7 @@ using namespace Utils;
 using namespace Entidades::Personagens;
 
 Ghoul::Ghoul(sf::Vector2f position, int patrolTiming)
-    : Inimigo(position, patrolTiming, 50.0f) {
+    : Inimigo(position, false, patrolTiming, 50.0f) {
   this->isHungry = rand() % 2 == 0;
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Ghoul.png"));
@@ -39,20 +39,20 @@ void Ghoul::patrol() {
   }
 }
 
-void Ghoul::executar() {
+void Ghoul::move() {
   if (this->isPlayerNearby()) {
     sf::Vector2f distance;
     sf::Vector2f playerOneDistance =
-        Math::v_distance(Jogador::playerOnePosition, this->pos);
+        Math::v_distance(Jogador::playerOnePosition, this->position);
 
     if (Jogador::hasSecondPlayer) {
       sf::Vector2f playerTwoDistance =
-          Math::v_distance(Jogador::playerTwoPosition, this->pos);
+          Math::v_distance(Jogador::playerTwoPosition, this->position);
 
       float playerOneDistanceLength =
-          Math::distance(this->pos, Jogador::playerOnePosition);
+          Math::distance(this->position, Jogador::playerOnePosition);
       float playerTwoDistanceLength =
-          Math::distance(this->pos, Jogador::playerTwoPosition);
+          Math::distance(this->position, Jogador::playerTwoPosition);
 
       if (playerOneDistanceLength < playerTwoDistanceLength) {
         distance = playerOneDistance;
@@ -86,7 +86,7 @@ void Ghoul::executar() {
     sf::Vector2f movement =
         Math::v_sum(Math::v_multi(distance, this->velocity), gravity);
 
-    this->move(movement);
+    this->tryMove(movement);
   } else {
     if (isHungry == true) {
       this->chasingDeltaTime.restart();
@@ -95,7 +95,7 @@ void Ghoul::executar() {
     sf::Vector2f gravity(0, 0.5f);
     sf::Vector2f movement = Math::v_sum(
         Math::v_multi(this->patrolDirection, this->velocity), gravity);
-    this->move(movement);
+    this->tryMove(movement);
     this->patrol();
   }
 }

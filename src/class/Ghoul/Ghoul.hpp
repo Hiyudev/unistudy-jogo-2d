@@ -15,8 +15,8 @@ namespace Entidades{
 	      Ghoul(sf::Vector2f position, int patrolTiming);
 				~Ghoul();
 
+				void move();
 				void patrol();
-				void executar();
 	    };
   }
 }

@@ -1,8 +1,8 @@
 #include "Caverna.hpp"
 #include "../Bloco/Bloco.hpp"
 #include "../Caixa/Caixa.hpp"
-#include "../Morcego/Morcego.hpp"
 #include "../Ghoul/Ghoul.hpp"
+#include "../Morcego/Morcego.hpp"
 #include "map"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
@@ -12,16 +12,12 @@ using namespace Fases;
 
 Caverna::Caverna() : Fase() {
   srand(time(NULL));
-  //this->generate();
+  // this->generate();
 };
 
 Caverna::~Caverna(){};
 
-void Caverna::executar() {
-  
-  this->lista.executar();
-  this->lista.draw();
-};
+void Caverna::executar() { this->lista.executar(); };
 
 void Caverna::generate() {
   // Gera todas as paredes da janela
@@ -136,9 +132,9 @@ void Caverna::generate() {
       int rng = rand() % 2;
 
       if (rng == 0) {
-				Ghoul* ghoul = new Ghoul(pos, patrolTiming);
-				Entidade* castedGhoul = static_cast<Entidade*>(ghoul);
-				this->lista.push(castedGhoul);
+        Ghoul *ghoul = new Ghoul(pos, patrolTiming);
+        Entidade *castedGhoul = static_cast<Entidade *>(ghoul);
+        this->lista.push(castedGhoul);
         this->collisionManager->pushInimigo(castedGhoul);
       } else {
         Morcego *morcego = new Morcego(pos, patrolTiming);
@@ -150,5 +146,3 @@ void Caverna::generate() {
     }
   }
 };
-
-void Caverna::gerenciar_colisoes(){};

@@ -2,6 +2,6 @@
 #include "../../manager/GraphicManager.hpp"
 
 using namespace Gerenciadores;
-Ente::Ente() { this->graphicManager = GraphicManager::getInstance(); };
 
-Ente::~Ente() { delete this->graphicManager; };
+Ente::Ente() { this->graphicManager = GraphicManager::getInstance(); };
+Ente::~Ente(){};

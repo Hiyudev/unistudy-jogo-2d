@@ -10,8 +10,6 @@ namespace Entidades
 			public:
 				Bloco(sf::Vector2f position);
 				~Bloco();
-
-				void executar();
 		};
 	}
 }

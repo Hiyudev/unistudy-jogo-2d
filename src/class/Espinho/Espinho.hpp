@@ -10,8 +10,6 @@ namespace Entidades
 			public:
 				Espinho(sf::Vector2f position);
 				~Espinho();
-
-				void executar();
 		};
 	}
 }

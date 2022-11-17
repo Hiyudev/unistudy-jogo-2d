@@ -18,20 +18,17 @@ Jogo::Jogo()
       menu() {
   srand(time(NULL));
 
-  std::cout << "faseCaverna - insertion" << '\n';
   faseCaverna.insertPlayer(&JogadorUm);
-  std::cout << "faseRuinas - insertion" << '\n';
   faseRuinas.insertPlayer(&JogadorUm);
-
-  if (hasJogadorDois == true) {
-    faseCaverna.insertPlayer(&JogadorDois);
-    faseRuinas.insertPlayer(&JogadorDois);
-  }
 
   this->graphicManager = GraphicManager::getInstance();
 };
 
-Jogo::~Jogo() { delete GraphicManager::getInstance(); };
+Jogo::~Jogo() {
+  if (this->graphicManager != NULL) {
+    delete this->graphicManager;
+  }
+};
 
 void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
@@ -39,9 +36,22 @@ void Jogo::executar() {
   while (window->isOpen()) {
     // std::cout << "Loop..." << '\n';
     window->clear();
-    // this->faseCaverna.executar();
-    menu.executar();
-    // this->faseRuinas.executar();
+    if (menu.getStarted() == true) {
+
+      if (this->menu.getPlayersCount() == 2) {
+        faseCaverna.insertPlayer(&JogadorDois);
+        faseRuinas.insertPlayer(&JogadorDois);
+      }
+
+      if (this->menu.getWorldID() == 1) {
+        this->faseCaverna.executar();
+      } else {
+        std::cout << "fase ruinas: executar" << '\n';
+        this->faseRuinas.executar();
+      }
+    } else {
+      menu.executar();
+    }
     window->display();
   }
 };

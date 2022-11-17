@@ -10,6 +10,10 @@
 #include "../utils/Math.hpp"
 #include "CollisionManager.hpp"
 
+namespace Entidades {
+	class Entidade;
+}
+
 using namespace Utils;
 using namespace Entidades;
 using namespace Entidades::Obstaculos;

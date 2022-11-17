@@ -17,6 +17,5 @@ namespace Fases
 	
 			void executar();
 			void generate();
-			void gerenciar_colisoes();
 	};
 }

@@ -12,7 +12,7 @@ namespace Listas {
 	{
 		private:
 			Lista<Entidade*> list;
-			GraphicManager* gManager;
+			GraphicManager* graphicManager;
 	
 		public:
 			ListaEntidades();
@@ -20,6 +20,5 @@ namespace Listas {
 
 			void push(Entidade* entidade);
 			void executar();
-			void draw();
 	};
 }

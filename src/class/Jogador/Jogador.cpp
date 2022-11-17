@@ -14,7 +14,7 @@ sf::Vector2f Jogador::playerOnePosition = sf::Vector2f(0, 0);
 sf::Vector2f Jogador::playerTwoPosition = sf::Vector2f(0, 0);
 
 Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
-    : Personagem(position, 3, sf::Vector2f(0.3f, 0.3f)) {
+    : Personagem(position, false, 3, sf::Vector2f(0.3f, 0.3f)) {
   this->isPlayer = true;
   this->isSecondPlayer = isSecondPlayer;
   this->keyboardManager = KeyboardManager::getInstance();
@@ -34,7 +34,7 @@ Jogador::~Jogador() { delete this->keyboardManager; };
 
 bool Jogador::getIsSecondPlayer() { return this->isSecondPlayer; };
 
-void Jogador::executar() {
+void Jogador::move() {
   sf::Vector2f control;
 
   // Pega quais teclas estao sendo precionados em um formato de <Vector2f>
@@ -55,12 +55,8 @@ void Jogador::executar() {
     this->jumpDeltaTime.restart();
   }
 
-  // Gravidade
-  sf::Vector2f gravity(0, 0.5f);
-
   // Movimento
-  sf::Vector2f movement =
-      Math::v_sum(Math::v_multi(control, velocity), gravity);
+  sf::Vector2f movement = Math::v_multi(control, velocity);
 
   // Pulo
   if (isJumping) {
@@ -81,9 +77,9 @@ void Jogador::executar() {
   float iFramesTime = 500;
   bool takeDamage = false;
   if (tookDamage) {
-    this->move(movement);
+    this->tryMove(movement);
   } else {
-    this->move(movement, &takeDamage);
+    this->tryMove(movement, &takeDamage);
   }
 
   if (takeDamage && (tookDamage == false)) {
@@ -102,9 +98,9 @@ void Jogador::executar() {
   }
 
   if (isSecondPlayer) {
-    Jogador::playerTwoPosition = this->pos;
+    Jogador::playerTwoPosition = this->position;
   } else {
-    Jogador::playerOnePosition = this->pos;
+    Jogador::playerOnePosition = this->position;
   }
 };
 
@@ -118,7 +114,7 @@ void Jogador::knockback(sf::Vector2f direction) {
   sf::Vector2f knockbackDirection =
       Math::v_multi(Math::v_sum(invertedDirection, knockbackForce), 25);
 
-  this->move(knockbackDirection);
+  this->tryMove(knockbackDirection);
 
   if (knockbackDirection.x > 0) {
     SpriteManager::flipByXSprite(false, this->sprite);

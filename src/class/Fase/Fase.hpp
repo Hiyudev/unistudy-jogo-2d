@@ -24,6 +24,5 @@ namespace Fases
 
 	    virtual void executar() = 0;
 			virtual void generate() = 0;
-	    virtual void gerenciar_colisoes() = 0;
 	};
 }

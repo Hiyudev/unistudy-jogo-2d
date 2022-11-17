@@ -8,5 +8,3 @@ Espinho::Espinho(sf::Vector2f position) : Obstaculo(position, true) {
   this->setSprite(spriteManager->getSprite("assets/obstaculo/Espinho.png"));
 };
 Espinho::~Espinho(){};
-
-void Espinho::executar() {}

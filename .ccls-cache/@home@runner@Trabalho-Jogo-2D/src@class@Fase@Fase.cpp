@@ -11,7 +11,11 @@ Fase::Fase() : Ente(), lista() {
   this->collisionManager = CollisionManager::getInstance();
 }
 
-Fase::~Fase(){};
+Fase::~Fase() {
+  if (this->collisionManager != NULL) {
+    delete this->collisionManager;
+  }
+};
 
 void Fase::insertPlayer(Jogador *jogador) {
   this->lista.push(static_cast<Entidade *>(jogador));

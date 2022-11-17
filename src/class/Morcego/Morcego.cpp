@@ -10,7 +10,7 @@ using namespace Utils;
 using namespace Entidades::Personagens;
 
 Morcego::Morcego(sf::Vector2f position, int patrolTiming)
-    : Inimigo(position, patrolTiming, 50.0f) {
+    : Inimigo(position, true, patrolTiming, 50.0f) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Morcego.png"));
 
@@ -49,20 +49,20 @@ void Morcego::patrol() {
   }
 }
 
-void Morcego::executar() {
+void Morcego::move() {
   if (this->isPlayerNearby() && this->isVampiro == true) {
     sf::Vector2f distance;
     sf::Vector2f playerOneDistance =
-        Math::v_distance(Jogador::playerOnePosition, this->pos);
+        Math::v_distance(Jogador::playerOnePosition, this->position);
 
     if (Jogador::hasSecondPlayer) {
       sf::Vector2f playerTwoDistance =
-          Math::v_distance(Jogador::playerTwoPosition, this->pos);
+          Math::v_distance(Jogador::playerTwoPosition, this->position);
 
       float playerOneDistanceLength =
-          Math::distance(this->pos, Jogador::playerOnePosition);
+          Math::distance(this->position, Jogador::playerOnePosition);
       float playerTwoDistanceLength =
-          Math::distance(this->pos, Jogador::playerTwoPosition);
+          Math::distance(this->position, Jogador::playerTwoPosition);
 
       if (playerOneDistanceLength < playerTwoDistanceLength) {
         distance = playerOneDistance;
@@ -88,11 +88,11 @@ void Morcego::executar() {
 
     sf::Vector2f movement = Math::v_multi(distance, this->velocity);
 
-    this->move(movement);
+    this->tryMove(movement);
   } else {
     sf::Vector2f movement =
         Math::v_multi(this->patrolDirection, this->velocity);
-    this->move(movement);
+    this->tryMove(movement);
     this->patrol();
   }
 }

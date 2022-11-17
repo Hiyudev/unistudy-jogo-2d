@@ -2,3 +2,8 @@
 - Mudado o atributo "menu" para "textList" com novo tipo
 - Adicionado atributos "started" em class Menu
 - Adicionado metodo "getStarted" em class Menu
+- Removido metodo "void imprimirse();" em class Ente
+- Removido atributo "int id;" em class Ente
+- Muda atributo "pos" para "position" em class Entidade
+- Adicionado atributo "velocity" em class Entidade
+- Adicionado metodos "draw" "move" "gravity" em class Entidade

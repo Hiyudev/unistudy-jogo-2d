@@ -8,5 +8,3 @@ Bloco::Bloco(sf::Vector2f position) : Obstaculo(position, false) {
   this->setSprite(spriteManager->getSprite("assets/obstaculo/Bloco.png"));
 };
 Bloco::~Bloco(){};
-
-void Bloco::executar() {}

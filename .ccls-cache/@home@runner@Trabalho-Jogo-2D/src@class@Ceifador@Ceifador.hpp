@@ -14,7 +14,8 @@ namespace Entidades{
 				~Ceifador();
 
 				void patrol();
-				void executar();
+				void move();
+				void draw();
 	    };
   }
 }

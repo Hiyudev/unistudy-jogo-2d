@@ -14,7 +14,7 @@ namespace Entidades {
 				~Morcego();
 
 				void patrol();
-				void executar();
+				void move();
 		};
 	}
 }

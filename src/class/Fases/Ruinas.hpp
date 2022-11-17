@@ -15,7 +15,6 @@ namespace Fases{
     ~Ruinas();
   
     void generate();
-    void gerenciar_colisoes();
     void executar();
   };
 }

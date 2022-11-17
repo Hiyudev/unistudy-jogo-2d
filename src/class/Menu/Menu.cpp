@@ -1,8 +1,7 @@
-#include <iostream>
-#include <vector>
 #include "Menu.hpp"
 #include "../Fases/Caverna.hpp"
 #include <iostream>
+#include <vector>
 
 using namespace Fases;
 
@@ -11,7 +10,7 @@ Menu::Menu() {
   this->playersCount = 1;
   this->worldID = 1;
   this->selectedItem = 0;
-	this->started = false;
+  this->started = false;
 
   if (!font.loadFromFile("assets/fontes/monogram.ttf")) {
     std::cout << "Erro ao tentar carregar fonte arial" << '\n';
@@ -46,27 +45,29 @@ Menu::~Menu(){};
 
 const int Menu::getSelectedItem() const { return this->selectedItem; }
 
-const bool Menu::getStarted() const { return this->started;}
-const int Menu::getWorldID() const { return this->worldID;}
-const int Menu::getPlayersCount() const { return this->playersCount;}
+const bool Menu::getStarted() const { return this->started; }
+const int Menu::getWorldID() const { return this->worldID; }
+const int Menu::getPlayersCount() const { return this->playersCount; }
 void Menu::executar() {
   manageEvents();
   draw();
 }
 
 void Menu::draw() {
-	std::vector<sf::Text*>::iterator it;
-	int i = 1;
-	
-	for(it = textList.begin(); it != textList.end(); it++) {
-		sf::Text* text = *it;
-  float width = window->getSize().x;
-  float height = window->getSize().y;
-		
-		text->setPosition(sf::Vector2f(width / 4, height / (textList.size() + 1) * i));
+  std::vector<sf::Text *>::iterator it;
+  int i = 1;
+
+  for (it = textList.begin(); it != textList.end(); it++) {
+    sf::Text *text = *it;
+    float width = window->getSize().x;
+    float height = window->getSize().y;
+
+    text->setPosition(
+        sf::Vector2f(width / 4, height / (textList.size() + 1) * i));
+
     window->draw(*text);
-		i++;
-	}
+    i++;
+  }
 }
 
 void Menu::selectUp() {
@@ -105,7 +106,7 @@ void Menu::manageEvents() {
             worldID = 1;
           }
 
-          sf::Text* text = textList[1];
+          sf::Text *text = textList[1];
           switch (this->worldID) {
           case 1:
             text->setString("Fase: Caverna");
@@ -122,7 +123,7 @@ void Menu::manageEvents() {
             playersCount = 1;
           }
 
-          sf::Text* text = textList[2];
+          sf::Text *text = textList[2];
           switch (this->playersCount) {
           case 1:
             text->setString("Jogadores: 1");

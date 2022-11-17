@@ -24,7 +24,11 @@ Jogo::Jogo()
   this->graphicManager = GraphicManager::getInstance();
 };
 
-Jogo::~Jogo() { delete GraphicManager::getInstance(); };
+Jogo::~Jogo() {
+  if (this->graphicManager != NULL) {
+    delete this->graphicManager;
+  }
+};
 
 void Jogo::executar() {
   sf::RenderWindow *window = this->graphicManager->getWindow();
@@ -32,21 +36,22 @@ void Jogo::executar() {
   while (window->isOpen()) {
     // std::cout << "Loop..." << '\n';
     window->clear();
-		if(menu.getStarted() == true) {
-			
-  		if (this->menu.getPlayersCount() == 2) {
-		    faseCaverna.insertPlayer(&JogadorDois);
-		    faseRuinas.insertPlayer(&JogadorDois);
-		  }
+    if (menu.getStarted() == true) {
 
-			if(this->menu.getWorldID() == 1) {
-    		this->faseCaverna.executar();
-			} else {
-				this->faseRuinas.executar();
-			}
-		} else {
-    	menu.executar();
-		}
+      if (this->menu.getPlayersCount() == 2) {
+        faseCaverna.insertPlayer(&JogadorDois);
+        faseRuinas.insertPlayer(&JogadorDois);
+      }
+
+      if (this->menu.getWorldID() == 1) {
+        this->faseCaverna.executar();
+      } else {
+        std::cout << "fase ruinas: executar" << '\n';
+        this->faseRuinas.executar();
+      }
+    } else {
+      menu.executar();
+    }
     window->display();
   }
 };

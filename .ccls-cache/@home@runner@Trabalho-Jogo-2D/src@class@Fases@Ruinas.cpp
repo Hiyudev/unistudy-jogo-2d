@@ -1,17 +1,17 @@
 #include "Ruinas.hpp"
 #include "../Bloco/Bloco.hpp"
 #include "../Caixa/Caixa.hpp"
+#include "../Ceifador/Ceifador.hpp"
 #include "../Espinho/Espinho.hpp"
 #include "../Ghoul/Ghoul.hpp"
-#include "../Ceifador/Ceifador.hpp"
 #include <SFML/Graphics.hpp>
 
 using namespace Fases;
 using namespace Entidades::Obstaculos;
 
 Ruinas::Ruinas() : Fase() {
-  this->generate();
   srand(time(NULL));
+  this->generate();
 }
 
 Ruinas::~Ruinas() {}
@@ -60,7 +60,7 @@ void Ruinas::generate() {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 264)));
   }
 
-	// Quantidades de instancias
+  // Quantidades de instancias
   int qtd = (rand() % 10) + 1;
   if (qtd < 3) {
     qtd = 3;
@@ -71,13 +71,13 @@ void Ruinas::generate() {
 
     switch (local) {
     case 0: {
-      int posX = 120 + ((rand() % 5)*16);
+      int posX = 120 + ((rand() % 5) * 16);
       int posY = 152;
       this->map.insert(
           std::pair<int, sf::Vector2f>(1, sf::Vector2f(posX, posY)));
     } break;
     case 1: {
-      int posX = 64 + ((rand()%5) * 16);
+      int posX = 128 + ((rand() % 7) * 16);
       int posY = 248;
       this->map.insert(
           std::pair<int, sf::Vector2f>(2, sf::Vector2f(posX, posY)));
@@ -156,9 +156,4 @@ void Ruinas::generate() {
   }
 }
 
-void Ruinas::gerenciar_colisoes() {}
-
-void Ruinas::executar() {
-  this->lista.executar();
-  this->lista.draw();
-}
+void Ruinas::executar() { this->lista.executar(); }

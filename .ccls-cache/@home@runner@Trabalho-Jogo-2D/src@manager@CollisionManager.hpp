@@ -7,7 +7,9 @@
 
 #include <vector>
 #include <list>
-
+namespace Entidades {
+	class Entidade;
+}
 using namespace Entidades;
 
 namespace Gerenciadores

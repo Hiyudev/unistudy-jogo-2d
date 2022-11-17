@@ -10,8 +10,6 @@ namespace Entidades
 			public:
 				Caixa(sf::Vector2f position);
 				~Caixa();
-
-				void executar();
 		};
 	}
 }
