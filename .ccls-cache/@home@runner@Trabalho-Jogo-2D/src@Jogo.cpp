@@ -45,23 +45,18 @@ void Jogo::executar() {
         }
 
         this->fase->generate();
-        std::cout << Jogador::playerOnePosition.x << std::endl;
-        std::cout << Jogador::playerOnePosition.y << std::endl;
         Jogador *jogadorUmClone = JogadorUm.clone();
-        std::cout << Jogador::playerOnePosition.x << std::endl;
-        std::cout << Jogador::playerOnePosition.y << std::endl;
-        this->fase->insertEntidade(static_cast<Entidade*>(jogadorUmClone));
+        this->fase->insertEntidade(static_cast<Entidade *>(jogadorUmClone));
 
         if (this->menu.getPlayersCount() == 2) {
           Jogador *jogadorDoisClone = JogadorDois.clone();
-          this->fase->insertEntidade(static_cast<Entidade*>(jogadorDoisClone));
+          this->fase->insertEntidade(static_cast<Entidade *>(jogadorDoisClone));
         }
       }
 
       if (Jogador::dead == true) {
         this->menu.setStarted(false);
 
-        
         delete this->fase;
         this->fase = NULL;
         Jogador::dead = false;

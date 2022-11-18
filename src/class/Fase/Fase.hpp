@@ -26,6 +26,7 @@ namespace Fases
       void createInimigos(int mapKey);
       void createObstaculos(int mapKey);
       void createBorda(int mapKey);
+
       virtual void createMap() = 0;
 
 	    virtual void executar() = 0;

@@ -8,7 +8,7 @@ namespace Fases{
   class Ruina : public Fase
   {
   private:
-    //std::multimap<int, sf::Vector2f> map;
+    int id;
   
   public:
     Ruina();

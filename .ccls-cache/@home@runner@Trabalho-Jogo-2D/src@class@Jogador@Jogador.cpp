@@ -48,7 +48,7 @@ void Jogador::move() {
   // Pulo
   // jumpTime está em milisegundos
   float jumpTime = 150;
-  float jumpForce = 2;
+  float jumpForce = 3;
 
   if (control.y == 1 && this->isJumping == false &&
       this->isTouchingGround == true) {
@@ -128,8 +128,6 @@ void Jogador::knockback(sf::Vector2f direction) {
   }
 }
 
-Jogador* Jogador::clone() {
-  std::cout << "Position x: " << (*this).position.x << '\n';
-  std::cout << "Position y: " << (*this).position.y << '\n';
-  return new Jogador(*this);
+Jogador *Jogador::clone() {
+  return new Jogador(this->position, this->isSecondPlayer);
 }
