@@ -14,13 +14,19 @@ namespace Fases
 	class Fase : public Ente {
 		protected:
 			CollisionManager* collisionManager;
-			ListaEntidades* lista;
+			ListaEntidades* lista;  
+      std::multimap<int, sf::Vector2f> map;
 
 	  public:
 	    Fase();
 	    virtual ~Fase();
 
 			void insertEntidade(Entidade* entidade);
+
+      void createInimigos(int mapKey);
+      void createObstaculos(int mapKey);
+      void createBorda(int mapKey);
+      virtual void createMap() = 0;
 
 	    virtual void executar() = 0;
 			virtual void generate() = 0;

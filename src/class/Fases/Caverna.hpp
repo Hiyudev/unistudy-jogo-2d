@@ -9,12 +9,13 @@ namespace Fases
 	class Caverna : public Fase
 	{
 		private:
-			std::multimap<int, sf::Vector2f> map;
+			int id;
 
 		public:
 			Caverna();
 			~Caverna();
-	
+
+      void createMap();
 			void executar();
 			void generate();
 	};
