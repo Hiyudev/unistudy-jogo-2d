@@ -1,4 +1,4 @@
-#include "Caixa.hpp"
+#include "Plataforma.hpp"
 #include "../Obstaculo/Obstaculo.hpp"
 #include <SFML/Graphics.hpp>
 

@@ -1,13 +1,8 @@
 #include "Caverna.hpp"
-#include "../Bloco/Bloco.hpp"
-#include "../Caixa/Caixa.hpp"
-#include "../Ghoul/Ghoul.hpp"
-#include "../Morcego/Morcego.hpp"
 #include "map"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 
-using namespace Entidades::Obstaculos;
 using namespace Fases;
 
 Caverna::Caverna() : Fase() { srand(time(NULL)); };

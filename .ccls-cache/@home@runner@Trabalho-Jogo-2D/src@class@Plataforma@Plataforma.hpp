@@ -5,14 +5,14 @@ namespace Entidades
 {
 	namespace Obstaculos
 	{
-		class Caixa : public Obstaculo
+		class Plataforma : public Obstaculo
 		{  
       private: 
         float width;
 			public:
-				Caixa(sf::Vector2f position);
-        Caixa(sf::Vector2f position, float width);
-				~Caixa();
+				Plataforma(sf::Vector2f position);
+        Plataforma(sf::Vector2f position, float width);
+				~Plataforma();
 
         void randomWidth();
 		};

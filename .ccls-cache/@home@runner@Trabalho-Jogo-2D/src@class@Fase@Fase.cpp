@@ -5,7 +5,7 @@
 #include "../Ghoul/Ghoul.hpp"
 #include "../Morcego/Morcego.hpp"
 #include "../Bloco/Bloco.hpp"
-#include "../Caixa/Caixa.hpp"
+#include "../Plataforma/Plataforma.hpp"
 #include "../Espinho/Espinho.hpp"
 #include "../Ceifador/Ceifador.hpp"
 
@@ -152,10 +152,10 @@ void Fase::createObstaculos(int mapKey)
       this->collisionManager->pushObstaculo(castedBloco);
     } break;
     case 1:{
-      Caixa *caixa = new Caixa(pos);
-      Entidade *castedCaixa = static_cast<Entidade*>(caixa);
-      this->lista->push(castedCaixa);
-      this->collisionManager->pushObstaculo(castedCaixa);
+      Plataforma *plataforma = new Plataforma(pos);
+      Entidade *castedPlataforma = static_cast<Entidade*>(plataforma);
+      this->lista->push(castedPlataforma);
+      this->collisionManager->pushObstaculo(castedPlataforma);
     } break;
     case 2:{
       Espinho *espinho = new Espinho(pos);  
