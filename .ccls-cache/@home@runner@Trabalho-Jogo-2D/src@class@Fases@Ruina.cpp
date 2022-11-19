@@ -31,6 +31,9 @@ void Ruina::createMap() {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 264)));
   }
 
+  this->map.insert(std::pair<int, sf::Vector2f>(1, sf::Vector2f(248, 72)));
+
+  this->map.insert(std::pair<int, sf::Vector2f>(2, sf::Vector2f(264, 72)));
   
 }
 

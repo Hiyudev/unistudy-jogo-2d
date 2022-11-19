@@ -17,6 +17,7 @@ using namespace Entidades::Obstaculos;
 Fase::Fase() : Ente() {
   this->lista = new ListaEntidades();
   this->collisionManager = CollisionManager::getInstance();
+  srand(time(NULL));
 }
 
 Fase::~Fase() {
@@ -53,7 +54,7 @@ void Fase::createBorda(int mapKey){
 }
 
 void Fase::createInimigos(int mapKey){
-  int qtd = rand() % 5;
+  int qtd = rand() % 4+1;
   if(qtd < 2) { qtd = 2; }  
   
   int local = rand() % 2;
@@ -123,13 +124,13 @@ void Fase::createObstaculos(int mapKey)
 
     switch (local) {
     case 0: {
-      int posX = 120 + ((rand() % 5) * 16);
+      int posX = 120 + (rand()%5)*16;
       int posY = 152;
       this->map.insert(
           std::pair<int, sf::Vector2f>(mapKey, sf::Vector2f(posX, posY)));
     } break;
     case 1: {
-      int posX = 128 + ((rand() % 7) * 16);
+      int posX = 128 + (rand()%7)*16;
       int posY = 248;
       this->map.insert(
           std::pair<int, sf::Vector2f>(mapKey, sf::Vector2f(posX, posY)));
