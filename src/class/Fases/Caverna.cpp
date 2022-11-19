@@ -5,7 +5,9 @@
 
 using namespace Fases;
 
-Caverna::Caverna() : Fase() { srand(time(NULL)); };
+Caverna::Caverna() : Fase() { 
+  srand(time(NULL)); 
+};
 
 Caverna::~Caverna(){};
 
@@ -26,6 +28,15 @@ void Caverna::createMap(){
 
 void Caverna::generate() {
   this->createMap();
-  this->createObstaculos(1);
-  this->createInimigos(4);
+
+  sf::Vector2f vPlataformas[6] = { {184, 168}, {56, 248}, {200, 280}, {264, 328}, {280, 72}, {328, 248}};
+  
+  int numInstancias = rand()%7;
+  if(numInstancias < 3 ) { numInstancias = 3; }
+  for(int i = 0, j = 0; i < numInstancias; i++, j++){
+    this->createPlataforma(vPlataformas[j].x, vPlataformas[j].y);
+    this->createMorcego(vPlataformas[j].x - 16, vPlataformas[j].y - 16);
+    this->createGhoul(vPlataformas[j].x + 16, vPlataformas[j].y + 16);
+  }
+  this->pushEntidades();
 };

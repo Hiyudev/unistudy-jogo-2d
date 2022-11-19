@@ -22,7 +22,7 @@ Plataforma::~Plataforma(){};
 
 void Plataforma::randomWidth(){
   int rdn = rand()%10;
-  float width = 1.0 + 1/(10/(float)rdn);
+  float width = 1 + 1/(10/(float)rdn);
   this->sprite->setScale(width, 1.0);
   this->sprite->setOrigin(8*width, 8);
 }

@@ -23,12 +23,16 @@ namespace Fases
 
 			void insertEntidade(Entidade* entidade);
 
-      void createInimigos(int mapKey);
-      void createObstaculos(int mapKey);
+
+      void createPlataforma(int posX, int posY);
+      void createEspinho(int posX, int posY);
+      void createGhoul(int posX, int posY);
+      void createMorcego(int posX, int posY);
+
       void createBorda(int mapKey);
+      void pushEntidades();
 
       virtual void createMap() = 0;
-
 	    virtual void executar() = 0;
 			virtual void generate() = 0;
 	};

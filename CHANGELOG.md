@@ -2,3 +2,9 @@
 - Adicionado metodo "Entidade* getAt(int index);" da class ListaEntidades
 - Mudado metodo "ListaEntidades* lista;" da class Fase
 - Adicionado metodo "clear()" na class CollisionManager
+- Adicionando atributo "height" na classe Espinho
+- Mudando nome e sprite da classe "Caixa" para "Plataforma"
+- Adicionando atributo "width" na classe Plataforma
+- Adicionando metodo "pushEntidades" na classe Fase
+- Adicionando metodos "createMorcego", "createGhoul", "createPlataforma" e "createEspinho" na classe Fase
+  
