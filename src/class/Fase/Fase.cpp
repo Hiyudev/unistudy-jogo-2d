@@ -7,6 +7,7 @@
 #include "../Bloco/Bloco.hpp"
 #include "../Caixa/Caixa.hpp"
 #include "../Espinho/Espinho.hpp"
+#include "../Ceifador/Ceifador.hpp"
 
 using namespace Gerenciadores;
 using namespace Entidades::Personagens;
@@ -96,10 +97,16 @@ void Fase::createInimigos(int mapKey){
     }break;
     case 4:{
       Morcego *morcego = new Morcego(pos, patrolTiming);
-      Entidade *castedMorcego = static_cast<Morcego *>(morcego);
+      Entidade *castedMorcego = static_cast<Entidade *>(morcego);
       this->lista->push(castedMorcego);
       this->collisionManager->pushInimigo(castedMorcego);
     }break;
+    case 5:{
+      Ceifador *ceifador = new Ceifador(pos, patrolTiming);
+      Entidade *castedCeifador = static_cast<Entidade *>(ceifador);
+      this->lista->push(castedCeifador);
+      this->collisionManager->pushInimigo(castedCeifador);
+    }
     }
   }
   
@@ -107,7 +114,7 @@ void Fase::createInimigos(int mapKey){
 
 void Fase::createObstaculos(int mapKey)
 {
-  int qtd = rand()%5;
+  int qtd = rand()%5 + 1;
 
   int local = rand() % 2;
   

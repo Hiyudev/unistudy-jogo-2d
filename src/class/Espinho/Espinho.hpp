@@ -6,10 +6,15 @@ namespace Entidades
 	namespace Obstaculos
 	{
 		class Espinho : public Obstaculo
-		{
+		{  
+      private: 
+        float height;
 			public:
 				Espinho(sf::Vector2f position);
+        Espinho(sf::Vector2f position, float height);
 				~Espinho();
+
+        void randomHeight();
 		};
 	}
 }

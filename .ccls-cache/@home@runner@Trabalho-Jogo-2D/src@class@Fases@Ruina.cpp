@@ -9,7 +9,7 @@ Ruina::~Ruina() {}
 
 void Ruina::createMap() {
   this->createBorda(0);
-  
+
   // Plataformas
   for (int i = 16; i < 128; i += 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i + 8, 56)));
@@ -19,7 +19,7 @@ void Ruina::createMap() {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i + 8, 104)));
   }
 
-  for(int i = 192; i < 392; i+=16){
+  for (int i = 192; i < 392; i += 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i + 8, 88)));
   }
 
@@ -31,15 +31,15 @@ void Ruina::createMap() {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 264)));
   }
 
-
+  
 }
 
-void Ruina::generate(){
+void Ruina::generate() {
   this->createMap();
   this->createObstaculos(1);
   this->createObstaculos(2);
-  this->createInimigos(4);
   this->createInimigos(3);
+  this->createInimigos(5);
 }
 
 void Ruina::executar() { this->lista->executar(); }
