@@ -100,25 +100,6 @@ void Jogador::move() {
   }
 };
 
-void Jogador::knockback(sf::Vector2f direction) {
-  sf::Vector2f invertedDirection = Math::v_invert(direction);
-
-  sf::Vector2f knockbackForce;
-  knockbackForce.x = direction.x == 0 ? (rand() % 3) - 1 : 0;
-  knockbackForce.y = 0;
-
-  sf::Vector2f knockbackDirection =
-      Math::v_multi(Math::v_sum(invertedDirection, knockbackForce), 25);
-
-  this->tryMove(knockbackDirection);
-
-  if (knockbackDirection.x > 0) {
-    SpriteManager::flipByXSprite(false, this->sprite);
-  } else if (knockbackDirection.x < 0) {
-    SpriteManager::flipByXSprite(true, this->sprite);
-  }
-}
-
 Jogador *Jogador::clone() {
   return new Jogador(this->position, this->isSecondPlayer);
 }
