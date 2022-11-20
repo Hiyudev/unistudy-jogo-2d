@@ -29,7 +29,7 @@ void Caverna::createMap(){
 void Caverna::generate() {
   this->createMap();
 
-  sf::Vector2f vPlataformas[6] = { {184, 168}, {40, 248}, {200, 280}, {264, 328}, {280, 72}, {328, 248}};
+  sf::Vector2f vPlataformas[6] = { {184, 168}, {56, 248}, {200, 280}, {264, 328}, {280, 72}, {328, 248}};
   
   int numInstancias = rand()%7;
   if(numInstancias < 3 ) { numInstancias = 3; }

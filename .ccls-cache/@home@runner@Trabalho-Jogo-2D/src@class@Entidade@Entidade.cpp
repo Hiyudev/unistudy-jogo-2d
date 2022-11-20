@@ -71,9 +71,7 @@ void Entidade::draw() { this->graphicManager->draw(this->sprite); }
 
 void Entidade::move() {}
 
-Entidade* Entidade::clone() {
-	return NULL;
-}
+Entidade *Entidade::clone() { return NULL; }
 
 void Entidade::executar() {
   this->move();
@@ -82,6 +80,9 @@ void Entidade::executar() {
   if (this->flutuante) {
     this->voar();
   }
-	
+
   this->draw();
 }
+
+void Entidade::setPosition(const sf::Vector2f pos) { this->position = pos; }
+sf::Vector2f Entidade::getPosition() const { return this->position; }

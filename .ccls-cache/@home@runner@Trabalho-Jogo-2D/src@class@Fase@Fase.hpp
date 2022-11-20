@@ -28,6 +28,7 @@ namespace Fases
       void createEspinho(int posX, int posY);
       void createGhoul(int posX, int posY);
       void createMorcego(int posX, int posY);
+			void createCeifador(int posX, int posY);
 
       void createBorda(int mapKey);
       void pushEntidades();
