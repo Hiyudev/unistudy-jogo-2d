@@ -96,4 +96,4 @@ void Personagem::tryMove(sf::Vector2f direction, bool *takeDamage) {
   this->moveTo(direction);
 }
 
-void Personagem::receive(Entidade *entidade) {}
+void Personagem::receive(Entidade *entidade) { entidade->deal(this); }

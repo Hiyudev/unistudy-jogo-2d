@@ -32,7 +32,6 @@ namespace Entidades {
 			void gravity();
 			void voar();
 
-			virtual void deal(Entidade* entidade);
 			virtual void draw();
 			virtual void move();
 
@@ -49,6 +48,7 @@ namespace Entidades {
 
 			// Metodos
 			void moveTo(sf::Vector2f direction);
+			virtual void deal(Entidade* entidade);
 
 			// Skeleton Operation
       void executar();

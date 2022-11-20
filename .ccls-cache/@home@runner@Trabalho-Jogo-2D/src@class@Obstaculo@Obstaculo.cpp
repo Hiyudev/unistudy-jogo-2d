@@ -10,3 +10,5 @@ Obstaculo::Obstaculo(sf::Vector2f position, bool dealsDamage = false)
 Obstaculo::~Obstaculo(){};
 
 bool Obstaculo::getDealsDamage() { return this->dealsDamage; }
+
+void Obstaculo::deal(Entidade *entidade) {}

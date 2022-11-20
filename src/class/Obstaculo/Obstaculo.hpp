@@ -12,6 +12,7 @@ namespace Entidades {
         Obstaculo(sf::Vector2f position, bool dealsDamage);
         ~Obstaculo();
 
+				virtual void deal(Entidade* entidade);
 				bool getDealsDamage();
     };
   }

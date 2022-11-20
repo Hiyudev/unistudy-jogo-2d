@@ -68,38 +68,20 @@ void Jogador::move() {
     }
   }
 
-  // Caso esteja indo para direita, coloca o sprite do jogador para a direita
-  if (control.x > 0) {
-    SpriteManager::flipByXSprite(false, this->sprite);
-  } else if (control.x < 0) {
-    SpriteManager::flipByXSprite(true, this->sprite);
-  }
-
   float iFramesTime = 500;
-  bool takeDamage = false;
-  if (tookDamage) {
-    this->tryMove(movement);
-  } else {
-    this->tryMove(movement, &takeDamage);
-  }
-
-  if (takeDamage && (tookDamage == false)) {
-    this->operator--();
-    this->tookDamage = true;
-
-    if (this->health <= 0) {
-      Jogador::dead = true;
-    }
-
-    this->knockback(movement);
-    this->invulnerableDeltaTime.restart();
-  }
 
   if (tookDamage) {
     if (this->invulnerableDeltaTime.getElapsedTime().asMilliseconds() >
         iFramesTime) {
       tookDamage = false;
     }
+  }
+
+  // Caso esteja indo para direita, coloca o sprite do jogador para a direita
+  if (control.x > 0) {
+    SpriteManager::flipByXSprite(false, this->sprite);
+  } else if (control.x < 0) {
+    SpriteManager::flipByXSprite(true, this->sprite);
   }
 
   if (isSecondPlayer) {
@@ -130,4 +112,34 @@ void Jogador::knockback(sf::Vector2f direction) {
 
 Jogador *Jogador::clone() {
   return new Jogador(this->position, this->isSecondPlayer);
+}
+
+void Jogador::receive(Entidade *entidade) {
+  if (this->tookDamage == true)
+    return;
+	
+  entidade->deal(this);
+  this->tookDamage = true;
+
+  if (this->health <= 0) {
+    Jogador::dead = true;
+  }
+
+  this->invulnerableDeltaTime.restart();
+}
+
+void Jogador::deal(Entidade *entidade) {
+  try {
+    Personagem *personagem = (Personagem *)entidade;
+
+    if (personagem == NULL) {
+      throw 0;
+    }
+
+    personagem--;
+  } catch (int errID) {
+    if (errID == 0) {
+      std::cout << "Casting failed" << '\n';
+    }
+  }
 }

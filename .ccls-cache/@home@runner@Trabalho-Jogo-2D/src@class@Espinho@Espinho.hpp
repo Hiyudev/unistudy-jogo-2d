@@ -14,6 +14,7 @@ namespace Entidades
         Espinho(sf::Vector2f position, float height);
 				~Espinho();
 
+				void deal(Entidade* entidade);
         void randomHeight();
 		};
 	}

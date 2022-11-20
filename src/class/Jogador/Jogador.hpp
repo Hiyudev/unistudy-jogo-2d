@@ -32,6 +32,8 @@ namespace Entidades
 				
         bool getIsSecondPlayer();
 
+				void receive(Entidade* entidade);
+				void deal(Entidade* entidade);
 				void move();
 				Jogador* clone();
 				void knockback(sf::Vector2f direction);
