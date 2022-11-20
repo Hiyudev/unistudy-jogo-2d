@@ -24,10 +24,10 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
   if (isSecondPlayer) {
     Jogador::hasSecondPlayer = true;
     Jogador::playerTwoPosition = position;
-    this->getSprite()->setColor(sf::Color::Green);
+    this->getSprite()->setColor(sf::Color(55, 171, 151, 255));
   } else {
     Jogador::playerOnePosition = position;
-    this->getSprite()->setColor(sf::Color::Red);
+    this->getSprite()->setColor(sf::Color(205, 82, 95, 255));
   }
 };
 
@@ -73,6 +73,13 @@ void Jogador::move() {
   if (tookDamage) {
     if (this->invulnerableDeltaTime.getElapsedTime().asMilliseconds() >
         iFramesTime) {
+
+      // Reseta a transparencia do efeito de piscada do player
+      if (this->isSecondPlayer) {
+        this->getSprite()->setColor(sf::Color(55, 171, 151, 255));
+      } else {
+        this->getSprite()->setColor(sf::Color(205, 82, 95, 255));
+      }
       tookDamage = false;
     }
   }
@@ -150,4 +157,25 @@ void Jogador::deal(Entidade *entidade) {
   }
 }
 
-void Jogador::draw() { this->graphicManager->draw(this->sprite); }
+void Jogador::draw() {
+  if (this->tookDamage) {
+    // Efeito de piscadas
+    int tick = invulnerableDeltaTime.getElapsedTime().asMilliseconds() % 5;
+    // Seta transparencia
+    if (tick == 0) {
+      if (this->isSecondPlayer) {
+        this->getSprite()->setColor(sf::Color(55, 171, 151, 150));
+      } else {
+        this->getSprite()->setColor(sf::Color(205, 82, 95, 150));
+      }
+    } else if (tick == 3) {
+      if (this->isSecondPlayer) {
+        this->getSprite()->setColor(sf::Color(55, 171, 151, 255));
+      } else {
+        this->getSprite()->setColor(sf::Color(205, 82, 95, 255));
+      }
+    }
+  }
+
+  this->graphicManager->draw(this->sprite);
+}
