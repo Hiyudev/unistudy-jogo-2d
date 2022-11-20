@@ -7,4 +7,5 @@
 - Adicionando atributo "width" na classe Plataforma
 - Adicionando metodo "pushEntidades" na classe Fase
 - Adicionando metodos "createMorcego", "createGhoul", "createPlataforma" e "createEspinho" na classe Fase
-  
+- Adicionado metodo "deal" na classe Entidade
+- Adicionado metodo "receive" na classe Personagem

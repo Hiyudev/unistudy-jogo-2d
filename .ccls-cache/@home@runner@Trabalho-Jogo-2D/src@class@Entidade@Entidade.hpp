@@ -31,6 +31,8 @@ namespace Entidades {
 			// Base Operation
 			void gravity();
 			void voar();
+
+			virtual void deal(Entidade* entidade);
 			virtual void draw();
 			virtual void move();
 
