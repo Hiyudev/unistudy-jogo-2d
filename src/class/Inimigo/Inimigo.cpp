@@ -31,13 +31,7 @@ bool Inimigo::isPlayerNearby() {
 }
 
 void Inimigo::receive(Entidade *entidade) {
-  try {
-    entidade->deal(this);
-  } catch (int errID) {
-    if (errID == 0) {
-      std::cout << "Casting failed" << '\n';
-    }
-  }
+	entidade->deal(this);
 }
 
 void Inimigo::deal(Entidade *entidade) {

@@ -58,5 +58,3 @@ void Personagem::tryMove(sf::Vector2f direction, Personagem *personagem) {
 
   this->moveTo(direction);
 }
-
-void Personagem::receive(Entidade *entidade) { entidade->deal(this); }

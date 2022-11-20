@@ -28,8 +28,6 @@ namespace Entidades {
 				// Overloading operator
         void operator --();
 
-				virtual void receive(Entidade* entidade);
-
 				bool canMove(sf::Vector2f direction, Personagem* personagem = NULL);
 				void tryMove(sf::Vector2f direction, Personagem* personagem = NULL);
     };

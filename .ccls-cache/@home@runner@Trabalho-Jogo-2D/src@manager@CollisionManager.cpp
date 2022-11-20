@@ -74,7 +74,6 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
       collideObstaculo = true;
 
       if (entidade != NULL) {
-        std::cout << "Obstaculo damage" << '\n';
         entidade->receive(obstaculo);
       }
     }
