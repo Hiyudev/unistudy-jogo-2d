@@ -30,10 +30,8 @@ namespace Entidades {
 
 				virtual void receive(Entidade* entidade);
 
-				bool canMove(sf::Vector2f direction);
-				bool canMove(sf::Vector2f direction, bool* takeDamage);
-				void tryMove(sf::Vector2f direction);
-				void tryMove(sf::Vector2f direction, bool* takeDamage);
+				bool canMove(sf::Vector2f direction, Personagem* personagem = NULL);
+				void tryMove(sf::Vector2f direction, Personagem* personagem = NULL);
     };
   }
 }

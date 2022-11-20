@@ -36,22 +36,8 @@ CollisionManager *CollisionManager::getInstance() {
   return _manager;
 };
 
-bool CollisionManager::canMoveTo(sf::Vector2f position,
-                                 sf::Vector2f direction) {
-  sf::Vector2f posAfterDirection = Math::v_sum(position, direction);
-  sf::RectangleShape hitboxRectangle(sf::Vector2f(16, 16));
-  hitboxRectangle.setOrigin(8, 8);
-  hitboxRectangle.setPosition(posAfterDirection);
-
-  sf::FloatRect hitbox = hitboxRectangle.getGlobalBounds();
-
-  bool collideObstaculo = this->checkCollideObstaculo(hitbox, direction);
-
-  return (!collideObstaculo);
-}
-
 bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
-                                 bool *takeDamage) {
+                                 Entidade *entidade) {
   sf::Vector2f posAfterDirection = Math::v_sum(position, direction);
   sf::RectangleShape hitboxRectangle(sf::Vector2f(16, 16));
   hitboxRectangle.setOrigin(8, 8);
@@ -60,39 +46,15 @@ bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
   sf::FloatRect hitbox = hitboxRectangle.getGlobalBounds();
 
   bool collideObstaculo =
-      this->checkCollideObstaculo(hitbox, direction, takeDamage);
-  bool collideInimigo =
-      this->checkCollideInimigo(hitbox, direction, takeDamage);
+      this->checkCollideObstaculo(hitbox, direction, entidade);
+  bool collideInimigo = this->checkCollideInimigo(hitbox, direction, entidade);
 
   return ((!collideObstaculo) && (!collideInimigo));
 }
 
 bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
-                                             sf::Vector2f direction) {
-  std::vector<Entidade *>::iterator obstaculosIt;
-
-  bool collideObstaculo = false;
-
-  for (obstaculosIt = obstaculosList.begin();
-       obstaculosIt != obstaculosList.end(); obstaculosIt++) {
-    Entidade *obstaculo = *obstaculosIt;
-    sf::Sprite *sprite = obstaculo->getSprite();
-
-    sf::FloatRect obstaculoHitbox = sprite->getGlobalBounds();
-
-    bool collide = hitbox.intersects(obstaculoHitbox);
-
-    if (collide) {
-      collideObstaculo = true;
-    }
-  }
-
-  return collideObstaculo;
-}
-
-bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
                                              sf::Vector2f direction,
-                                             bool *takeDamage) {
+                                             Entidade *entidade) {
   std::vector<Entidade *>::iterator obstaculosIt;
 
   bool collideObstaculo = false;
@@ -111,8 +73,8 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
     if (collide) {
       collideObstaculo = true;
 
-      if (castedObstaculo->getDealsDamage() && (takeDamage != NULL)) {
-        (*takeDamage) = true;
+      if (entidade != NULL) {
+        entidade->receive(obstaculo);
       }
     }
   }
@@ -121,30 +83,8 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
 }
 
 bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
-                                           sf::Vector2f direction) {
-  std::list<Entidade *>::iterator inimigosIt;
-
-  bool collideInimigo = false;
-
-  for (inimigosIt = inimigosList.begin(); inimigosIt != inimigosList.end();
-       inimigosIt++) {
-    Entidade *inimigo = *inimigosIt;
-    sf::Sprite *sprite = inimigo->getSprite();
-
-    sf::FloatRect inimigoHitbox = sprite->getGlobalBounds();
-
-    bool collide = hitbox.intersects(inimigoHitbox);
-
-    if (collide) {
-      collideInimigo = true;
-    }
-  }
-  return collideInimigo;
-}
-
-bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
                                            sf::Vector2f direction,
-                                           bool *takeDamage) {
+                                           Entidade *entidade) {
   std::list<Entidade *>::iterator inimigosIt;
 
   bool collideInimigo = false;
@@ -161,8 +101,8 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
     if (collide) {
       collideInimigo = true;
 
-      if (takeDamage != NULL) {
-        (*takeDamage) = true;
+      if (entidade != NULL) {
+        entidade->receive(inimigo);
       }
     }
   }

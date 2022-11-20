@@ -21,67 +21,30 @@ void Personagem::setHealth(const int health) { this->health = health; }
 
 void Personagem::operator--() { this->health--; };
 
-bool Personagem::canMove(sf::Vector2f direction) {
-  bool canMove = this->collisionManager->canMoveTo(this->position, direction);
-
-  return canMove;
-}
-
-bool Personagem::canMove(sf::Vector2f direction, bool *takeDamage) {
+bool Personagem::canMove(sf::Vector2f direction, Personagem *personagem) {
   bool canMove =
-      this->collisionManager->canMoveTo(this->position, direction, takeDamage);
+      this->collisionManager->canMoveTo(this->position, direction, personagem);
 
   return canMove;
 }
 
-void Personagem::tryMove(sf::Vector2f direction) {
+void Personagem::tryMove(sf::Vector2f direction, Personagem *personagem) {
   sf::Vector2f axisX(direction.x, 0);
   sf::Vector2f axisY(0, direction.y);
   sf::Vector2f axisGroundChecker(0, 1);
 
   // Verifica se está pisando no chão
-  this->isTouchingGround = !(this->canMove(axisGroundChecker));
+  this->isTouchingGround = !(this->canMove(axisGroundChecker, personagem));
 
   // Verifica a colisão
   // No Y
-  bool canMoveOnY = this->canMove(axisY);
+  bool canMoveOnY = this->canMove(axisY, personagem);
   if (canMoveOnY == false) {
     direction.y = 0;
   }
 
   // No X
-  bool canMoveOnX = this->canMove(axisX);
-  if (canMoveOnX == false) {
-    direction.x = 0;
-  }
-
-  // Caso esteja indo para direita, coloca o sprite do personagem para a direita
-  if (direction.x > 0) {
-    SpriteManager::flipByXSprite(false, this->sprite);
-  } else if (direction.x < 0) {
-    SpriteManager::flipByXSprite(true, this->sprite);
-  }
-
-  this->moveTo(direction);
-}
-
-void Personagem::tryMove(sf::Vector2f direction, bool *takeDamage) {
-  sf::Vector2f axisX(direction.x, 0);
-  sf::Vector2f axisY(0, direction.y);
-  sf::Vector2f axisGroundChecker(0, 1);
-
-  // Verifica se está pisando no chão
-  this->isTouchingGround = !(this->canMove(axisGroundChecker, takeDamage));
-
-  // Verifica a colisão
-  // No Y
-  bool canMoveOnY = this->canMove(axisY, takeDamage);
-  if (canMoveOnY == false) {
-    direction.y = 0;
-  }
-
-  // No X
-  bool canMoveOnX = this->canMove(axisX, takeDamage);
+  bool canMoveOnX = this->canMove(axisX, personagem);
   if (canMoveOnX == false) {
     direction.x = 0;
   }

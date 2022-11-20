@@ -72,6 +72,7 @@ void Entidade::draw() { this->graphicManager->draw(this->sprite); }
 void Entidade::move() {}
 
 void Entidade::deal(Entidade *entidade) {}
+void Entidade::receive(Entidade *entidade) {}
 
 Entidade *Entidade::clone() { return NULL; }
 

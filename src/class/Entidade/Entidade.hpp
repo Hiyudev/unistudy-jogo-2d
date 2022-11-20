@@ -48,6 +48,7 @@ namespace Entidades {
 
 			// Metodos
 			void moveTo(sf::Vector2f direction);
+			virtual void receive(Entidade* entidade);
 			virtual void deal(Entidade* entidade);
 
 			// Skeleton Operation

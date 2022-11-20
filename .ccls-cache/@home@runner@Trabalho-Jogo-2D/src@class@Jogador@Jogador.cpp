@@ -84,6 +84,8 @@ void Jogador::move() {
     SpriteManager::flipByXSprite(true, this->sprite);
   }
 
+  this->tryMove(movement, this);
+
   if (isSecondPlayer) {
     Jogador::playerTwoPosition = this->position;
   } else {
@@ -117,15 +119,19 @@ Jogador *Jogador::clone() {
 void Jogador::receive(Entidade *entidade) {
   if (this->tookDamage == true)
     return;
-	
-  entidade->deal(this);
-  this->tookDamage = true;
 
-  if (this->health <= 0) {
-    Jogador::dead = true;
+  int beforeDamageHealth = this->health;
+  entidade->deal(static_cast<Entidade *>(this));
+
+  if (beforeDamageHealth != this->health) {
+    this->tookDamage = true;
+
+    if (this->health <= 0) {
+      Jogador::dead = true;
+    }
+
+    this->invulnerableDeltaTime.restart();
   }
-
-  this->invulnerableDeltaTime.restart();
 }
 
 void Jogador::deal(Entidade *entidade) {
@@ -136,10 +142,12 @@ void Jogador::deal(Entidade *entidade) {
       throw 0;
     }
 
-    personagem--;
+    personagem->operator--();
   } catch (int errID) {
     if (errID == 0) {
       std::cout << "Casting failed" << '\n';
     }
   }
 }
+
+void Jogador::draw() { this->graphicManager->draw(this->sprite); }

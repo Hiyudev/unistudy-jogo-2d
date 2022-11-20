@@ -40,7 +40,7 @@ void Espinho::deal(Entidade *entidade) {
       throw 0;
     }
 
-    personagem--;
+    personagem->operator--();
   } catch (int errID) {
     if (errID == 0) {
       std::cout << "Casting failed" << '\n';

@@ -35,6 +35,7 @@ namespace Entidades
 				void receive(Entidade* entidade);
 				void deal(Entidade* entidade);
 				void move();
+				void draw();
 				Jogador* clone();
 				void knockback(sf::Vector2f direction);
     };

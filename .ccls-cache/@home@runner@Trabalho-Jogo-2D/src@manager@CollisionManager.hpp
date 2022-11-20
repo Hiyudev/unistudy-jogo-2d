@@ -10,6 +10,7 @@
 namespace Entidades {
 	class Entidade;
 }
+
 using namespace Entidades;
 
 namespace Gerenciadores
@@ -33,11 +34,8 @@ namespace Gerenciadores
 			void pushInimigo(Entidade* inimigo);
 			void clear();
 
-			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction);
-			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, bool* takeDamage);
-      bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction);
-      bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction, bool* takeDamage);
-      bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction);
-      bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction, bool* takeDamage);
+			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, Entidade* entidade = NULL);
+      bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
+      bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
   };
 }
