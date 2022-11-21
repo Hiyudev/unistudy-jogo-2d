@@ -38,6 +38,9 @@ CollisionManager *CollisionManager::getInstance() {
 
 bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
                                  Entidade *entidade) {
+  if(entidade == NULL) { 
+    //std::cout << "Ponteiro nulo em CollisionManager::canMoveTo" << std::endl; 
+  }
   sf::Vector2f posAfterDirection = Math::v_sum(position, direction);
   sf::RectangleShape hitboxRectangle(sf::Vector2f(16, 16));
   hitboxRectangle.setOrigin(8, 8);
@@ -55,6 +58,7 @@ bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
 bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
                                              sf::Vector2f direction,
                                              Entidade *entidade) {
+  
   std::vector<Entidade *>::iterator obstaculosIt;
 
   bool collideObstaculo = false;
@@ -85,6 +89,8 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
 bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
                                            sf::Vector2f direction,
                                            Entidade *entidade) {
+
+  //if(entidade == NULL) { std::cout << "ponteiro nulo" << std::endl; }
   std::list<Entidade *>::iterator inimigosIt;
 
   bool collideInimigo = false;
@@ -92,6 +98,12 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
   for (inimigosIt = inimigosList.begin(); inimigosIt != inimigosList.end();
        inimigosIt++) {
     Entidade *inimigo = *inimigosIt;
+
+    if(entidade != NULL){
+      if(entidade->getID() == inimigo->getID()){
+        continue;
+      }
+    }
     sf::Sprite *sprite = inimigo->getSprite();
 
     sf::FloatRect inimigoHitbox = sprite->getGlobalBounds();
@@ -106,6 +118,7 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
       }
     }
   }
+  
   return collideInimigo;
 }
 

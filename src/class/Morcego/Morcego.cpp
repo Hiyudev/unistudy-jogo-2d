@@ -88,11 +88,11 @@ void Morcego::move() {
 
     sf::Vector2f movement = Math::v_multi(distance, this->velocity);
 
-    this->tryMove(movement);
+    this->tryMove(movement, this);
   } else {
     sf::Vector2f movement =
         Math::v_multi(this->patrolDirection, this->velocity);
-    this->tryMove(movement);
+    this->tryMove(movement, this);
     this->patrol();
   }
 }

@@ -12,6 +12,8 @@ using namespace Utils;
 using namespace Gerenciadores;
 using namespace Entidades;
 
+int Entidade::cont_entes = 0;
+
 // Constructor
 Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
   this->spriteManager = SpriteManager::getInstance();
@@ -22,6 +24,9 @@ Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
   this->flutuante = flutuante;
 
   this->position = pos;
+
+  this->cont_entes++;
+  this->id = this->cont_entes; 
 }
 
 // Deconstructor
@@ -41,6 +46,7 @@ void Entidade::setSprite(sf::Sprite *sprite) {
 sf::Sprite *Entidade::getSprite() { return this->sprite; };
 
 void Entidade::moveTo(sf::Vector2f direction) {
+  std::cout << "movi" << direction.x << " " << direction.y << std::endl;
   this->sprite->move(direction);
   this->position = this->sprite->getPosition();
 }

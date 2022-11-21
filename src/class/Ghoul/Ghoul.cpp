@@ -86,7 +86,7 @@ void Ghoul::move() {
     sf::Vector2f movement =
         Math::v_sum(Math::v_multi(distance, this->velocity), gravity);
 
-    this->tryMove(movement);
+    this->tryMove(movement, this);
   } else {
     if (isHungry == true) {
       this->chasingDeltaTime.restart();
@@ -95,7 +95,7 @@ void Ghoul::move() {
     sf::Vector2f gravity(0, 0.5f);
     sf::Vector2f movement = Math::v_sum(
         Math::v_multi(this->patrolDirection, this->velocity), gravity);
-    this->tryMove(movement);
+    this->tryMove(movement, this);
     this->patrol();
   }
 }

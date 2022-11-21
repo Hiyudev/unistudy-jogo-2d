@@ -22,6 +22,7 @@ void Personagem::setHealth(const int health) { this->health = health; }
 void Personagem::operator--() { this->health--; };
 
 bool Personagem::canMove(sf::Vector2f direction, Personagem *personagem) {
+  if(personagem == NULL) { std::cout << "Personagem::canMove" << std::endl;}
   bool canMove =
       this->collisionManager->canMoveTo(this->position, direction, personagem);
 
@@ -32,6 +33,8 @@ void Personagem::tryMove(sf::Vector2f direction, Personagem *personagem) {
   sf::Vector2f axisX(direction.x, 0);
   sf::Vector2f axisY(0, direction.y);
   sf::Vector2f axisGroundChecker(0, 1);
+
+  if(personagem == NULL ) { std::cout << "..." << std::endl;}
 
   // Verifica se está pisando no chão
   this->isTouchingGround = !(this->canMove(axisGroundChecker, personagem));
