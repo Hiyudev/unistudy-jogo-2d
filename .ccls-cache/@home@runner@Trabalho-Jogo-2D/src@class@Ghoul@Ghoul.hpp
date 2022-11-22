@@ -17,6 +17,7 @@ namespace Entidades{
 
 				void move();
 				void patrol();
+        void deal(Entidade* entidade);
 	    };
   }
 }

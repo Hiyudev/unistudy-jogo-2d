@@ -15,7 +15,7 @@ sf::Vector2f Jogador::playerOnePosition = sf::Vector2f(0, 0);
 sf::Vector2f Jogador::playerTwoPosition = sf::Vector2f(0, 0);
 
 Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
-    : Personagem(position, false, 3, sf::Vector2f(0.3f, 0.3f)) {
+    : Personagem(position, false, 100, sf::Vector2f(0.3f, 0.3f)) {
   this->isPlayer = true;
   this->isSecondPlayer = isSecondPlayer;
   this->keyboardManager = KeyboardManager::getInstance();

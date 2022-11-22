@@ -99,3 +99,18 @@ void Ghoul::move() {
     this->patrol();
   }
 }
+
+void Ghoul::deal(Entidade* entidade){
+  try{
+    Personagem *personagem = (Personagem*)entidade;
+
+    if(personagem == NULL){
+      throw 0;
+    }
+
+    for(int i=0; i < 10; i++)
+      personagem->operator--();
+  } catch(int errID){
+    std::cout << "casting failed" << std::endl;
+  }
+}
