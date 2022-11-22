@@ -8,10 +8,9 @@ namespace Entidades{
 	class Projetil : public Entidade
 	{  
     private: 
-      Ceifador *pCeifador;
       sf::Vector2f velocity;
     public:
-      Projetil(sf::Vector2f position = sf::Vector2f(0,0), Ceifador*  pCeifador = NULL);
+      Projetil(sf::Vector2f position = sf::Vector2f(0,0));
       ~Projetil();
 
       void move();

@@ -1,0 +1,32 @@
+obstaculo/Bloco.png
+obstaculo/Caixa.png
+obstaculo/Plataforma.png
+License:
+- Assets are public domain. This means you can use it for your personal and commercial games.
+Link: https://kronbits.itch.io/inca-game-assets
+
+personagens/Morcego.png
+License:
+- Feel free to use the sprites in commercial/non-commercial projects!
+Link: https://elthen.itch.io/bat-sprite-pack
+
+personagens/Ghoul.png
+License:
+- Feel free to use the sprites in commercial/non-commercial projects!
+Link: https://elthen.itch.io/2d-pixel-art-ghoul-sprites
+
+personagens/Ceifador.png
+License:
+- You are free to edit the sprite once you downloaded it and you can use it for commercial and non-commercial use
+Link: https://darkpixel-kronovi.itch.io/undead-executioner
+
+personagens/Jogador.png
+License:
+- You can only use these assets in non-commercial projects.
+- You can modify the assets.
+- You can not redistribute or resale, even if modified.
+Link: https://game-endeavor.itch.io/mystic-woods
+
+fontes/monogram.ttf
+License: CC0 https://creativecommons.org/publicdomain/zero/1.0/
+Link: https://datagoblin.itch.io/monogram

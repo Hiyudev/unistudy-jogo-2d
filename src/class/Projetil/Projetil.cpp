@@ -5,11 +5,9 @@
 using namespace Utils;
 using namespace Entidades;
 
-Projetil::Projetil(sf::Vector2f pos, Ceifador *pCeifador) : Entidade(pos) {
+Projetil::Projetil(sf::Vector2f pos) : Entidade(pos) {
   this->setSprite(
       this->spriteManager->getSprite("assets/projetil/Projetil.png"));
-
-  this->pCeifador = pCeifador; 
 
 }
 
