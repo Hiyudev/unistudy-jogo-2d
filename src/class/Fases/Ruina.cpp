@@ -1,4 +1,5 @@
 #include "Ruina.hpp"
+#include "../Projetil/Projetil.hpp"
 #include <SFML/Graphics.hpp>
 
 using namespace Fases;
@@ -38,8 +39,8 @@ void Ruina::createMap() {
 void Ruina::generate() {
   this->createMap();
 
-  sf::Vector2f vPlataformas[6] = {
-      {168, 132}, {328, 104}, {376, 280}, {264, 248}, {56, 56}};
+  sf::Vector2f vPlataformas[5] = {
+      {168, 136}, {328, 104}, {376, 280}, {264, 248}, {40, 56}};
   sf::Vector2f vEspinhos[7] = {{124, 152}, {40, 248},  {312, 168}, {152, 296},
                                {168, 296}, {132, 296}, {328, 296}};
 
@@ -53,9 +54,10 @@ void Ruina::generate() {
       this->createPlataforma(vPlataformas[j].x, vPlataformas[j].y);
     }
     this->createEspinho(vEspinhos[j].x, vEspinhos[j].y);
-    this->createCeifador(vPlataformas[j].x + 16, vPlataformas[j].y + 16);
-    this->createGhoul(vPlataformas[j].x + 16, vPlataformas[j].y + 16);
+    this->createCeifador(56+((rand()%5)*16), 248);
+    this->createGhoul(168+((rand()%9)*16), 152);
   }
+  
   this->pushEntidades();
 }
 

@@ -46,7 +46,6 @@ void Entidade::setSprite(sf::Sprite *sprite) {
 sf::Sprite *Entidade::getSprite() { return this->sprite; };
 
 void Entidade::moveTo(sf::Vector2f direction) {
-  std::cout << "movi" << direction.x << " " << direction.y << std::endl;
   this->sprite->move(direction);
   this->position = this->sprite->getPosition();
 }

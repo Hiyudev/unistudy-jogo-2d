@@ -11,7 +11,7 @@ using namespace Utils;
 using namespace Entidades::Personagens;
 
 Ceifador::Ceifador(sf::Vector2f position, int patrolTiming)
-    : Inimigo(position, false, patrolTiming, 50.0f) {
+    : Inimigo(position, false, patrolTiming, 50.0f), countDown(5) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Ceifador.png"));
 };
@@ -78,14 +78,17 @@ void Ceifador::move() {
     sf::Vector2f movement =
         Math::v_sum(Math::v_multi(distance, this->velocity), gravity);
 
-    this->tryMove(movement);
+    this->tryMove(movement, this);
   } else {
     sf::Vector2f gravity(0, 0.5f);
     sf::Vector2f movement = Math::v_sum(
         Math::v_multi(this->patrolDirection, this->velocity), gravity);
-    this->tryMove(movement);
+    this->tryMove(movement, this);
     this->patrol();
   }
 }
 
 void Ceifador::draw() { this->graphicManager->draw(this->sprite); }
+
+void Ceifador::shoot(){
+}
