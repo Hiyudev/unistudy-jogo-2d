@@ -11,11 +11,14 @@ using namespace Utils;
 using namespace Entidades::Personagens;
 
 Ceifador::Ceifador(sf::Vector2f position, int patrolTiming)
-    : Inimigo(position, false, patrolTiming, 50.0f), countDown(5) {
+    : Inimigo(position, false, patrolTiming, 50.0f) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Ceifador.png"));
 };
-Ceifador::~Ceifador(){};
+Ceifador::~Ceifador(){
+  if(this->projetil != NULL)
+    delete this->projetil;
+};
 
 void Ceifador::patrol() {
   if (this->clock.getElapsedTime().asSeconds() >
@@ -90,5 +93,14 @@ void Ceifador::move() {
 
 void Ceifador::draw() { this->graphicManager->draw(this->sprite); }
 
-void Ceifador::shoot(){
+void Ceifador::createProjetil(sf::Vector2f position){
+  this->projetil = new Projetil(position, true);
+  if(projetil == NULL){
+    std::cout << "projetil nulo em classe Ceifador" << std::endl;
+  }
+  
+}
+
+Projetil* Ceifador::getProjetil() const{
+  return this->projetil;
 }

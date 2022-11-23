@@ -21,6 +21,8 @@ namespace Entidades {
 
 				bool isPlayerNearby();
 
+        sf::Vector2f getPatrolDirection();
+
 				virtual void deal(Entidade* entidade);
 				virtual void receive(Entidade* entidade);
 				virtual void patrol() = 0;

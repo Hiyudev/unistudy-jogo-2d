@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "../Inimigo/Inimigo.hpp"
+#include "../Projetil/Projetil.hpp"
 
 using namespace Entidades::Personagens;
 
@@ -8,12 +9,13 @@ namespace Entidades{
     class Ceifador : public Inimigo
     	{
 	    private:
-	      int countDown;
+        Projetil *projetil;
 	    public:
 	      Ceifador(sf::Vector2f position, int patrolTiming);
 				~Ceifador();
 
-        void shoot();
+        void createProjetil(sf::Vector2f position);
+        Projetil* getProjetil() const;
 				void patrol();
 				void move();
 				void draw();

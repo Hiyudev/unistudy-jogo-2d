@@ -49,3 +49,7 @@ void Inimigo::deal(Entidade *entidade) {
     }
   }
 }
+
+sf::Vector2f Inimigo::getPatrolDirection(){
+  return this->patrolDirection;
+}

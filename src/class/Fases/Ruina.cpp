@@ -41,7 +41,7 @@ void Ruina::generate() {
 
   sf::Vector2f vPlataformas[5] = {
       {168, 132}, {328, 104}, {376, 280}, {264, 248}, {40, 56}};
-  sf::Vector2f vEspinhos[7] = {{124, 152}, {40, 248},  {312, 168}, {152, 296},
+  sf::Vector2f vEspinhos[7] = { {40, 248},  {312, 168}, {152, 296},
                                {168, 296}, {132, 296}, {328, 296}};
 
   int numInstancias = rand() % 7;
@@ -54,8 +54,8 @@ void Ruina::generate() {
       this->createPlataforma(vPlataformas[j].x, vPlataformas[j].y);
     }
     this->createEspinho(vEspinhos[j].x, vEspinhos[j].y);
-    this->createCeifador(56+((rand()%5)*16), 248);
-    this->createGhoul(168+((rand()%9)*16), 152);
+    this->createCeifador(56+((rand()%9)*16), 248);
+    //this->createGhoul(168+((rand()%9)*16), 152);
   }
   
   this->pushEntidades();
