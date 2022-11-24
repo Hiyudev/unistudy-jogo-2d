@@ -29,10 +29,13 @@ namespace Entidades {
 
 			// Atributos
 			bool flutuante;
+      bool isPlayer;
 
 			// Base Operation
 			void gravity();
 			void voar();
+
+      bool ativo;
 
 			virtual void draw();
 			virtual void move();
@@ -45,9 +48,12 @@ namespace Entidades {
 			sf::Sprite* getSprite();
       sf::Vector2f getPosition() const;
       const int getID() const { return this->id; }
+      const bool getIsPlayer() const { return this->isPlayer; }
 			// Setters
 			void setSprite(sf::Sprite* sprite);
       void setPosition(const sf::Vector2f pos);
+      void setAtivo(bool a) { this->ativo = a; }
+      bool getAtivo() const { return this->ativo; }
 
 			// Metodos
 			void moveTo(sf::Vector2f direction);

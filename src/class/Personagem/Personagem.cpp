@@ -9,7 +9,7 @@ Personagem::Personagem(sf::Vector2f pos, bool flutuante, int health,
   this->health = health;
   this->velocity = vel;
 
-  this->isJumping = false;
+  //this->isJumping = false;
   this->isTouchingGround = false;
   this->isPlayer = false;
 };
@@ -24,7 +24,7 @@ void Personagem::operator--() { this->health--; };
 bool Personagem::canMove(sf::Vector2f direction, Personagem *personagem) {
   if(personagem == NULL) { std::cout << "Personagem::canMove" << std::endl;}
   bool canMove =
-      this->collisionManager->canMoveTo(this->position, direction, personagem);
+      this->collisionManager->canMoveTo(this->position, direction, personagem, (!personagem->getIsPlayer()));
 
   return canMove;
 }

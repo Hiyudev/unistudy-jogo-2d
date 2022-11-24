@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../class/Entidade/Entidade.hpp"
+//#include "../class/Projetil/Projetil.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <mutex>
@@ -24,6 +25,7 @@ namespace Gerenciadores
 
 			std::vector<Entidade*> obstaculosList;
 			std::list<Entidade*> inimigosList;
+      std::vector<Entidade*> projeteisList;
 
     public:
       ~CollisionManager();
@@ -32,10 +34,12 @@ namespace Gerenciadores
 
 			void pushObstaculo(Entidade* obstaculo);
 			void pushInimigo(Entidade* inimigo);
+      void pushProjetil(Entidade* projetil);
 			void clear();
 
-			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, Entidade* entidade = NULL);
+			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, Entidade* entidade = NULL, bool isInimigo = false);
       bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
       bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
+      void checkCollideProjetil(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
   };
 }

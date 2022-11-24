@@ -2,6 +2,7 @@
 #include "../Inimigo/Inimigo.hpp"
 #include "../Projetil/Projetil.hpp"
 
+using namespace Entidades;
 using namespace Entidades::Personagens;
 
 namespace Entidades{
@@ -10,11 +11,12 @@ namespace Entidades{
     	{
 	    private:
         Projetil *projetil;
+        int countDown;
 	    public:
 	      Ceifador(sf::Vector2f position, int patrolTiming);
 				~Ceifador();
 
-        void createProjetil(sf::Vector2f position);
+        void setProjetil(Projetil* projetil);
         Projetil* getProjetil() const;
 				void patrol();
 				void move();

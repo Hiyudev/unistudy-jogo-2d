@@ -126,8 +126,10 @@ void Fase::pushEntidades() {
       Entidade *castedCeifador = static_cast<Entidade *>(ceifador);
       this->lista->push(castedCeifador);
       this->collisionManager->pushInimigo(castedCeifador);
-      ceifador->createProjetil(pos);
-      this->lista->push(static_cast<Entidade *>(ceifador->getProjetil()));
+      Projetil *projetil = new Projetil(pos, true);
+      ceifador->setProjetil(projetil);
+      this->lista->push(static_cast<Entidade*>(projetil));
+      this->collisionManager->pushProjetil(static_cast<Entidade*>(projetil));
     }
     }
   }

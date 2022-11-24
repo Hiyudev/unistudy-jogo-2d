@@ -14,10 +14,10 @@ Ceifador::Ceifador(sf::Vector2f position, int patrolTiming)
     : Inimigo(position, false, patrolTiming, 50.0f) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Ceifador.png"));
+
+    this->countDown = 500;
 };
 Ceifador::~Ceifador(){
-  if(this->projetil != NULL)
-    delete this->projetil;
 };
 
 void Ceifador::patrol() {
@@ -42,7 +42,9 @@ void Ceifador::patrol() {
 }
 
 void Ceifador::move() {
+  /*
   if (this->isPlayerNearby()) {
+    this->projetil->setAtivo(true);
     sf::Vector2f distance;
     sf::Vector2f playerOneDistance =
         Math::v_distance(Jogador::playerOnePosition, this->position);
@@ -83,22 +85,38 @@ void Ceifador::move() {
 
     this->tryMove(movement, this);
   } else {
+    this->projetil->setAtivo(false);
     sf::Vector2f gravity(0, 0.5f);
     sf::Vector2f movement = Math::v_sum(
         Math::v_multi(this->patrolDirection, this->velocity), gravity);
     this->tryMove(movement, this);
     this->patrol();
+  }*/
+  //this->projetil->moveTo(this->getPosition());  
+  countDown--;
+  if(countDown == 0){
+    this->projetil->randDirection();
+    this->projetil->setAtivo(true);
+    countDown = 500;
+  } 
+  if(projetil->getAtivo() == false){
+    this->projetil->getSprite()->setPosition(this->getPosition());
   }
+  
+  sf::Vector2f gravity(0, 0.5f);
+  sf::Vector2f movement = Math::v_sum(
+      Math::v_multi(this->patrolDirection, this->velocity), gravity);
+  this->tryMove(movement, this);
+  this->patrol();
 }
 
 void Ceifador::draw() { this->graphicManager->draw(this->sprite); }
 
-void Ceifador::createProjetil(sf::Vector2f position){
-  this->projetil = new Projetil(position, true);
+void Ceifador::setProjetil(Projetil *projetil){
   if(projetil == NULL){
     std::cout << "projetil nulo em classe Ceifador" << std::endl;
   }
-  
+  this->projetil = projetil;
 }
 
 Projetil* Ceifador::getProjetil() const{

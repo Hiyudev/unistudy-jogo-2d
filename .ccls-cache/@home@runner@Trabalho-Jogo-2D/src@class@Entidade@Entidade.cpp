@@ -27,6 +27,8 @@ Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
 
   this->cont_entes++;
   this->id = this->cont_entes; 
+  this->ativo = true;
+  this->isPlayer = false;
 }
 
 // Deconstructor
@@ -82,6 +84,7 @@ void Entidade::receive(Entidade *entidade) {}
 Entidade *Entidade::clone() { return NULL; }
 
 void Entidade::executar() {
+  if(this->ativo){
   this->move();
   this->gravity();
 
@@ -90,6 +93,7 @@ void Entidade::executar() {
   }
 
   this->draw();
+  }
 }
 
 void Entidade::setPosition(const sf::Vector2f pos) { this->position = pos; }
