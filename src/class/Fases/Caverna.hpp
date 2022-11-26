@@ -13,7 +13,7 @@ namespace Fases
 
 		public:
 			Caverna();
-			~Caverna();
+			virtual ~Caverna();
 
       void createMap();
 			void executar();

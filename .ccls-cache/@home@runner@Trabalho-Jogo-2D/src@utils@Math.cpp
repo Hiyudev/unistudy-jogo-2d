@@ -4,11 +4,6 @@
 
 using namespace Utils;
 
-sf::Vector2f Math::v_sum(sf::Vector2f one, sf::Vector2f two) {
-  sf::Vector2f sum = sf::Vector2f(one.x + two.x, one.y + two.y);
-  return sum;
-}
-
 float Math::distance(sf::Vector2f pointOne, sf::Vector2f pointTwo) {
   float x = pow((pointOne.x - pointTwo.x), 2);
   float y = pow((pointOne.y - pointTwo.y), 2);
@@ -18,7 +13,14 @@ float Math::distance(sf::Vector2f pointOne, sf::Vector2f pointTwo) {
   return dist;
 }
 
-sf::Vector2f Math::v_distance(sf::Vector2f pointOne, sf::Vector2f pointTwo) {
+sf::Vector2f Math::Vector::sum(sf::Vector2f vectorOne, sf::Vector2f vectorTwo) {
+  sf::Vector2f sum =
+      sf::Vector2f(vectorOne.x + vectorTwo.x, vectorOne.y + vectorTwo.y);
+  return sum;
+}
+
+sf::Vector2f Math::Vector::distance(sf::Vector2f pointOne,
+                                    sf::Vector2f pointTwo) {
   sf::Vector2f dist;
 
   dist.x = (pointOne.x - pointTwo.x);
@@ -27,38 +29,33 @@ sf::Vector2f Math::v_distance(sf::Vector2f pointOne, sf::Vector2f pointTwo) {
   return dist;
 }
 
-sf::Vector2f Math::v_multi(sf::Vector2f vecOne, sf::Vector2f vecTwo) {
+sf::Vector2f Math::Vector::multi(sf::Vector2f vectorOne,
+                                 sf::Vector2f vectorTwo) {
   sf::Vector2f res;
-  res.x = vecOne.x * vecTwo.x;
-  res.y = vecOne.y * vecTwo.y;
+  res.x = vectorOne.x * vectorTwo.x;
+  res.y = vectorOne.y * vectorTwo.y;
 
   return res;
 }
 
-sf::Vector2f Math::v_multi(sf::Vector2f vecOne, float constant) {
+sf::Vector2f Math::Vector::multi(sf::Vector2f vectorOne, float constant) {
   sf::Vector2f res;
-  res.x = vecOne.x * constant;
-  res.y = vecOne.y * constant;
+  res.x = vectorOne.x * constant;
+  res.y = vectorOne.y * constant;
 
   return res;
 }
 
-sf::Vector2f Math::v_min(sf::Vector2f vecOne, sf::Vector2f vecTwo) {
+sf::Vector2f Math::Vector::min(sf::Vector2f vectorOne, sf::Vector2f vectorTwo) {
   bool firstIsSmall = false;
 
-  if (vecOne.x < vecTwo.x && vecOne.y < vecTwo.y) {
+  if (vectorOne.x < vectorTwo.x && vectorOne.y < vectorTwo.y) {
     firstIsSmall = true;
   }
 
   if (firstIsSmall) {
-    return vecOne;
+    return vectorOne;
   } else {
-    return vecTwo;
+    return vectorTwo;
   }
-}
-
-sf::Vector2f Math::v_invert(sf::Vector2f vector) {
-  sf::Vector2f v(-vector.x, -vector.y);
-
-  return v;
 }

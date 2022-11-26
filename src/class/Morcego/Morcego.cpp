@@ -53,11 +53,11 @@ void Morcego::move() {
   if (this->isPlayerNearby() && this->isVampiro == true) {
     sf::Vector2f distance;
     sf::Vector2f playerOneDistance =
-        Math::v_distance(Jogador::playerOnePosition, this->position);
+        Math::Vector::distance(Jogador::playerOnePosition, this->position);
 
     if (Jogador::hasSecondPlayer) {
       sf::Vector2f playerTwoDistance =
-          Math::v_distance(Jogador::playerTwoPosition, this->position);
+          Math::Vector::distance(Jogador::playerTwoPosition, this->position);
 
       float playerOneDistanceLength =
           Math::distance(this->position, Jogador::playerOnePosition);
@@ -86,12 +86,12 @@ void Morcego::move() {
       distance.y = -1;
     }
 
-    sf::Vector2f movement = Math::v_multi(distance, this->velocity);
+    sf::Vector2f movement = Math::Vector::multi(distance, this->velocity);
 
     this->tryMove(movement, this);
   } else {
     sf::Vector2f movement =
-        Math::v_multi(this->patrolDirection, this->velocity);
+        Math::Vector::multi(this->patrolDirection, this->velocity);
     this->tryMove(movement, this);
     this->patrol();
   }

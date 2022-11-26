@@ -15,7 +15,7 @@ namespace Entidades{
         int strength; 
 	    public:
 	      Ceifador(sf::Vector2f position, int patrolTiming);
-				~Ceifador();
+				virtual ~Ceifador();
 
         void setProjetil(Projetil* projetil);
         Projetil* getProjetil() const;

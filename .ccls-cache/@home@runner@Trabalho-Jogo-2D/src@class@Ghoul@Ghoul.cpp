@@ -43,11 +43,11 @@ void Ghoul::move() {
   if (this->isPlayerNearby()) {
     sf::Vector2f distance;
     sf::Vector2f playerOneDistance =
-        Math::v_distance(Jogador::playerOnePosition, this->position);
+        Math::Vector::distance(Jogador::playerOnePosition, this->position);
 
     if (Jogador::hasSecondPlayer) {
       sf::Vector2f playerTwoDistance =
-          Math::v_distance(Jogador::playerTwoPosition, this->position);
+          Math::Vector::distance(Jogador::playerTwoPosition, this->position);
 
       float playerOneDistanceLength =
           Math::distance(this->position, Jogador::playerOnePosition);
@@ -83,8 +83,8 @@ void Ghoul::move() {
       this->velocity = sf::Vector2f(0.2f, 0.2f);
     }
 
-    sf::Vector2f movement =
-        Math::v_sum(Math::v_multi(distance, this->velocity), gravity);
+    sf::Vector2f movement = Math::Vector::sum(
+        Math::Vector::multi(distance, this->velocity), gravity);
 
     this->tryMove(movement, this);
   } else {
@@ -93,25 +93,25 @@ void Ghoul::move() {
     }
     this->velocity = sf::Vector2f(0.1f, 0.1f);
     sf::Vector2f gravity(0, 0.5f);
-    sf::Vector2f movement = Math::v_sum(
-        Math::v_multi(this->patrolDirection, this->velocity), gravity);
+    sf::Vector2f movement = Math::Vector::sum(
+        Math::Vector::multi(this->patrolDirection, this->velocity), gravity);
     this->tryMove(movement, this);
     this->patrol();
   }
 }
 
-void Ghoul::deal(Entidade* entidade){
-  try{
-    Personagem *personagem = (Personagem*)entidade;
+void Ghoul::deal(Entidade *entidade) {
+  try {
+    Personagem *personagem = (Personagem *)entidade;
 
-    if(personagem == NULL){
+    if (personagem == NULL) {
       throw 0;
     }
 
     std::cout << "dano ghoul" << std::endl;
-    for(int i=0; i < 10; i++)
+    for (int i = 0; i < 10; i++)
       personagem->operator--();
-  } catch(int errID){
+  } catch (int errID) {
     std::cout << "casting failed" << std::endl;
   }
 }

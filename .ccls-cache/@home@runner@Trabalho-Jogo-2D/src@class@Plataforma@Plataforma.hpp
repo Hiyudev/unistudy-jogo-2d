@@ -12,7 +12,7 @@ namespace Entidades
 			public:
 				Plataforma(sf::Vector2f position);
         Plataforma(sf::Vector2f position, float width);
-				~Plataforma();
+				virtual ~Plataforma();
 
         void randomWidth();
 		};

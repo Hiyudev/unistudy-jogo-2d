@@ -21,15 +21,7 @@ Fase::Fase() : Ente() {
 }
 
 Fase::~Fase() {
-  int length = this->lista->getLength();
-  for (int i = length - 1; i >= 0; i--) {
-    Entidade *entidade = this->lista->getAt(i);
-    delete entidade;
-    this->lista->pop();
-  }
-
   this->collisionManager->clear();
-
   delete this->lista;
 };
 

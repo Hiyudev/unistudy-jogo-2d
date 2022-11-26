@@ -27,7 +27,7 @@ void Ruina::createMap() {
   this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(328, 184)));
   this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(312, 184)));
 
-  for (int i = 304; i > 96; i -= 16) {
+  for (int i = 304; i > 160; i -= 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i - 8, 168)));
   }
 
@@ -43,6 +43,9 @@ void Ruina::generate() {
       {168, 132}, {328, 104}, {376, 280}, {264, 248}, {40, 56}};
   sf::Vector2f vEspinhos[7] = { {40, 248},  {312, 168}, {152, 296},
                                {168, 296}, {132, 296}, {328, 296}};
+
+  sf::Vector2f vGhouls[10] = {};
+  sf::Vector2f vCeifadores[10] = {};
 
   int numInstancias = rand() % 7;
   if (numInstancias < 3) {

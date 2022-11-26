@@ -17,7 +17,7 @@ namespace Entidades {
 
 			public:
 				Inimigo(sf::Vector2f position, bool flutuante, int patrolDirectionTimerInSeconds, float playerDetectionRadius);
-				~Inimigo();
+				virtual ~Inimigo();
 
 				bool isPlayerNearby();
 

@@ -13,7 +13,10 @@ GraphicManager::~GraphicManager() {
   if (this->_manager != nullptr) {
     delete this->_manager;
   }
-  delete this->window;
+
+  if (this->window != nullptr) {
+    delete this->window;
+  }
 };
 
 GraphicManager *GraphicManager::getInstance() {
@@ -29,9 +32,10 @@ sf::RenderWindow *GraphicManager::getWindow() { return this->window; };
 
 void GraphicManager::draw(sf::Sprite *sprite) {
   if (sprite == nullptr) {
-		std::cout << "Erro ao tentar desenhar um sprite com ponteiro nulo." << "\n";
-		return;
-	}
-	
-	this->window->draw(*sprite);
+    std::cout << "Erro ao tentar desenhar um sprite com ponteiro nulo."
+              << "\n";
+    return;
+  }
+
+  this->window->draw(*sprite);
 }

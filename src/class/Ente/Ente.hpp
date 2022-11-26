@@ -9,7 +9,7 @@ class Ente {
 
   public:
     Ente();
-    ~Ente();
+    virtual ~Ente();
 
     virtual void executar() = 0;
 };

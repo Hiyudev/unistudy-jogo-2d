@@ -39,7 +39,7 @@ CollisionManager *CollisionManager::getInstance() {
 bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
                                  Entidade *entidade, bool isInimigo) {
 
-  sf::Vector2f posAfterDirection = Math::v_sum(position, direction);
+  sf::Vector2f posAfterDirection = Math::Vector::sum(position, direction);
   sf::RectangleShape hitboxRectangle(sf::Vector2f(16, 16));
   hitboxRectangle.setOrigin(8, 8);
   hitboxRectangle.setPosition(posAfterDirection);
@@ -48,13 +48,13 @@ bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
 
   bool collideObstaculo =
       this->checkCollideObstaculo(hitbox, direction, entidade);
-  
-  if(isInimigo == false){
-    bool collideInimigo = this->checkCollideInimigo(hitbox, direction, entidade);
+
+  if (isInimigo == false) {
+    bool collideInimigo =
+        this->checkCollideInimigo(hitbox, direction, entidade);
     checkCollisionsProjetil(hitbox, direction, entidade);
     return ((!collideObstaculo) && (!collideInimigo));
-  }
-  else{
+  } else {
     return (!collideObstaculo);
   }
 }
@@ -81,7 +81,7 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
     if (collide) {
       collideObstaculo = true;
 
-      if (entidade != NULL) {
+      if (entidade != nullptr) {
         entidade->receive(obstaculo);
       }
     }
@@ -97,47 +97,46 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
   std::list<Entidade *>::iterator inimigosIt;
 
   bool collideInimigo = false;
-  
+
   for (inimigosIt = inimigosList.begin(); inimigosIt != inimigosList.end();
        inimigosIt++) {
     Entidade *inimigo = *inimigosIt;
 
-    if(inimigo->getAtivo() == false)
+    if (inimigo->getAtivo() == false)
       continue;
-         
+
     sf::Sprite *sprite = inimigo->getSprite();
 
     sf::FloatRect inimigoHitbox = sprite->getGlobalBounds();
-   
+
     bool collide = hitbox.intersects(inimigoHitbox);
 
     if (collide) {
       collideInimigo = true;
 
-      if (entidade != NULL) {
+      if (entidade != nullptr) {
         entidade->receive(inimigo);
-        if(hitbox.top + hitbox.height -1 < inimigoHitbox.height)
-        std::cout << hitbox.top + hitbox.height << " " << inimigoHitbox.top << std::endl;
+        if (hitbox.top + hitbox.height - 1 < inimigoHitbox.height)
+          std::cout << hitbox.top + hitbox.height << " " << inimigoHitbox.top
+                    << std::endl;
       }
-    }  
-         
-    if(collide && (hitbox.top + hitbox.height - 1) < inimigoHitbox.top ){
-      if(entidade != NULL){
+    }
+
+    if (collide && (hitbox.top + hitbox.height - 1) < inimigoHitbox.top) {
+      if (entidade != nullptr) {
         inimigo->receive(entidade);
         inimigo->setAtivo(false);
       }
     }
-         
   }
 
   return collideInimigo;
 }
 
 void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox,
-                                            sf::Vector2f direction,
-                                            Entidade *entidade) {
+                                               sf::Vector2f direction,
+                                               Entidade *entidade) {
   std::vector<Entidade *>::iterator projetilIt;
-  
 
   for (projetilIt = projeteisList.begin(); projetilIt != projeteisList.end();
        projetilIt++) {
@@ -148,9 +147,9 @@ void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox,
     sf::FloatRect projetilHitbox = sprite->getGlobalBounds();
 
     bool collide = hitbox.intersects(projetilHitbox);
-      
+
     if (collide) {
-      if (entidade != NULL) {
+      if (entidade != nullptr) {
         entidade->receive(projetil);
         projetil->setAtivo(false);
       }

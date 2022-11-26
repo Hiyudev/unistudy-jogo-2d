@@ -7,7 +7,7 @@ using namespace Listas;
 
 ListaEntidades::ListaEntidades() {}
 
-ListaEntidades::~ListaEntidades() {}
+ListaEntidades::~ListaEntidades() { list.clear(); }
 
 void ListaEntidades::push(Entidade *entidade) { list += entidade; }
 

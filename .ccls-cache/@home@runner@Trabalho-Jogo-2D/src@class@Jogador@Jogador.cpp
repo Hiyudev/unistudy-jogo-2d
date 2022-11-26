@@ -1,6 +1,7 @@
 #include "Jogador.hpp"
 #include "../../manager/KeyboardManager.hpp"
 #include "../../utils/Math.hpp"
+#include "../../utils/Sprite.hpp"
 #include "../Personagem/Personagem.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -31,7 +32,8 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
   }
 };
 
-Jogador::~Jogador() { delete this->keyboardManager; };
+Jogador::~Jogador() { 
+	if(this->keyboardManager != nullptr ) {delete this->keyboardManager; };
 
 bool Jogador::getIsSecondPlayer() { return this->isSecondPlayer; };
 
@@ -57,11 +59,11 @@ void Jogador::move() {
   }
 
   // Movimento
-  sf::Vector2f movement = Math::v_multi(control, velocity);
+  sf::Vector2f movement = Math::Vector::multi(control, velocity);
 
   // Pulo
   if (isJumping) {
-    movement = Math::v_sum(movement, sf::Vector2f(0, -jumpForce));
+    movement = Math::Vector::sum(movement, sf::Vector2f(0, -jumpForce));
 
     if (this->jumpDeltaTime.getElapsedTime().asMilliseconds() > jumpTime) {
       isJumping = false;
@@ -86,9 +88,9 @@ void Jogador::move() {
 
   // Caso esteja indo para direita, coloca o sprite do jogador para a direita
   if (control.x > 0) {
-    SpriteManager::flipByXSprite(false, this->sprite);
+    Sprite::flipByXSprite(false, this->sprite);
   } else if (control.x < 0) {
-    SpriteManager::flipByXSprite(true, this->sprite);
+    Sprite::flipByXSprite(true, this->sprite);
   }
 
   this->tryMove(movement, this);

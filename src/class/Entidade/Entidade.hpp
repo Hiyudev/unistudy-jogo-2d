@@ -42,7 +42,7 @@ namespace Entidades {
 
     public:
       Entidade(sf::Vector2f pos = sf::Vector2f(0, 0), bool flutuante = false);
-      ~Entidade();
+      virtual ~Entidade();
 
 			// Getters
 			sf::Sprite* getSprite();

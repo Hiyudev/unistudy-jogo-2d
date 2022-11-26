@@ -18,7 +18,7 @@ namespace Entidades {
 
       public:
         Personagem(sf::Vector2f position = sf::Vector2f(0,0), bool flutuante = false,int health = 3, sf::Vector2f vel = sf::Vector2f(0.1f, 0.1f));
-        ~Personagem();
+        virtual ~Personagem();
 
 				// Getters
         const int getHealth();

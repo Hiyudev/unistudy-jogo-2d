@@ -12,7 +12,7 @@ namespace Entidades
 			public:
 				Espinho(sf::Vector2f position);
         Espinho(sf::Vector2f position, float height);
-				~Espinho();
+				virtual ~Espinho();
 
 				void deal(Entidade* entidade);
         void randomHeight();

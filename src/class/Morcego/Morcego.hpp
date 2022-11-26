@@ -11,7 +11,7 @@ namespace Entidades {
 
 			public:
 				Morcego(sf::Vector2f position, int patrolTiming);
-				~Morcego();
+				virtual ~Morcego();
 
 				void patrol();
 				void move();

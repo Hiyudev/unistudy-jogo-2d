@@ -17,7 +17,7 @@ int Entidade::cont_entes = 0;
 // Constructor
 Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
   this->spriteManager = SpriteManager::getInstance();
-  this->sprite = NULL;
+  this->sprite = nullptr;
 
   this->collisionManager = CollisionManager::getInstance();
 
@@ -26,15 +26,21 @@ Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
   this->position = pos;
 
   this->cont_entes++;
-  this->id = this->cont_entes; 
+  this->id = this->cont_entes;
+
   this->ativo = true;
   this->isPlayer = false;
 }
 
 // Deconstructor
-Entidade::~Entidade() { this->sprite = NULL; };
+Entidade::~Entidade() {
+  if (this->sprite != nullptr) {
+    delete this->sprite;
+  }
+  this->sprite = nullptr;
+};
 
-// Getter
+// Setter
 void Entidade::setSprite(sf::Sprite *sprite) {
   if (sprite == nullptr) {
     std::cout << "Erro ao tentar setar um sprite nulo." << '\n';
@@ -44,7 +50,7 @@ void Entidade::setSprite(sf::Sprite *sprite) {
   this->sprite = sprite;
   this->sprite->setPosition(this->position);
 }
-// Setter
+// Getter
 sf::Sprite *Entidade::getSprite() { return this->sprite; };
 
 void Entidade::moveTo(sf::Vector2f direction) {
@@ -74,9 +80,9 @@ void Entidade::voar() {
   }
 }
 
-void Entidade::draw() { 
-  if(this->ativo)
-    this->graphicManager->draw(this->sprite); 
+void Entidade::draw() {
+  if (this->ativo)
+    this->graphicManager->draw(this->sprite);
 }
 
 void Entidade::move() {}
@@ -87,15 +93,15 @@ void Entidade::receive(Entidade *entidade) {}
 Entidade *Entidade::clone() { return NULL; }
 
 void Entidade::executar() {
-  if(this->ativo){
-  this->move();
-  this->gravity();
+  if (this->ativo) {
+    this->move();
+    this->gravity();
 
-  if (this->flutuante) {
-    this->voar();
-  }
+    if (this->flutuante) {
+      this->voar();
+    }
 
-  this->draw();
+    this->draw();
   }
 }
 

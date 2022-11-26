@@ -3,6 +3,7 @@
 #include "class/Fases/Caverna.hpp"
 #include "class/Fases/Ruina.hpp"
 #include "manager/GraphicManager.hpp"
+#include "manager/SpriteManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <iostream>
@@ -25,8 +26,12 @@ Jogo::Jogo()
 };
 
 Jogo::~Jogo() {
-  if (this->graphicManager != NULL) {
+  if (this->graphicManager != nullptr) {
     delete this->graphicManager;
+  }
+
+  if (SpriteManager::getInstance() != nullptr) {
+    delete SpriteManager::getInstance();
   }
 };
 
@@ -37,7 +42,7 @@ void Jogo::executar() {
     window->clear();
 
     if (menu.getStarted() == true) {
-      if (this->fase == NULL) {
+      if (this->fase == nullptr) {
         if (this->menu.getWorldID() == 1) {
           this->fase = new Caverna();
         } else {
@@ -59,6 +64,7 @@ void Jogo::executar() {
 
         delete this->fase;
         this->fase = NULL;
+
         Jogador::dead = false;
       } else {
         this->fase->executar();
@@ -66,6 +72,7 @@ void Jogo::executar() {
     } else {
       this->menu.executar();
     }
+
     window->display();
   }
 };

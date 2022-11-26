@@ -12,7 +12,7 @@ namespace Fases{
   
   public:
     Ruina();
-    ~Ruina();
+    virtual ~Ruina();
 
     void createMap();
     void generate();

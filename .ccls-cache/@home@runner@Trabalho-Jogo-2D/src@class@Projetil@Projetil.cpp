@@ -31,8 +31,8 @@ void Projetil::randDirection(){
 
 void Projetil::move(){
 
-  this->velocity = sf::Vector2f(0.2, 0.3);
-  sf::Vector2f movement = Math::v_multi(direction, this->velocity);
+  this->velocity = sf::Vector2f(0.2, 0.2);
+  sf::Vector2f movement = Math::Vector::multi(direction, this->velocity);
 
   moveTo(movement);
     

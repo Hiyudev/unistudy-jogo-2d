@@ -13,7 +13,7 @@ namespace Entidades{
 	      
 	    public:
 	      Ghoul(sf::Vector2f position, int patrolTiming);
-				~Ghoul();
+				virtual ~Ghoul();
 
 				void move();
 				void patrol();
