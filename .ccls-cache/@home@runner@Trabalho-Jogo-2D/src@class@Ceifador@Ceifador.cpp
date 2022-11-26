@@ -42,57 +42,6 @@ void Ceifador::patrol() {
 }
 
 void Ceifador::move() {
-  /*
-  if (this->isPlayerNearby()) {
-    this->projetil->setAtivo(true);
-    sf::Vector2f distance;
-    sf::Vector2f playerOneDistance =
-        Math::v_distance(Jogador::playerOnePosition, this->position);
-
-    if (Jogador::hasSecondPlayer) {
-      sf::Vector2f playerTwoDistance =
-          Math::v_distance(Jogador::playerTwoPosition, this->position);
-
-      float playerOneDistanceLength =
-          Math::distance(this->position, Jogador::playerOnePosition);
-      float playerTwoDistanceLength =
-          Math::distance(this->position, Jogador::playerTwoPosition);
-
-      if (playerOneDistanceLength < playerTwoDistanceLength) {
-        distance = playerOneDistance;
-      } else {
-        distance = playerTwoDistance;
-      }
-    } else {
-      distance = playerOneDistance;
-    }
-
-    // Limita a distancia
-    if (distance.x > 1) {
-      distance.x = 1;
-    } else if (distance.x < -1) {
-      distance.x = -1;
-    }
-
-    if (distance.y > 1) {
-      distance.y = 1;
-    } else if (distance.y < -1) {
-      distance.y = -1;
-    }
-    sf::Vector2f gravity(0, 0.5f);
-    sf::Vector2f movement =
-        Math::v_sum(Math::v_multi(distance, this->velocity), gravity);
-
-    this->tryMove(movement, this);
-  } else {
-    this->projetil->setAtivo(false);
-    sf::Vector2f gravity(0, 0.5f);
-    sf::Vector2f movement = Math::v_sum(
-        Math::v_multi(this->patrolDirection, this->velocity), gravity);
-    this->tryMove(movement, this);
-    this->patrol();
-  }*/
-  //this->projetil->moveTo(this->getPosition());  
   countDown--;
   if(countDown == 0){
     this->projetil->randDirection();
@@ -121,4 +70,19 @@ void Ceifador::setProjetil(Projetil *projetil){
 
 Projetil* Ceifador::getProjetil() const{
   return this->projetil;
+}
+
+void Ceifador::deal(Entidade *entidade){
+  try{
+    Personagem *personagem = (Personagem*)entidade;
+
+    if(personagem == NULL){
+      throw 0;
+    }
+
+    for(int i=0; i < 10; i++)
+      personagem->operator--();
+  } catch(int errID){
+    std::cout << "casting failed" << std::endl;
+  }
 }

@@ -18,6 +18,7 @@ namespace Entidades{
 
         void setProjetil(Projetil* projetil);
         Projetil* getProjetil() const;
+        void deal(Entidade *entidade);
 				void patrol();
 				void move();
 				void draw();

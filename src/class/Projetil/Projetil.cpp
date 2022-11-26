@@ -53,6 +53,8 @@ void Projetil::deal(Entidade *entidade){
 
     for(int i=0; i < 20; i++)
       personagem->operator--();
+
+    std::cout << "dano projetil" << std::endl;
   } catch(int errID){
     std::cout << "casting failed" << std::endl;
   }

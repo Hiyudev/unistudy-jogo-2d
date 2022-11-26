@@ -12,7 +12,7 @@ using namespace Entidades::Personagens;
 Inimigo::Inimigo(sf::Vector2f position, bool flutuante,
                  int patrolDirectionTimerInSeconds = 2,
                  float playerDetectionRadius = 50.0f)
-    : Personagem(sf::Vector2f(position), flutuante, 3,
+    : Personagem(sf::Vector2f(position), flutuante, 1,
                  sf::Vector2f(0.1f, 0.1f)) {
   this->patrolDirectionTimerInSeconds = patrolDirectionTimerInSeconds;
   this->playerDetectionRadius = playerDetectionRadius;

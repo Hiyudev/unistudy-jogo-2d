@@ -107,6 +107,8 @@ void Morcego::deal(Entidade* entidade){
 
     for(int i=0; i < 5; i++)
       personagem->operator--();
+
+    std::cout << "dano morcego" << std::endl;
   } catch (int errID){
     std::cout << "casting failed" << std::endl;
   }

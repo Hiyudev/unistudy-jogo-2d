@@ -74,7 +74,10 @@ void Entidade::voar() {
   }
 }
 
-void Entidade::draw() { this->graphicManager->draw(this->sprite); }
+void Entidade::draw() { 
+  if(this->ativo)
+    this->graphicManager->draw(this->sprite); 
+}
 
 void Entidade::move() {}
 

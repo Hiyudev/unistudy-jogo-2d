@@ -48,9 +48,10 @@ bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
 
   bool collideObstaculo =
       this->checkCollideObstaculo(hitbox, direction, entidade);
+  
   if(isInimigo == false){
     bool collideInimigo = this->checkCollideInimigo(hitbox, direction, entidade);
-    checkCollideProjetil(hitbox, direction, entidade);
+    checkCollisionsProjetil(hitbox, direction, entidade);
     return ((!collideObstaculo) && (!collideInimigo));
   }
   else{
@@ -96,20 +97,18 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
   std::list<Entidade *>::iterator inimigosIt;
 
   bool collideInimigo = false;
-
+  
   for (inimigosIt = inimigosList.begin(); inimigosIt != inimigosList.end();
        inimigosIt++) {
     Entidade *inimigo = *inimigosIt;
 
-    if (entidade != NULL) {
-      if (entidade->getID() == inimigo->getID()) {
-        continue;
-      }
-    }
+    if(inimigo->getAtivo() == false)
+      continue;
+         
     sf::Sprite *sprite = inimigo->getSprite();
 
     sf::FloatRect inimigoHitbox = sprite->getGlobalBounds();
-
+   
     bool collide = hitbox.intersects(inimigoHitbox);
 
     if (collide) {
@@ -117,14 +116,24 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
 
       if (entidade != NULL) {
         entidade->receive(inimigo);
+        if(hitbox.top + hitbox.height -1 < inimigoHitbox.height)
+        std::cout << hitbox.top + hitbox.height << " " << inimigoHitbox.top << std::endl;
+      }
+    }  
+         
+    if(collide && (hitbox.top + hitbox.height - 1) < inimigoHitbox.top ){
+      if(entidade != NULL){
+        inimigo->receive(entidade);
+        inimigo->setAtivo(false);
       }
     }
+         
   }
 
   return collideInimigo;
 }
 
-void CollisionManager::checkCollideProjetil(sf::FloatRect hitbox,
+void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox,
                                             sf::Vector2f direction,
                                             Entidade *entidade) {
   std::vector<Entidade *>::iterator projetilIt;
@@ -145,7 +154,6 @@ void CollisionManager::checkCollideProjetil(sf::FloatRect hitbox,
         entidade->receive(projetil);
         projetil->setAtivo(false);
       }
-      
     }
   }
 }
