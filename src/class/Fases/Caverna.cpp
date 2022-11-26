@@ -5,15 +5,13 @@
 
 using namespace Fases;
 
-Caverna::Caverna() : Fase() { 
-  srand(time(NULL)); 
-};
+Caverna::Caverna() : Fase() { srand(time(NULL)); };
 
 Caverna::~Caverna(){};
 
 void Caverna::executar() { this->lista->executar(); };
 
-void Caverna::createMap(){
+void Caverna::createMap() {
   this->createBorda(0);
 
   // Plataforma
@@ -29,14 +27,19 @@ void Caverna::createMap(){
 void Caverna::generate() {
   this->createMap();
 
-  sf::Vector2f vPlataformas[6] = { {184, 168}, {56, 248}, {200, 280}, {264, 328}, {280, 72}, {328, 248}};
+  sf::Vector2f vPlataformas[5] = {{200, 168}, {72, 248}, {152, 280},
+                                  {296, 264}, {376, 248}};
+  sf::Vector2f vInimigos[10] = { {184, 104}, {376, 184}, {152, 232}, {88, 264}, {296, 248}};
   
-  int numInstancias = rand()%7;
-  if(numInstancias < 3 ) { numInstancias = 3; }
-  for(int i = 0, j = 0; i < numInstancias; i++, j++){
-    this->createPlataforma(vPlataformas[j].x, vPlataformas[j].y);
-    this->createMorcego(vPlataformas[j].x - 16, vPlataformas[j].y - 16);
-    this->createGhoul(vPlataformas[j].x + 16, vPlataformas[j].y + 16);
+  int instanciasObst = 3 + (rand() % 3);
+  int instanciasIni = 3 + (rand() % 3);
+
+  for (int i = 0; i < instanciasObst; i++) {
+    this->createPlataforma(vPlataformas[i].x, vPlataformas[i].y);
+  }
+  for(int j = 0; j < instanciasIni; j++){
+    this->createMorcego(vInimigos[j].x + 32, vInimigos[j].y);
+    this->createGhoul(vInimigos[j].x, vInimigos[j].y);
   }
   this->pushEntidades();
 };

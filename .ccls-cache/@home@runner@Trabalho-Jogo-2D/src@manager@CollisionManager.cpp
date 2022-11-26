@@ -7,6 +7,7 @@
 
 #include "../class/Entidade/Entidade.hpp"
 #include "../class/Obstaculo/Obstaculo.hpp"
+#include "../class/Personagem/Personagem.hpp"
 #include "../utils/Math.hpp"
 #include "CollisionManager.hpp"
 
@@ -111,21 +112,17 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
 
     bool collide = hitbox.intersects(inimigoHitbox);
 
-    if (collide) {
-      collideInimigo = true;
-
-      if (entidade != nullptr) {
-        entidade->receive(inimigo);
-        if (hitbox.top + hitbox.height - 1 < inimigoHitbox.height)
-          std::cout << hitbox.top + hitbox.height << " " << inimigoHitbox.top
-                    << std::endl;
-      }
-    }
 
     if (collide && (hitbox.top + hitbox.height - 1) < inimigoHitbox.top) {
       if (entidade != nullptr) {
         inimigo->receive(entidade);
         inimigo->setAtivo(false);
+      }
+    } else if (collide){
+      collideInimigo = true;
+
+      if (entidade != nullptr) {
+        entidade->receive(inimigo);
       }
     }
   }
@@ -141,6 +138,9 @@ void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox,
   for (projetilIt = projeteisList.begin(); projetilIt != projeteisList.end();
        projetilIt++) {
     Entidade *projetil = *projetilIt;
+
+    if(projetil->getAtivo() == false)
+      continue;
 
     sf::Sprite *sprite = projetil->getSprite();
 

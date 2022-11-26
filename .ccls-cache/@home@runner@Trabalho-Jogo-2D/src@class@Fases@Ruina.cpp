@@ -27,11 +27,11 @@ void Ruina::createMap() {
   this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(328, 184)));
   this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(312, 184)));
 
-  for (int i = 304; i > 160; i -= 16) {
+  for (int i = 304; i > 248; i -= 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(i - 8, 168)));
   }
 
-  for (int i = 16; i < 224; i += 16) {
+  for (int i = 16; i < 132; i += 16) {
     this->map.insert(std::pair<int, sf::Vector2f>(0, sf::Vector2f(8 + i, 264)));
   }
 }
@@ -39,28 +39,27 @@ void Ruina::createMap() {
 void Ruina::generate() {
   this->createMap();
 
-  sf::Vector2f vPlataformas[5] = {
-      {168, 132}, {328, 104}, {376, 280}, {264, 248}, {40, 56}};
-  sf::Vector2f vEspinhos[7] = { {40, 248},  {312, 168}, {152, 296},
-                               {168, 296}, {132, 296}, {328, 296}};
-
-  sf::Vector2f vGhouls[10] = {};
-  sf::Vector2f vCeifadores[10] = {};
-
-  int numInstancias = rand() % 7;
-  if (numInstancias < 3) {
-    numInstancias = 3;
-  }
-
-  for (int i = 0, j = 0; i < numInstancias; i++, j++) {
-    if (j < 5) {
-      this->createPlataforma(vPlataformas[j].x, vPlataformas[j].y);
-    }
-    this->createEspinho(vEspinhos[j].x, vEspinhos[j].y);
-    this->createCeifador(56+((rand()%9)*16), 248);
-    this->createGhoul(168+((rand()%9)*16), 152);
-  }
+  sf::Vector2f vPlataformas[6] = {
+      {328, 104}, {424, 104}, {184, 168}, {56, 200}, {264, 248}, {392, 280}};
   
+  sf::Vector2f vEspinhos[6] = { {312, 168}, {328, 168}, {40, 248}, {152, 296},
+                              {312, 296}, {328, 296}};
+
+  sf::Vector2f vInimigos[5] = { {216, 72}, {408, 152}, {184, 152}, {216, 264}, {376, 264}};
+
+  int instanciasObst = 3 + rand() % 4; 
+  int instanciasIni = 3 + rand()%3;
+  
+  for (int i = 0; i < instanciasObst; i++) {
+    if (i < 6) {
+      this->createPlataforma(vPlataformas[i].x, vPlataformas[i].y);
+      this->createEspinho(vEspinhos[i].x, vEspinhos[i].y);
+    }
+  }
+  for(int j = 0; j < instanciasIni; j++){
+    this->createGhoul(vInimigos[j].x, vInimigos[j].y);
+    this->createCeifador(vInimigos[j].x + 16, vInimigos[j].y);
+  }
   this->pushEntidades();
 }
 

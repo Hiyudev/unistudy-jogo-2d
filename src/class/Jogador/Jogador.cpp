@@ -53,7 +53,7 @@ void Jogador::move() {
   // Pulo
   // jumpTime está em milisegundos
   float jumpTime = 150;
-  float jumpForce = 2;
+  float jumpForce = 2.5;
 
   if (control.y == 1 && this->isJumping == false &&
       this->isTouchingGround == true) {

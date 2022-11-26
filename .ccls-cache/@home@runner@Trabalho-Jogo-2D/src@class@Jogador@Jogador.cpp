@@ -32,8 +32,11 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
   }
 };
 
-Jogador::~Jogador() { 
-	if(this->keyboardManager != nullptr ) {delete this->keyboardManager; };
+Jogador::~Jogador() {
+  if (this->keyboardManager != nullptr) {
+    delete this->keyboardManager;
+  }
+};
 
 bool Jogador::getIsSecondPlayer() { return this->isSecondPlayer; };
 
@@ -50,7 +53,7 @@ void Jogador::move() {
   // Pulo
   // jumpTime está em milisegundos
   float jumpTime = 150;
-  float jumpForce = 2;
+  float jumpForce = 2.5;
 
   if (control.y == 1 && this->isJumping == false &&
       this->isTouchingGround == true) {

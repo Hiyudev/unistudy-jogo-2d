@@ -30,12 +30,11 @@ namespace Entidades {
 			// Atributos
 			bool flutuante;
       bool isPlayer;
+      bool ativo;
 
 			// Base Operation
 			void gravity();
 			void voar();
-
-      bool ativo;
 
 			virtual void draw();
 			virtual void move();

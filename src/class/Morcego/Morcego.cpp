@@ -15,6 +15,7 @@ Morcego::Morcego(sf::Vector2f position, int patrolTiming)
       this->spriteManager->getSprite("assets/personagens/Morcego.png"));
 
   this->isVampiro = rand() % 2 == 0;
+
 };
 Morcego::~Morcego(){};
 

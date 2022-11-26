@@ -11,7 +11,6 @@ namespace Entidades {
 			protected:
 				sf::Vector2f patrolDirection;
 				sf::Clock clock;
-
 				int patrolDirectionTimerInSeconds;
 				float playerDetectionRadius;
 
