@@ -55,7 +55,7 @@ void Ruina::generate() {
     }
     this->createEspinho(vEspinhos[j].x, vEspinhos[j].y);
     this->createCeifador(56+((rand()%9)*16), 248);
-    //this->createGhoul(168+((rand()%9)*16), 152);
+    this->createGhoul(168+((rand()%9)*16), 152);
   }
   
   this->pushEntidades();

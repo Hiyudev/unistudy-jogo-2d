@@ -16,6 +16,7 @@ Ceifador::Ceifador(sf::Vector2f position, int patrolTiming)
       this->spriteManager->getSprite("assets/personagens/Ceifador.png"));
 
     this->countDown = 500;
+    this->strength = 500 + rand()%200;
 };
 Ceifador::~Ceifador(){
 };
@@ -48,8 +49,15 @@ void Ceifador::move() {
     this->projetil->setAtivo(true);
     countDown = 500;
   } 
+  
   if(projetil->getAtivo() == false){
     this->projetil->getSprite()->setPosition(this->getPosition());
+  } else {
+    strength--;
+    if(strength == 0){
+      this->projetil->setAtivo(false);
+      strength = 500 + rand()%200;
+    }
   }
   
   sf::Vector2f gravity(0, 0.5f);
@@ -80,6 +88,7 @@ void Ceifador::deal(Entidade *entidade){
       throw 0;
     }
 
+    std::cout << "dano ceifador" << std::endl;
     for(int i=0; i < 10; i++)
       personagem->operator--();
   } catch(int errID){

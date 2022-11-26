@@ -12,6 +12,7 @@ namespace Entidades{
 	    private:
         Projetil *projetil;
         int countDown;
+        int strength; 
 	    public:
 	      Ceifador(sf::Vector2f position, int patrolTiming);
 				~Ceifador();

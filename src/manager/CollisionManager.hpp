@@ -40,6 +40,5 @@ namespace Gerenciadores
       bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
       bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
       void checkCollisionsProjetil(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
-      void checkCollisionsProjetilObst();
   };
 }
