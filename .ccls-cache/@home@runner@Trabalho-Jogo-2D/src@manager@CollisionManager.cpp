@@ -38,7 +38,7 @@ CollisionManager *CollisionManager::getInstance() {
 };
 
 bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
-                                 Entidade *entidade, bool isInimigo) {
+                                 Entidade *entidade, bool isPlayer) {
 
   sf::Vector2f posAfterDirection = Math::Vector::sum(position, direction);
   sf::RectangleShape hitboxRectangle(sf::Vector2f(16, 16));
@@ -48,21 +48,19 @@ bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
   sf::FloatRect hitbox = hitboxRectangle.getGlobalBounds();
 
   bool collideObstaculo =
-      this->checkCollideObstaculo(hitbox, direction, entidade);
+      this->checkCollideObstaculo(hitbox, entidade);
 
-  if (isInimigo == false) {
+  if (isPlayer == true) {
     bool collideInimigo =
-        this->checkCollideInimigo(hitbox, direction, entidade);
-    checkCollisionsProjetil(hitbox, direction, entidade);
+        this->checkCollideInimigo(hitbox, entidade);
+    checkCollisionsProjetil(hitbox, entidade);
     return ((!collideObstaculo) && (!collideInimigo));
   } else {
     return (!collideObstaculo);
   }
 }
 
-bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
-                                             sf::Vector2f direction,
-                                             Entidade *entidade) {
+bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox, Entidade *entidade) {
 
   std::vector<Entidade *>::iterator obstaculosIt;
 
@@ -71,7 +69,6 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
   for (obstaculosIt = obstaculosList.begin();
        obstaculosIt != obstaculosList.end(); obstaculosIt++) {
     Entidade *obstaculo = *obstaculosIt;
-    Obstaculo *castedObstaculo = static_cast<Obstaculo *>(obstaculo);
 
     sf::Sprite *sprite = obstaculo->getSprite();
 
@@ -92,8 +89,7 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
 }
 
 bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
-                                           sf::Vector2f direction,
-                                           Entidade *entidade) {
+Entidade *entidade) {
 
   std::list<Entidade *>::iterator inimigosIt;
 
@@ -130,9 +126,7 @@ bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
   return collideInimigo;
 }
 
-void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox,
-                                               sf::Vector2f direction,
-                                               Entidade *entidade) {
+void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox, Entidade *entidade) {
   std::vector<Entidade *>::iterator projetilIt;
 
   for (projetilIt = projeteisList.begin(); projetilIt != projeteisList.end();

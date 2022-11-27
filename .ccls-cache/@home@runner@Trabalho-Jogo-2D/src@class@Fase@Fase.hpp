@@ -22,7 +22,6 @@ namespace Fases
 	    virtual ~Fase();
 
 			void insertPlayer(Entidade* player);
-      int getCont() { return this->cont_inimigos; }
 
       void insertPlataforma(int posX, int posY);
       void insertEspinho(int posX, int posY);
@@ -32,7 +31,6 @@ namespace Fases
       
       void insertBorda(int mapKey);
       void createEntidades();
-      void checkInimigosVivos();
 
       virtual void createMap() = 0;
 	    virtual void executar() = 0;

@@ -60,7 +60,7 @@ void Jogo::executar() {
           this->fase->insertPlayer(static_cast<Entidade *>(jogadorDoisClone));
         }
       }
-  
+      
       if (Jogador::dead == true) {
         this->menu.setStarted(false);
 

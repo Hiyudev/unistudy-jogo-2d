@@ -1,7 +1,6 @@
 #include "Jogador.hpp"
 #include "../../manager/KeyboardManager.hpp"
 #include "../../utils/Math.hpp"
-#include "../../utils/Sprite.hpp"
 #include "../Personagem/Personagem.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -91,9 +90,9 @@ void Jogador::move() {
 
   // Caso esteja indo para direita, coloca o sprite do jogador para a direita
   if (control.x > 0) {
-    Sprite::flipByXSprite(false, this->sprite);
+    SpriteManager::flipByXSprite(false, this->sprite);
   } else if (control.x < 0) {
-    Sprite::flipByXSprite(true, this->sprite);
+    SpriteManager::flipByXSprite(true, this->sprite);
   }
 
   this->tryMove(movement, this);

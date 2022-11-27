@@ -31,7 +31,6 @@ namespace Fases
       
       void insertBorda(int mapKey);
       void createEntidades();
-      void checkInimigosVivos();
 
       virtual void createMap() = 0;
 	    virtual void executar() = 0;

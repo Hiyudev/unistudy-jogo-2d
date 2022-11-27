@@ -89,7 +89,6 @@ void Ceifador::deal(Entidade *entidade) {
       throw 0;
     }
 
-    std::cout << "dano ceifador" << std::endl;
     for (int i = 0; i < 15; i++)
       personagem->operator--();
   } catch (int errID) {

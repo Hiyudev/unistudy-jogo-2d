@@ -1,9 +1,9 @@
 #include "Personagem.hpp"
 #include "../../manager/CollisionManager.hpp"
-#include "../../utils/Sprite.hpp"
 #include <SFML/Graphics.hpp>
+
 using namespace Entidades::Personagens;
-using namespace Utils;
+
 Personagem::Personagem(sf::Vector2f pos, bool flutuante, int health,
                        sf::Vector2f vel)
     : Entidade(pos, flutuante) {
@@ -23,11 +23,8 @@ void Personagem::setHealth(const int health) { this->health = health; }
 void Personagem::operator--() { this->health--; };
 
 bool Personagem::canMove(sf::Vector2f direction, Personagem *personagem) {
-  if (personagem == NULL) {
-    std::cout << "Personagem::canMove" << std::endl;
-  }
   bool canMove = this->collisionManager->canMoveTo(
-      this->position, direction, personagem, (!personagem->getIsPlayer()));
+      this->position, direction, personagem, (personagem->getIsPlayer()));
 
   return canMove;
 }
@@ -36,10 +33,6 @@ void Personagem::tryMove(sf::Vector2f direction, Personagem *personagem) {
   sf::Vector2f axisX(direction.x, 0);
   sf::Vector2f axisY(0, direction.y);
   sf::Vector2f axisGroundChecker(0, 1);
-
-  if (personagem == NULL) {
-    std::cout << "..." << std::endl;
-  }
 
   // Verifica se está pisando no chão
   this->isTouchingGround = !(this->canMove(axisGroundChecker, personagem));
@@ -59,9 +52,9 @@ void Personagem::tryMove(sf::Vector2f direction, Personagem *personagem) {
 
   // Caso esteja indo para direita, coloca o sprite do personagem para a direita
   if (direction.x > 0) {
-    Sprite::flipByXSprite(false, this->sprite);
+    SpriteManager::flipByXSprite(false, this->sprite);
   } else if (direction.x < 0) {
-    Sprite::flipByXSprite(true, this->sprite);
+    SpriteManager::flipByXSprite(true, this->sprite);
   }
 
   this->moveTo(direction);

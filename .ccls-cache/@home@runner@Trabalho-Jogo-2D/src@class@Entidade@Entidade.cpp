@@ -14,7 +14,7 @@ using namespace Entidades;
 
 // Constructor
 Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
-  //this->spriteManager = SpriteManager::getInstance();
+  this->spriteManager = SpriteManager::getInstance();
   this->sprite = nullptr;
 
   this->collisionManager = CollisionManager::getInstance();

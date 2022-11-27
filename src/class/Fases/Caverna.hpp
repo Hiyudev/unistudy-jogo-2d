@@ -8,7 +8,6 @@ namespace Fases
 {
 	class Caverna : public Fase
 	{
-		private:
 		public:
 			Caverna();
 			virtual ~Caverna();

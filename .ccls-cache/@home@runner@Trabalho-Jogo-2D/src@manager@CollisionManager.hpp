@@ -36,9 +36,9 @@ namespace Gerenciadores
       void pushProjetil(Entidade* projetil);
 			void clear();
 
-			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, Entidade* entidade = NULL, bool isInimigo = false);
-      bool checkCollideInimigo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
-      bool checkCollideObstaculo(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
-      void checkCollisionsProjetil(sf::FloatRect hitbox, sf::Vector2f direction, Entidade* entidade = NULL);
+			bool canMoveTo(sf::Vector2f position, sf::Vector2f direction, Entidade* entidade = NULL, bool isPlayer = false);
+      bool checkCollideInimigo(sf::FloatRect hitbox, Entidade* entidade = NULL);
+      bool checkCollideObstaculo(sf::FloatRect hitbox, Entidade* entidade = NULL);
+      void checkCollisionsProjetil(sf::FloatRect hitbox, Entidade* player);
   };
 }

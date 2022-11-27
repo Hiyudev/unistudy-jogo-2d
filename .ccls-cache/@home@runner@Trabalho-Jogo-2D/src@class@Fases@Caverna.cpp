@@ -12,7 +12,7 @@ Caverna::~Caverna(){};
 void Caverna::executar() { this->lista->executar(); };
 
 void Caverna::createMap() {
-  this->createBorda(0);
+  this->insertBorda(0);
 
   // Plataforma
   for (int i = 16; i < 400; i += 16) {
