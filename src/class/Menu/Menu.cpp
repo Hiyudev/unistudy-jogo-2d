@@ -1,3 +1,7 @@
+/*
+ Referência para construção da classe menu
+  - https://www.youtube.com/watch?v=4Vg9d1pjL20
+*/
 #include "Menu.hpp"
 #include "../Fases/Caverna.hpp"
 #include <iostream>
@@ -19,7 +23,7 @@ Menu::Menu() {
   sf::Text *startTextOption = new sf::Text();
   startTextOption->setFont(font);
   startTextOption->setFillColor(sf::Color::Red);
-  startTextOption->setString("Start");
+  startTextOption->setString("Iniciar");
   textList.push_back(startTextOption);
 
   sf::Text *faseTextOption = new sf::Text();
@@ -37,7 +41,7 @@ Menu::Menu() {
   sf::Text *quitTextOption = new sf::Text();
   quitTextOption->setFont(font);
   quitTextOption->setFillColor(sf::Color::White);
-  quitTextOption->setString("Quit");
+  quitTextOption->setString("Sair");
   textList.push_back(quitTextOption);
 };
 

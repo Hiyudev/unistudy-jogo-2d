@@ -9,7 +9,7 @@ Ruina::Ruina() : Fase() { srand(time(NULL)); }
 Ruina::~Ruina() {}
 
 void Ruina::createMap() {
-  this->createBorda(0);
+  this->insertBorda(0);
 
   // Plataformas
   for (int i = 16; i < 184; i += 16) {
@@ -52,15 +52,15 @@ void Ruina::generate() {
   
   for (int i = 0; i < instanciasObst; i++) {
     if (i < 6) {
-      this->createPlataforma(vPlataformas[i].x, vPlataformas[i].y);
-      this->createEspinho(vEspinhos[i].x, vEspinhos[i].y);
+      this->insertPlataforma(vPlataformas[i].x, vPlataformas[i].y);
+      this->insertEspinho(vEspinhos[i].x, vEspinhos[i].y);
     }
   }
   for(int j = 0; j < instanciasIni; j++){
-    this->createGhoul(vInimigos[j].x, vInimigos[j].y);
-    this->createCeifador(vInimigos[j].x + 16, vInimigos[j].y);
+    this->insertGhoul(vInimigos[j].x, vInimigos[j].y);
+    this->insertCeifador(vInimigos[j].x + 16, vInimigos[j].y);
   }
-  this->pushEntidades();
+  this->createEntidades();
 }
 
-void Ruina::executar() { this->lista->executar(); }
+void Ruina::executar() { this->lista->executar();  }

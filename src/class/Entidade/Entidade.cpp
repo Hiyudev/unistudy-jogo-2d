@@ -12,8 +12,6 @@ using namespace Utils;
 using namespace Gerenciadores;
 using namespace Entidades;
 
-int Entidade::cont_entes = 0;
-
 // Constructor
 Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
   this->spriteManager = SpriteManager::getInstance();
@@ -24,9 +22,6 @@ Entidade::Entidade(sf::Vector2f pos, bool flutuante) : Ente() {
   this->flutuante = flutuante;
 
   this->position = pos;
-
-  this->cont_entes++;
-  this->id = this->cont_entes;
 
   this->ativo = true;
   this->isPlayer = false;

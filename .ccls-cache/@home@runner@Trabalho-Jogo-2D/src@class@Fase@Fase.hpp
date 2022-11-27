@@ -21,17 +21,18 @@ namespace Fases
 	    Fase();
 	    virtual ~Fase();
 
-			void insertEntidade(Entidade* entidade);
+			void insertPlayer(Entidade* player);
+      int getCont() { return this->cont_inimigos; }
 
-
-      void createPlataforma(int posX, int posY);
-      void createEspinho(int posX, int posY);
-      void createGhoul(int posX, int posY);
-      void createMorcego(int posX, int posY);
-			void createCeifador(int posX, int posY);
-
-      void createBorda(int mapKey);
-      void pushEntidades();
+      void insertPlataforma(int posX, int posY);
+      void insertEspinho(int posX, int posY);
+      void insertGhoul(int posX, int posY);
+      void insertMorcego(int posX, int posY);
+      void insertCeifador(int posX, int posY);
+      
+      void insertBorda(int mapKey);
+      void createEntidades();
+      void checkInimigosVivos();
 
       virtual void createMap() = 0;
 	    virtual void executar() = 0;

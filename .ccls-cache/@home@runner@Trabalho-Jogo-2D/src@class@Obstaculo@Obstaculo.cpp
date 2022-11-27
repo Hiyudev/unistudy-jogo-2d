@@ -5,6 +5,7 @@ using namespace Entidades::Obstaculos;
 Obstaculo::Obstaculo(sf::Vector2f position, bool dealsDamage = false)
     : Entidade(position, true) {
   this->dealsDamage = dealsDamage;
+  this->isPlayer = false;
 };
 
 Obstaculo::~Obstaculo(){};

@@ -14,6 +14,7 @@ using namespace Entidades::Personagens;
 using namespace Fases;
 using namespace Entidades::Obstaculos;
 
+
 Fase::Fase() : Ente() {
   this->lista = new ListaEntidades();
   this->collisionManager = CollisionManager::getInstance();
@@ -22,12 +23,13 @@ Fase::Fase() : Ente() {
 
 Fase::~Fase() {
   this->collisionManager->clear();
-  delete this->lista;
+  if(this->lista != NULL)
+    delete this->lista;
 };
 
-void Fase::insertEntidade(Entidade *entidade) { this->lista->push(entidade); }
+void Fase::insertPlayer(Entidade *player) { this->lista->push(player); }
 
-void Fase::createBorda(int mapKey) {
+void Fase::insertBorda(int mapKey) {
   for (int i = 0; i < 480; i += 16) {
     this->map.insert(
         std::pair<int, sf::Vector2f>(mapKey, sf::Vector2f(8 + i, 8)));
@@ -49,27 +51,29 @@ void Fase::createBorda(int mapKey) {
   }
 }
 
-void Fase::createPlataforma(int posX, int posY) {
+void Fase::insertPlataforma(int posX, int posY) {
   this->map.insert(std::pair<int, sf::Vector2f>(1, sf::Vector2f(posX, posY)));
 }
 
-void Fase::createEspinho(int posX, int posY) {
+void Fase::insertEspinho(int posX, int posY) {
   this->map.insert(std::pair<int, sf::Vector2f>(2, sf::Vector2f(posX, posY)));
 }
 
-void Fase::createGhoul(int posX, int posY) {
-  this->map.insert(std::pair<int, sf::Vector2f>(3, sf::Vector2f(posX, posY)));
-}
-
-void Fase::createMorcego(int posX, int posY) {
+void Fase::insertMorcego(int posX, int posY) {
   this->map.insert(std::pair<int, sf::Vector2f>(4, sf::Vector2f(posX, posY)));
 }
 
-void Fase::createCeifador(int posX, int posY) {
-  this->map.insert(std::pair<int, sf::Vector2f>(5, sf::Vector2f(posX, posY)));
+void Fase::insertGhoul(int posX, int posY) {
+  this->map.insert(std::pair<int, sf::Vector2f>(3, sf::Vector2f(posX, posY)));
+
 }
 
-void Fase::pushEntidades() {
+void Fase::insertCeifador(int posX, int posY) {
+  this->map.insert(std::pair<int, sf::Vector2f>(5, sf::Vector2f(posX, posY)));
+
+}
+
+void Fase::createEntidades() {
   std::multimap<int, sf::Vector2f>::iterator it;
 
   for (it = this->map.begin(); it != this->map.end(); it++) {

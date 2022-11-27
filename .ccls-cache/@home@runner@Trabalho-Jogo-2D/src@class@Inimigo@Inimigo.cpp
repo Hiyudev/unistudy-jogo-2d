@@ -16,6 +16,7 @@ Inimigo::Inimigo(sf::Vector2f position, bool flutuante,
                  sf::Vector2f(0.1f, 0.1f)) {
   this->patrolDirectionTimerInSeconds = patrolDirectionTimerInSeconds;
   this->playerDetectionRadius = playerDetectionRadius;
+  this->isPlayer = false;
 };
 Inimigo::~Inimigo(){};
 

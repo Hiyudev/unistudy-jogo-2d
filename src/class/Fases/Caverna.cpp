@@ -12,7 +12,7 @@ Caverna::~Caverna(){};
 void Caverna::executar() { this->lista->executar(); };
 
 void Caverna::createMap() {
-  this->createBorda(0);
+  this->insertBorda(0);
 
   // Plataforma
   for (int i = 16; i < 400; i += 16) {
@@ -35,11 +35,11 @@ void Caverna::generate() {
   int instanciasIni = 3 + (rand() % 3);
 
   for (int i = 0; i < instanciasObst; i++) {
-    this->createPlataforma(vPlataformas[i].x, vPlataformas[i].y);
+    insertPlataforma(vPlataformas[i].x, vPlataformas[i].y);
   }
   for(int j = 0; j < instanciasIni; j++){
-    this->createMorcego(vInimigos[j].x + 32, vInimigos[j].y);
-    this->createGhoul(vInimigos[j].x, vInimigos[j].y);
+    insertMorcego(vInimigos[j].x + 32, vInimigos[j].y);
+    insertGhoul(vInimigos[j].x, vInimigos[j].y);
   }
-  this->pushEntidades();
+  createEntidades();
 };

@@ -8,8 +8,6 @@ namespace Fases{
   class Ruina : public Fase
   {
   private:
-    int id;
-  
   public:
     Ruina();
     virtual ~Ruina();

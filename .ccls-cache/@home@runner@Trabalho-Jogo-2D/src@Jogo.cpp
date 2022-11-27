@@ -33,6 +33,8 @@ Jogo::~Jogo() {
   if (SpriteManager::getInstance() != nullptr) {
     delete SpriteManager::getInstance();
   }
+
+  this->fase = NULL;
 };
 
 void Jogo::executar() {
@@ -51,14 +53,14 @@ void Jogo::executar() {
 
         this->fase->generate();
         Jogador *jogadorUmClone = JogadorUm.clone();
-        this->fase->insertEntidade(static_cast<Entidade *>(jogadorUmClone));
+        this->fase->insertPlayer(static_cast<Entidade *>(jogadorUmClone));
 
         if (this->menu.getPlayersCount() == 2) {
           Jogador *jogadorDoisClone = JogadorDois.clone();
-          this->fase->insertEntidade(static_cast<Entidade *>(jogadorDoisClone));
+          this->fase->insertPlayer(static_cast<Entidade *>(jogadorDoisClone));
         }
       }
-
+  
       if (Jogador::dead == true) {
         this->menu.setStarted(false);
 

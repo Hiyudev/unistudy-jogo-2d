@@ -9,8 +9,6 @@ namespace Fases
 	class Caverna : public Fase
 	{
 		private:
-			int id;
-
 		public:
 			Caverna();
 			virtual ~Caverna();

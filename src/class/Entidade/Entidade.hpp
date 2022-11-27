@@ -16,8 +16,6 @@ using namespace Gerenciadores;
 namespace Entidades {
   class Entidade : public Ente {
     protected:
-      int id;
-      static int cont_entes;
 			// Parte grafica
 			SpriteManager* spriteManager;
 			sf::Sprite* sprite;
@@ -31,6 +29,7 @@ namespace Entidades {
 			bool flutuante;
       bool isPlayer;
       bool ativo;
+      std::string ID;
 
 			// Base Operation
 			void gravity();
@@ -46,8 +45,8 @@ namespace Entidades {
 			// Getters
 			sf::Sprite* getSprite();
       sf::Vector2f getPosition() const;
-      const int getID() const { return this->id; }
       const bool getIsPlayer() const { return this->isPlayer; }
+      std::string getID() const { return this->ID; }
 			// Setters
 			void setSprite(sf::Sprite* sprite);
       void setPosition(const sf::Vector2f pos);

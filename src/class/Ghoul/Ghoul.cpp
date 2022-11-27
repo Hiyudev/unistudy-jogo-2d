@@ -108,8 +108,7 @@ void Ghoul::deal(Entidade *entidade) {
       throw 0;
     }
 
-    std::cout << "dano ghoul" << std::endl;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 15; i++)
       personagem->operator--();
   } catch (int errID) {
     std::cout << "casting failed" << std::endl;
