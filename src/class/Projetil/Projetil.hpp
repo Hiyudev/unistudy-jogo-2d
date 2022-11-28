@@ -12,7 +12,6 @@ namespace Entidades{
       Projetil(sf::Vector2f position = sf::Vector2f(0,0), bool flutuante = true);
       ~Projetil();
 
-      void restartPosition(sf::Vector2f dir);
       void randDirection();
       void move();
       void draw();

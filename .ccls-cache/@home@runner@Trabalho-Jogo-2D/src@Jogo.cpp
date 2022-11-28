@@ -26,14 +26,22 @@ Jogo::Jogo()
 };
 
 Jogo::~Jogo() {
-  if (this->graphicManager != nullptr) {
-    delete this->graphicManager;
+  std::cout << "Jogo deconstructor" << '\n';
+  std::cout << "delete GraphicManager" << '\n';
+  if (GraphicManager::getInstance() != nullptr) {
+    delete GraphicManager::getInstance();
   }
 
+  std::cout << "delete SpriteManager" << '\n';
   if (SpriteManager::getInstance() != nullptr) {
     delete SpriteManager::getInstance();
   }
 
+  if (KeyboardManager::getInstance() != nullptr) {
+    delete KeyboardManager::getInstance();
+  }
+
+  std::cout << "this->fase = NUL" << '\n';
   this->fase = NULL;
 };
 
@@ -60,7 +68,7 @@ void Jogo::executar() {
           this->fase->insertPlayer(static_cast<Entidade *>(jogadorDoisClone));
         }
       }
-      
+
       if (Jogador::dead == true) {
         this->menu.setStarted(false);
 

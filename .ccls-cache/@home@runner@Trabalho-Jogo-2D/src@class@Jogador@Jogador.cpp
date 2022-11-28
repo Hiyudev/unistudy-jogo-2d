@@ -32,8 +32,10 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
 };
 
 Jogador::~Jogador() {
-  if (this->keyboardManager != nullptr) {
-    delete this->keyboardManager;
+  std::cout << "Jogador deconstructor" << '\n';
+
+  if (KeyboardManager::getInstance() != nullptr) {
+    delete KeyboardManager::getInstance();
   }
 };
 

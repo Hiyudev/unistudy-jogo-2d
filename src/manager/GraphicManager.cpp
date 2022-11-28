@@ -10,11 +10,10 @@ GraphicManager::GraphicManager() {
 };
 
 GraphicManager::~GraphicManager() {
-  if (this->_manager != nullptr) {
-    delete this->_manager;
-  }
-
+	std::cout << "GraphicManager deconstructor" << '\n';
+	
   if (this->window != nullptr) {
+    std::cout << "destory window" << '\n';
     delete this->window;
   }
 };

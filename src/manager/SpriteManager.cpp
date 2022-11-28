@@ -8,10 +8,9 @@ using namespace Gerenciadores;
 
 SpriteManager::SpriteManager(){};
 
-SpriteManager::~SpriteManager() {
-  if (this->_manager != nullptr) {
-    delete this->_manager;
-  }
+SpriteManager::~SpriteManager(){
+	std::cout << "SpriteManager deconstructor" << '\n';
+	
 };
 
 SpriteManager *SpriteManager::getInstance() {
@@ -24,17 +23,17 @@ SpriteManager *SpriteManager::getInstance() {
 };
 
 sf::Sprite *SpriteManager::getSprite(std::string filePath) {
-	if(filePath.length() == 0)
-	{
-		std::cout << "Erro ao tentar carregar imagem do diretorio nulo ou vazio." << '\n';
-		return nullptr;
-	}
-	
+  if (filePath.length() == 0) {
+    std::cout << "Erro ao tentar carregar imagem do diretorio nulo ou vazio."
+              << '\n';
+    return nullptr;
+  }
+
   sf::Texture *texture = new sf::Texture();
   if (!texture->loadFromFile(filePath)) {
     std::cout << "Erro ao tentar carregar imagem do diretorio: " << filePath
               << '\n';
-		return nullptr;
+    return nullptr;
   }
 
   texture->setRepeated(false);

@@ -7,10 +7,8 @@ using namespace Gerenciadores;
 
 KeyboardManager::KeyboardManager(){};
 
-KeyboardManager::~KeyboardManager() {
-  if (this->_manager != nullptr) {
-    delete this->_manager;
-  }
+KeyboardManager::~KeyboardManager(){
+	std::cout << "KeyboardManager deconstructor" << '\n';
 };
 
 KeyboardManager *KeyboardManager::getInstance() {

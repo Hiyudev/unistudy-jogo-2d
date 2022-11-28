@@ -79,7 +79,7 @@ namespace Listas
   			this->first = NULL;
 			  this->last = NULL;
 			}
-      ~Lista(){
+      virtual ~Lista(){
 				this->length = 0;
   			this->first = NULL;
 			  this->last = NULL;

@@ -22,10 +22,9 @@ using namespace Gerenciadores;
 
 CollisionManager::CollisionManager(){};
 
-CollisionManager::~CollisionManager() {
-  if (this->_manager != nullptr) {
-    delete this->_manager;
-  }
+CollisionManager::~CollisionManager(){
+	std::cout << "GraphicManager deconstructor" << '\n';
+	
 };
 
 CollisionManager *CollisionManager::getInstance() {
@@ -47,12 +46,10 @@ bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
 
   sf::FloatRect hitbox = hitboxRectangle.getGlobalBounds();
 
-  bool collideObstaculo =
-      this->checkCollideObstaculo(hitbox, entidade);
+  bool collideObstaculo = this->checkCollideObstaculo(hitbox, entidade);
 
   if (isPlayer == true) {
-    bool collideInimigo =
-        this->checkCollideInimigo(hitbox, entidade);
+    bool collideInimigo = this->checkCollideInimigo(hitbox, entidade);
     checkCollisionsProjetil(hitbox, entidade);
     return ((!collideObstaculo) && (!collideInimigo));
   } else {
@@ -60,7 +57,8 @@ bool CollisionManager::canMoveTo(sf::Vector2f position, sf::Vector2f direction,
   }
 }
 
-bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox, Entidade *entidade) {
+bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox,
+                                             Entidade *entidade) {
 
   std::vector<Entidade *>::iterator obstaculosIt;
 
@@ -78,8 +76,9 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox, Entidade *ent
 
     if (collide) {
       collideObstaculo = true;
+      Obstaculo *castedObstaculo = (Obstaculo *)obstaculo;
 
-      if (entidade != nullptr) {
+      if (entidade != nullptr && castedObstaculo->getDealsDamage() == true) {
         entidade->receive(obstaculo);
       }
     }
@@ -89,7 +88,7 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox, Entidade *ent
 }
 
 bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
-Entidade *player) {
+                                           Entidade *player) {
   std::list<Entidade *>::iterator inimigosIt;
   bool collideInimigo = false;
 
@@ -106,13 +105,12 @@ Entidade *player) {
 
     bool collide = hitbox.intersects(inimigoHitbox);
 
-
     if (collide && (hitbox.top + hitbox.height - 1) < inimigoHitbox.top) {
       if (player != nullptr) {
         inimigo->receive(player);
         inimigo->setAtivo(false);
       }
-    } else if (collide){
+    } else if (collide) {
       collideInimigo = true;
 
       if (player != nullptr) {
@@ -124,14 +122,15 @@ Entidade *player) {
   return collideInimigo;
 }
 
-void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox, Entidade *player) {
+void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox,
+                                               Entidade *player) {
   std::vector<Entidade *>::iterator projetilIt;
 
   for (projetilIt = projeteisList.begin(); projetilIt != projeteisList.end();
        projetilIt++) {
     Entidade *projetil = *projetilIt;
 
-    if(projetil->getAtivo() == false)
+    if (projetil->getAtivo() == false)
       continue;
 
     sf::Sprite *sprite = projetil->getSprite();
