@@ -2824,6 +2824,25 @@
 											"height": 13,
 											"text": "-lista: ListaEntidades",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGEvCS+6U+H9Ak=",
+											"_parent": {
+												"$ref": "AAAAAAGEKWnZueDfm0Y="
+											},
+											"model": {
+												"$ref": "AAAAAAGEvCS+zk94MPk="
+											},
+											"lineColor": "#a00000",
+											"fillColor": "#d1ffa3",
+											"font": "Arial;13;0",
+											"left": 245,
+											"top": 1417,
+											"width": 253.98876953125,
+											"height": 13,
+											"text": "-map: multimap<int Vectorf2>",
+											"horizontalAlignment": 0
 										}
 									],
 									"lineColor": "#a00000",
@@ -2832,7 +2851,7 @@
 									"left": 240,
 									"top": 1382,
 									"width": 263.98876953125,
-									"height": 38
+									"height": 53
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -2857,7 +2876,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1425,
+											"top": 1440,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "«create»+Fase()",
@@ -2876,7 +2895,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1440,
+											"top": 1455,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "«destroy»+Fase(): virtual",
@@ -2895,7 +2914,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1455,
+											"top": 1470,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+insertEntidade(entidade: Entidade*): void",
@@ -2914,7 +2933,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1470,
+											"top": 1485,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+executar(): virtual void",
@@ -2933,7 +2952,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1485,
+											"top": 1500,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+generate(): virtual void",
@@ -2952,7 +2971,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1500,
+											"top": 1515,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+createMap(): virtual void",
@@ -2971,7 +2990,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1515,
+											"top": 1530,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+insertPlataforma(posX: int, posY: int): void",
@@ -2990,7 +3009,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1530,
+											"top": 1545,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+insertEspinho(posX: int, posY: int): void",
@@ -3009,7 +3028,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1545,
+											"top": 1560,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+insertGhoul(posX: int, posY: int): void",
@@ -3028,7 +3047,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1560,
+											"top": 1575,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+insertMorcego(posX: int, posY: int): void",
@@ -3047,7 +3066,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1575,
+											"top": 1590,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+insertCeifador(posX: int, posY: int): void",
@@ -3066,7 +3085,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1590,
+											"top": 1605,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+insertBorda(): void",
@@ -3085,7 +3104,7 @@
 											"fillColor": "#d1ffa3",
 											"font": "Arial;13;0",
 											"left": 245,
-											"top": 1605,
+											"top": 1620,
 											"width": 253.98876953125,
 											"height": 13,
 											"text": "+createEntidades(): void",
@@ -3096,7 +3115,7 @@
 									"fillColor": "#d1ffa3",
 									"font": "Arial;13;0",
 									"left": 240,
-									"top": 1420,
+									"top": 1435,
 									"width": 263.98876953125,
 									"height": 203
 								},
@@ -19586,9 +19605,9 @@
 										"$ref": "AAAAAAGEu4DU3QPZ5S8="
 									},
 									"font": "Arial;13;0",
-									"left": 1803,
+									"left": 1802,
 									"top": 1310,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -21124,6 +21143,16 @@
 									"type": {
 										"$ref": "AAAAAAGEKWTmIbKkfvI="
 									}
+								},
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAGEvCS+zk94MPk=",
+									"_parent": {
+										"$ref": "AAAAAAGEKWnZueDXIK0="
+									},
+									"name": "map",
+									"visibility": "private",
+									"type": "multimap<int Vectorf2>"
 								}
 							],
 							"operations": [
