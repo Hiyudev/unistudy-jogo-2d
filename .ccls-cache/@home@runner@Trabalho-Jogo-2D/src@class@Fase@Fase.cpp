@@ -18,13 +18,15 @@ using namespace Entidades::Obstaculos;
 Fase::Fase() : Ente() {
   this->lista = new ListaEntidades();
   this->collisionManager = CollisionManager::getInstance();
-  srand(time(NULL));
+  
 }
 
 Fase::~Fase() {
-  this->collisionManager->clear();
   if(this->lista != NULL)
     delete this->lista;
+  this->collisionManager->clear();
+  this->map.clear();
+  this->lista = NULL;
 };
 
 void Fase::insertPlayer(Entidade *player) { this->lista->push(player); }

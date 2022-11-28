@@ -10,7 +10,7 @@ namespace Entidades{
       
     public:
       Projetil(sf::Vector2f position = sf::Vector2f(0,0), bool flutuante = true);
-      virtual ~Projetil();
+      ~Projetil();
 
       void restartPosition(sf::Vector2f dir);
       void randDirection();

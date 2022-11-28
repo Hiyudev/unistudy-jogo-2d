@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "class/Fase/Fase.hpp"
 #include "class/Fases/Caverna.hpp"

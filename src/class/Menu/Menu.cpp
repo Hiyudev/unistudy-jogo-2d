@@ -1,6 +1,6 @@
 /*
  Referência para construção da classe menu
-  - https://www.youtube.com/watch?v=4Vg9d1pjL20
+  SFML 2.1 Tutorial 51 - Menu Class. Disponivel em: https://www.youtube.com/watch?v=4Vg9d1pjL20
 */
 #include "Menu.hpp"
 #include "../Fases/Caverna.hpp"
@@ -45,7 +45,20 @@ Menu::Menu() {
   textList.push_back(quitTextOption);
 };
 
-Menu::~Menu(){};
+Menu::~Menu(){
+  std::vector<sf::Text *>::iterator it;
+  sf::Text *aux = NULL;
+  it = textList.begin();
+  while(it != textList.end()){
+    aux = *it;
+    if(aux!=NULL)
+      delete aux;
+    aux = NULL;
+    it++;
+  }
+  this->textList.clear();
+  this->window = NULL;
+};
 
 const int Menu::getSelectedItem() const { return this->selectedItem; }
 
@@ -141,16 +154,16 @@ void Menu::manageEvents() {
           }
         }
         if (this->getSelectedItem() == 3) {
-          window->close();
+          this->window->close();
         }
       }
       if (event.key.code == sf::Keyboard::Escape) {
-        window->close();
+        this->window->close();
       }
     }
 
     if (event.type == sf::Event::Closed) {
-      window->close();
+      this->window->close();
     }
   }
 }

@@ -25,11 +25,10 @@ namespace Entidades {
 			// Parte de movimento
       sf::Vector2f position;
 
-			// Atributos
+			// Atributos de controle
 			bool flutuante;
       bool isPlayer;
       bool ativo;
-      std::string ID;
 
 			// Base Operation
 			void gravity();
@@ -46,12 +45,12 @@ namespace Entidades {
 			sf::Sprite* getSprite();
       sf::Vector2f getPosition() const;
       const bool getIsPlayer() const { return this->isPlayer; }
-      std::string getID() const { return this->ID; }
+      bool getAtivo() const { return this->ativo; }
+
 			// Setters
 			void setSprite(sf::Sprite* sprite);
       void setPosition(const sf::Vector2f pos);
       void setAtivo(bool a) { this->ativo = a; }
-      bool getAtivo() const { return this->ativo; }
 
 			// Metodos
 			void moveTo(sf::Vector2f direction);

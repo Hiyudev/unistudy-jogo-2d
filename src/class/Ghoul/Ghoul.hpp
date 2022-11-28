@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "../Inimigo/Inimigo.hpp"
 
@@ -13,7 +14,7 @@ namespace Entidades{
 	      
 	    public:
 	      Ghoul(sf::Vector2f position, int patrolTiming);
-				virtual ~Ghoul();
+				~Ghoul();
 
 				void move();
 				void patrol();

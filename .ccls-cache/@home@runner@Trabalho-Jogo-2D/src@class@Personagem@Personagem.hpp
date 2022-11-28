@@ -12,8 +12,6 @@ namespace Entidades {
         int health;
 				bool isJumping;
 				bool isTouchingGround;
-				//bool isPlayer;
-
 				sf::Vector2f velocity;
 
       public:
@@ -21,8 +19,7 @@ namespace Entidades {
         virtual ~Personagem();
 
 				// Getters
-        const int getHealth();
-        //const bool getIsPlayer() { return this->isPlayer; }
+        const int getHealth() const;
 				// Setters
 				void setHealth(const int health);
 

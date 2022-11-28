@@ -89,10 +89,8 @@ bool CollisionManager::checkCollideObstaculo(sf::FloatRect hitbox, Entidade *ent
 }
 
 bool CollisionManager::checkCollideInimigo(sf::FloatRect hitbox,
-Entidade *entidade) {
-
+Entidade *player) {
   std::list<Entidade *>::iterator inimigosIt;
-
   bool collideInimigo = false;
 
   for (inimigosIt = inimigosList.begin(); inimigosIt != inimigosList.end();
@@ -110,15 +108,15 @@ Entidade *entidade) {
 
 
     if (collide && (hitbox.top + hitbox.height - 1) < inimigoHitbox.top) {
-      if (entidade != nullptr) {
-        inimigo->receive(entidade);
+      if (player != nullptr) {
+        inimigo->receive(player);
         inimigo->setAtivo(false);
       }
     } else if (collide){
       collideInimigo = true;
 
-      if (entidade != nullptr) {
-        entidade->receive(inimigo);
+      if (player != nullptr) {
+        player->receive(inimigo);
       }
     }
   }
@@ -126,7 +124,7 @@ Entidade *entidade) {
   return collideInimigo;
 }
 
-void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox, Entidade *entidade) {
+void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox, Entidade *player) {
   std::vector<Entidade *>::iterator projetilIt;
 
   for (projetilIt = projeteisList.begin(); projetilIt != projeteisList.end();
@@ -143,8 +141,8 @@ void CollisionManager::checkCollisionsProjetil(sf::FloatRect hitbox, Entidade *e
     bool collide = hitbox.intersects(projetilHitbox);
 
     if (collide) {
-      if (entidade != nullptr) {
-        entidade->receive(projetil);
+      if (player != nullptr) {
+        player->receive(projetil);
         projetil->setAtivo(false);
       }
     }

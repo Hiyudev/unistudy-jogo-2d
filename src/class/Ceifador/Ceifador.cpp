@@ -14,14 +14,12 @@ Ceifador::Ceifador(sf::Vector2f position, int patrolTiming)
     : Inimigo(position, false, patrolTiming, 50.0f) {
   this->setSprite(
       this->spriteManager->getSprite("assets/personagens/Ceifador.png"));
-
+  srand(time(NULL));
   this->countDown = 500;
   this->strength = 500 + rand() % 200;
 };
 Ceifador::~Ceifador() {
-  if (this->projetil != nullptr) {
-    delete this->projetil;
-  }
+  projetil = NULL;
 };
 
 void Ceifador::patrol() {

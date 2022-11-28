@@ -7,10 +7,9 @@
 namespace Fases{
   class Ruina : public Fase
   {
-  private:
   public:
     Ruina();
-    virtual ~Ruina();
+    ~Ruina();
 
     void createMap();
     void generate();

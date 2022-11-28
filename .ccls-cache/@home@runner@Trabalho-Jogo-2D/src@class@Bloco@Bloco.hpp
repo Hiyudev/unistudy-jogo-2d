@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "../Obstaculo/Obstaculo.hpp"
 
@@ -9,7 +10,7 @@ namespace Entidades
 		{
 			public:
 				Bloco(sf::Vector2f position);
-				virtual ~Bloco();
+				~Bloco();
 		};
 	}
 }

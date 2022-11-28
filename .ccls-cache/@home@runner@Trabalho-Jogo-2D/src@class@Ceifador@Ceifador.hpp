@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "../Inimigo/Inimigo.hpp"
 #include "../Projetil/Projetil.hpp"
@@ -15,7 +16,7 @@ namespace Entidades{
         int strength; 
 	    public:
 	      Ceifador(sf::Vector2f position, int patrolTiming);
-				virtual ~Ceifador();
+				~Ceifador();
 
         void setProjetil(Projetil* projetil);
         Projetil* getProjetil() const;

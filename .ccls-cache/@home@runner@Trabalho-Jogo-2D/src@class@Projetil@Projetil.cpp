@@ -11,7 +11,7 @@ Projetil::Projetil(sf::Vector2f pos, bool flutuante) : Entidade(pos, flutuante) 
   this->setSprite(
       this->spriteManager->getSprite("assets/projetil/Projetil.png"));
 
-  this->isPlayer = 
+  this->isPlayer = false;
   this->direction = sf::Vector2f(0, 0);
   this->sprite->setScale(0.5, 0.5);
   this->sprite->setOrigin(4, 4);

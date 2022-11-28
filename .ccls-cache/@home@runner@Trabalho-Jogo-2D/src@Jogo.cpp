@@ -13,7 +13,7 @@ using namespace Fases;
 using namespace Gerenciadores;
 using namespace Entidades::Personagens;
 
-const std::string Jogo::nome = "Jogo 2d";
+const std::string Jogo::nome = "Temple++";
 bool Jogo::hasJogadorDois = false;
 
 Jogo::Jogo()

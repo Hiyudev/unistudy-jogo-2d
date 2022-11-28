@@ -5,7 +5,7 @@
 
 using namespace Fases;
 
-Caverna::Caverna() : Fase() { srand(time(NULL)); };
+Caverna::Caverna() : Fase() {  };
 
 Caverna::~Caverna(){};
 
@@ -25,11 +25,13 @@ void Caverna::createMap() {
 }
 
 void Caverna::generate() {
+  srand(time(NULL));
+  
   this->createMap();
 
   sf::Vector2f vPlataformas[5] = {{200, 168}, {72, 248}, {152, 280},
                                   {296, 264}, {376, 248}};
-  sf::Vector2f vInimigos[10] = { {184, 104}, {376, 184}, {152, 232}, {88, 264}, {296, 248}};
+  sf::Vector2f vInimigos[5] = { {184, 104}, {376, 184}, {152, 232}, {88, 264}, {296, 248}};
   
   int instanciasObst = 3 + (rand() % 3);
   int instanciasIni = 3 + (rand() % 3);

@@ -1,5 +1,7 @@
 #include "Plataforma.hpp"
 #include "../Obstaculo/Obstaculo.hpp"
+#include <cstdlib>
+#include <time.h>
 #include <SFML/Graphics.hpp>
 
 using namespace Entidades::Obstaculos;

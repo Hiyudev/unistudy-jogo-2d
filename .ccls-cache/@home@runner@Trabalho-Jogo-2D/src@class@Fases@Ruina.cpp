@@ -4,7 +4,7 @@
 
 using namespace Fases;
 
-Ruina::Ruina() : Fase() { srand(time(NULL)); }
+Ruina::Ruina() : Fase() { }
 
 Ruina::~Ruina() {}
 
@@ -37,6 +37,7 @@ void Ruina::createMap() {
 }
 
 void Ruina::generate() {
+  srand(time(NULL));
   this->createMap();
 
   sf::Vector2f vPlataformas[6] = {

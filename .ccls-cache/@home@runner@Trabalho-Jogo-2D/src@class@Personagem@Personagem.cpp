@@ -1,8 +1,8 @@
 #include "Personagem.hpp"
 #include "../../manager/CollisionManager.hpp"
 #include <SFML/Graphics.hpp>
+
 using namespace Entidades::Personagens;
-using namespace Utils;
 
 Personagem::Personagem(sf::Vector2f pos, bool flutuante, int health,
                        sf::Vector2f vel)
@@ -17,7 +17,7 @@ Personagem::Personagem(sf::Vector2f pos, bool flutuante, int health,
 
 Personagem::~Personagem(){};
 
-const int Personagem::getHealth() { return this->health; }
+const int Personagem::getHealth() const { return this->health; }
 void Personagem::setHealth(const int health) { this->health = health; }
 
 void Personagem::operator--() { this->health--; };

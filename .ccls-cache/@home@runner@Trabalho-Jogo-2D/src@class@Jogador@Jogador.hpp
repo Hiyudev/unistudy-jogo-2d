@@ -24,7 +24,7 @@ namespace Entidades
       
       public:
         Jogador(sf::Vector2f position, bool isSecondPlayer);
-        virtual ~Jogador();
+        ~Jogador();
 
 				static bool dead;
 				static bool hasSecondPlayer;

@@ -10,7 +10,7 @@ namespace Fases
 	{
 		public:
 			Caverna();
-			virtual ~Caverna();
+			~Caverna();
 
       void createMap();
 			void executar();

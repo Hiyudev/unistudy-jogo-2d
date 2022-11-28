@@ -15,7 +15,6 @@ GraphicManager::~GraphicManager() {
   }
 
   if (this->window != nullptr) {
-
     delete this->window;
   }
 };
