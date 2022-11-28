@@ -26,13 +26,10 @@ Jogo::Jogo()
 };
 
 Jogo::~Jogo() {
-  std::cout << "Jogo deconstructor" << '\n';
-  std::cout << "delete GraphicManager" << '\n';
   if (GraphicManager::getInstance() != nullptr) {
     delete GraphicManager::getInstance();
   }
 
-  std::cout << "delete SpriteManager" << '\n';
   if (SpriteManager::getInstance() != nullptr) {
     delete SpriteManager::getInstance();
   }
@@ -41,7 +38,6 @@ Jogo::~Jogo() {
     delete KeyboardManager::getInstance();
   }
 
-  std::cout << "this->fase = NUL" << '\n';
   this->fase = NULL;
 };
 

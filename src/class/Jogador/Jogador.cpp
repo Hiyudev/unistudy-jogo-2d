@@ -31,7 +31,7 @@ Jogador::Jogador(sf::Vector2f position, bool isSecondPlayer = false)
   }
 };
 
-Jogador::~Jogador() { std::cout << "Jogador deconstructor" << '\n'; };
+Jogador::~Jogador(){};
 
 bool Jogador::getIsSecondPlayer() { return this->isSecondPlayer; };
 

@@ -48,8 +48,6 @@ Menu::Menu() {
 
 Menu::~Menu()
 {
-std::cout << "Menu deconstructor" << '\n';
-
   this->window = NULL;
 };
 

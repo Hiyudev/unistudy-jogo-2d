@@ -9,8 +9,7 @@ using namespace Gerenciadores;
 SpriteManager::SpriteManager(){};
 
 SpriteManager::~SpriteManager(){
-	std::cout << "SpriteManager deconstructor" << '\n';
-	
+
 };
 
 SpriteManager *SpriteManager::getInstance() {

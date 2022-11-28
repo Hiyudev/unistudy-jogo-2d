@@ -22,9 +22,7 @@ using namespace Gerenciadores;
 
 CollisionManager::CollisionManager(){};
 
-CollisionManager::~CollisionManager() {
-  std::cout << "CollisionManager deconstructor" << '\n';
-};
+CollisionManager::~CollisionManager(){};
 
 CollisionManager *CollisionManager::getInstance() {
   std::lock_guard<std::mutex> lock(_mutex);

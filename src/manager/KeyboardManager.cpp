@@ -7,9 +7,7 @@ using namespace Gerenciadores;
 
 KeyboardManager::KeyboardManager(){};
 
-KeyboardManager::~KeyboardManager(){
-	std::cout << "KeyboardManager deconstructor" << '\n';
-};
+KeyboardManager::~KeyboardManager(){};
 
 KeyboardManager *KeyboardManager::getInstance() {
   std::lock_guard<std::mutex> lock(_mutex);
