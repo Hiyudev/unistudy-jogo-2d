@@ -10,9 +10,7 @@ GraphicManager::GraphicManager() {
 };
 
 GraphicManager::~GraphicManager() {
-
   if (this->window != nullptr) {
-    std::cout << "destory window" << '\n';
     delete this->window;
   }
 };
